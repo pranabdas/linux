@@ -118,6 +118,7 @@ let g:GPGDefaultRecipients=["default@example.com"]
 ```
 
 Read more: 
+
 - [https://protonmail.com/blog/what-is-pgp-encryption/](https://protonmail.com/blog/what-is-pgp-encryption/){:target="_blank"} 
 - [https://www.gnupg.org/gph/en/manual.html](https://www.gnupg.org/gph/en/manual.html){:target="_blank"} 
 - [https://blog.ghostinthemachines.com/2015/03/01/how-to-use-gpg-command-line/](https://blog.ghostinthemachines.com/2015/03/01/how-to-use-gpg-command-line/){:target="_blank"} 

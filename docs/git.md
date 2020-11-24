@@ -289,5 +289,6 @@ git remote remove <short-name>
 <br/> 
 
 **Learn more about git:** 
+
 - [https://git-scm.com/book/en/v2](https://git-scm.com/book/en/v2){:target="_blank"} 
 - [https://github.com/pluralsight/git-internals-pdf](https://github.com/pluralsight/git-internals-pdf){:target="_blank"} 

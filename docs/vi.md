@@ -70,20 +70,20 @@ hi Search ctermfg=black
 ```
 
 - Go to the end of the file: `G` 
-- Go to the beginning of file: `gg`
+- Go to the beginning of file: `gg` 
 - Go to the end of line: `$` 
-- Go to the beginning of line: `0`
+- Go to the beginning of line: `0` 
 - Delete a whole line: `dd` 
 - Undo: press `u` or type `:u` or `:2u` (undo two changes) or `:U` (undo all). 
 - Redo: `[control] + R` 
-- Reload/redraw: `[control] + L`
+- Reload/redraw: `[control] + L` 
 - Browse files and folders using file explorer: `:E` 
-- Spellcheck: `:set spell`
-- Turn off spellcheck: `:set nospell`
+- Spellcheck: `:set spell` 
+- Turn off spellcheck: `:set nospell` 
 - Spelling suggestions: `z=` 
 - Set user spell file: `:set spellfile=~/.vim/en.utf-8.add` 
 - Add new word to the user dictionary: `zg` 
-- Remove word from the dictionary: `zug`
+- Remove word from the dictionary: `zug` 
 - See line numbers: `:set nu` 
 - Hide line numbers: `:set nonu` 
 
@@ -119,8 +119,9 @@ vi -d file.txt file-copy.txt
 ```
 
 #### Select, Copy, Cut, Paste in VIM visual mode
-Enter Visual mode by pressing `v`, `V` or `[control] + v` for visual character, line or block modes, respectively. Select text using the arrow keys on the key board. You can:
+Enter Visual mode by pressing `v`, `V` or `[control] + v` for visual character, line or block modes, respectively. Select text using the arrow keys on the key board. You can: 
+
 - Press `c` it will clear the selected part and enter into insert mode. 
 - Press `y` to copy (yanked). 
-- You can paste in another location in VIM by pressing `p`.
-- Press `"+y` to copy to system clipboard, you can paste in another program using your system shortcut like `[command] + v` or `[control] + v`.
+- You can paste in another location in VIM by pressing `p`. 
+- Press `"+y` to copy to system clipboard, you can paste in another program using your system shortcut like `[command] + v` or `[control] + v`. 

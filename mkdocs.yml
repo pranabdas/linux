@@ -11,6 +11,7 @@ nav:
     - VIM editor: vi.md 
     - Git: git.md 
     - Network setup: network-setup.md 
+    - Shell scripting: shell-scripting.md 
     - Network security: network-security.md 
     - Linux Firewall: firewall.md
     - Apache webserver: apache.md 
@@ -18,6 +19,7 @@ nav:
     - Docker: docker.md 
     - NextCloud: nextcloud.md 
     - SELinux: selinux.md 
+    - HPC: hpc.md 
 
 theme:
     name: null

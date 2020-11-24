@@ -87,7 +87,7 @@ du -hs path/
 echo string
 echo $varialble
 echo string > file
-echo string > existing-file
+echo string >> existing-file
 ```
 
 - Print (concatenate the contents to the standard output) the contents of a file: 
@@ -326,13 +326,14 @@ rsync -avzhe "ssh -i ~/.ssh/id_rsa -p yyyy" ~/Desktop/file.txt pranab@xxx.xx.x.x
 rsync -avzh --delete /home/file.txt /usr/desktop/
 ```
 
-- Commonly used flags:
--v : verbose
--r : copies data recursively (but don’t preserve timestamps and permission while transferring data
--a : archive mode, archive mode allows copying files recursively and it also preserves symbolic links, file permissions, user & group ownerships and timestamps
--z : compress file data
--h : human-readable
--e : protocol option. 
+- Commonly used flags: 
+
+-v : verbose  
+-r : copies data recursively (but don’t preserve timestamps and permission while transferring data  
+-a : archive mode, archive mode allows copying files recursively and it also preserves symbolic links, file permissions, user & group ownerships and timestamps  
+-z : compress file data  
+-h : human-readable  
+-e : protocol option.  
 
 If you are looking for more advanced and secure backup options, check out [https://borgbackup.readthedocs.io/en/stable/](https://borgbackup.readthedocs.io/en/stable/){:target="_blank"}
 
@@ -407,14 +408,15 @@ tmux kill-session -t 0
 ```
 
 #### Keyboard shortcuts 
-These works on macOS:
-- CTRL-A: Move to the beginning of a line
-- CTRL-E: Move to the end of a line
-- ALT-LEFT: Move left one word
-- ALT-RIGHT: Move right one word
-- CTRL-K: kill/delete/cut from the cursor to the end
-- Ctrl-X + Backspace: removes all the text from the cursor to the beginning
-- CTRL-L: Clear screen
-- CTRL-C: Terminate the foreground process
-- CTRL-Z: Suspend the foreground process
-- CTRL-D: Exit shell.
+These are tested on macOS: 
+
+- CTRL-A: Move to the beginning of a line 
+- CTRL-E: Move to the end of a line 
+- ALT-LEFT: Move left one word 
+- ALT-RIGHT: Move right one word 
+- CTRL-K: kill/delete/cut from the cursor to the end 
+- Ctrl-X + Backspace: removes all the text from the cursor to the beginning 
+- CTRL-L: Clear screen 
+- CTRL-C: Terminate the foreground process 
+- CTRL-Z: Suspend the foreground process 
+- CTRL-D: Exit shell. 

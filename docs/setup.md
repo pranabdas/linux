@@ -1,41 +1,64 @@
 ### Setting up Linux 
 
-Ubuntu is very stable and popular Linux operating system. Most of the packages are well supported and the community support is the best. Here I am installing the latest version of Ubuntu (20.04), and setting it up for everyday use. I am doing a minimal installation in oder to avoid some unwanted games and apps being installed. Try to use the command line tools as much as possible. Not all tasks can be done by graphical programs. Graphical programs certainly need more system resources, they have more dependencies, and therefore prone to have more bugs and security issues. Make sure that everything is up to date: 
+Specifically, here we will install Ubuntu. Ubuntu is very stable and popular Linux operating system. Most of the packages are well supported and the community support is the best. Here I am installing the latest version of Ubuntu (20.04), and setting it up for everyday use. I am doing a minimal installation in oder to avoid some unwanted games and apps being installed. Try to use the command line tools as much as possible. Not all tasks can be done by graphical programs. Graphical programs certainly need more system resources, they have more dependencies, and therefore prone to have more bugs and security issues. I will use the minimal network boot ISO for installation. 
+
+Get the minimal ISO of [Ubuntu 20.04 here](http://archive.ubuntu.com/ubuntu/dists/focal/main/installer-amd64/current/legacy-images/netboot/mini.iso). 
+
+During installation, I selected: 
+
+- Text interface for installation 
+- Default filesystem partition 
+- No automatic updates 
+- Ubuntu minimal desktop only 
+
+Once boot into the system, make sure everything is up to date:
 ```
-sudo apt update 
-sudo apt upgrade 
+sudo apt update && sudo apt upgrade 
+``` 
+ 
+Install essentials: 
+```
+sudo apt install make 
+sudo apt install gcc 
+sudo apt install perl 
+sudo apt install git 
+sudo apt install vim
 ``` 
 
-If you are on Fedora/CentOS/Red Hat:
+Oh-my-bash: [https://github.com/ohmybash/oh-my-bash](https://github.com/ohmybash/oh-my-bash){:target="_blank"}
+
 ```
-sudo dnf up
+git clone git://github.com/ohmybash/oh-my-bash.git ~/.oh-my-bash
 ```
 
-It is a good idea to run above two commands every couple of days. In case you get some hash mismatch error, try the following:
+Append the following to your `.bashrc`:
 ```
-sudo rm -rf /var/lib/apt/lists/*
-sudo apt clean
-```
+export OSH=$HOME/.oh-my-bash
+OSH_THEME="standard"
+DISABLE_AUTO_UPDATE="true"
 
-I like Z-shell (instead of BASH) with Oh My Zsh. It has tab auto completion, better history recall, and other cool features. 
-```
-sudo apt install git
-sudo apt install zsh
-git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-sudo chsh -s /bin/zsh
-exec zsh 
-source ~/.zshrc
-```
-Go to `~/.zshrc` and uncomment 
-```
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-```
-You may need to logout and log back in to take effect the full changes. These are some useful Oh My Zsh extensions:
-- zsh-syntax-highlighting 
-- zsh-autosuggestions
+completions=(
+  git
+  composer
+  ssh
+)
 
-Installing fonts in Ubuntu. You can get a nice collection of fonts by installing the powerline fonts:
+aliases=(
+  general
+)
+
+plugins=(
+  git
+  bashmarks
+)
+
+source $OSH/oh-my-bash.sh
+```
+Terminal size: 96 by 30 col. Text and background color: gray on black, Palette: solarized. 
+
+**Installing fonts in Ubuntu/Debian:** 
+
+You can get a nice collection of fonts by installing the powerline fonts:
 ```
 sudo apt install fonts-powerline
 ```
@@ -43,7 +66,7 @@ sudo apt install fonts-powerline
 You can also manually install fonts (either .ttf or .otf) by putting them in the following path, and rebuilding the font cache:
 ```
 mkdir ~/.local/share/fonts
-fc-cache -f -v
+sudo fc-cache -f -v ~/.local/share/fonts
 ```
 [https://fonts.google.com](https://fonts.google.com){:target="_blank"} has a large collection of awesome fonts. Choose to your liking. 
 
@@ -52,21 +75,7 @@ If you are going to access your system remotely via SSH, install the SSH server.
 sudo apt install openssh-server
 ```
 
-Install net-tools, gcc, gfortran, mpich, vim
-```
-sudo apt install net-tools
-sudo apt install gcc
-sudo apt install gfortran
-sudo apt install mpich
-sudo apt install vim
-```
-
-Others:
-```
-sudo apt install tree
-```
-
-Setting up Python development. It will depend on your needs.  
+Setting up Python development. It will depend on your needs though.  
 ```
 sudo apt install python3 python3-pip
 pip3 install jupyterlab
@@ -75,6 +84,11 @@ pip3 install matplotlib bokeh seaborn
 pip3 install pandas geopandas xlrd openpyxl
 pip3 install virtualenv
 ```
+
+Append following to your `.bashrc`:
+```
+export PATH="/home/<username>/.local/bin:$PATH"
+``` 
 
 Mkdocs:
 ```
@@ -114,17 +128,39 @@ protonvpn c -f
 ```
 `-r` or `-f` flags for connecting random and fastest servers, respectively. 
 
-**Some graphical apps:**
-- Visual Studio Code
-- Standard Notes
+Zsh: 
+
+You may try Z-shell (instead of BASH) with Oh My Zsh. It has tab auto completion, better history recall, and other cool features. 
+```
+sudo apt install git
+sudo apt install zsh
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+sudo chsh -s /bin/zsh
+exec zsh 
+source ~/.zshrc
+```
+Go to `~/.zshrc` and uncomment 
+```
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+```
+You may need to logout and log back in to take effect the full changes. These are some useful Oh My Zsh extensions: 
+
+- zsh-syntax-highlighting 
+- zsh-autosuggestions
+
+**Some graphical apps:** 
+
+- Visual Studio Code 
+- Standard Notes 
 
 Always backup your user files (documents you create, codes you write, important notes etc.) in a safe and secure place. You may encrypt your files and upload to a cloud service. You may keep another copy in an external drive. 
 
 **Changing hostname:**
 Print the current name and other information with `hostnamectl`
 ```
-hostnamectl --static set-hostname="ubuntu-desktop"
-hostnamectl --pretty set-hostname="ubuntu-desktop"
+hostnamectl --static set-hostname="ubuntu-work"
+hostnamectl --pretty set-hostname="ubuntu-work"
 ```
 You need to restart the system to take effect the changes. 
 
