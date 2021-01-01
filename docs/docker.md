@@ -63,6 +63,7 @@ Exit from the docker container without killing the process: [control] + [P], [co
 Sharing volumes (shared folder with the host):
 ```
 docker run -v /home/host/docs:/home -ti centos bash
+docker run -v ${PWD}:/home -ti ubuntu bash
 ```
 
 Delete container:
@@ -88,6 +89,16 @@ docker run --rm <image-name>
 Use host network:
 ```
 docker run -it --net=host centos bash
+```
+
+Port forwarding: 
+```
+docker run -ti -p 8888:8888 -v ${pwd}:/home jupyter bash
+```
+
+Set MAC address:
+```
+docker run -it -v ${PWD}:/home --mac-address 02:42:ac:11:0d:11 ubuntu bash
 ```
 
 #### Installing apache on a docker container 
@@ -175,9 +186,14 @@ RUN mkdir -p /root/.config/matplotlib \
 WORKDIR /home
 ```
 
-Build docker image: 
+Build docker image (the file is named Dockerfile): 
 ```
 docker build -t arptools .
+```
+
+If the file is named other than Dockerfile: 
+```
+docker build -t arptools -f arptools.dockerfile .
 ```
 
 Launch: 

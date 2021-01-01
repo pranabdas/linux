@@ -239,6 +239,11 @@ git clone https://github.com/user/repository.git
 git clone https://github.com/user/repository.git my-repo-name
 ``` 
 
+- Clone a specific branch: 
+```
+git clone --branch <branchname> <remote-repo-url>
+```
+
 - Add GitHub remote directory:
 ```
 git remote add <short-name> <url>

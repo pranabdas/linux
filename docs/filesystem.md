@@ -52,6 +52,11 @@ Check the partitions that are mounted on boot:
 cat /etc/fstab
 ```
 
+Check filesystem types:
+```
+df -Th
+```
+
 Formatting a partition:
 ```
 sudo mkfs -t ext4 /dev/sdb3
