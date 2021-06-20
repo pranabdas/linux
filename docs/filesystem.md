@@ -1,7 +1,10 @@
-### Linux filesystem 
-
-The information about your system partitions can be found in the file `/proc/partition`:
-```
+---
+title: Linux filesystem
+sidebar_label: Filesystem
+---
+The information about your system partitions can be found in the file
+`/proc/partition`:
+```bash
 $ cat /proc/partitions
 
 major minor  #blocks  name
@@ -22,13 +25,13 @@ major minor  #blocks  name
    7        8     223124 loop8
 ```
 
-There are multiple ways to know about the partitions. Another command is: 
-```
+There are multiple ways to know about the partitions. Another command is:
+```bash
 sudo fdisk -l
 ```
 
-Another is: 
-```
+Another is:
+```bash
 $ lsblk
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 loop0    7:0    0    55M  1 loop /snap/core18/1705
@@ -40,35 +43,41 @@ loop5    7:5    0  49.8M  1 loop /snap/snap-store/433
 loop6    7:6    0  49.8M  1 loop /snap/snap-store/467
 loop7    7:7    0  27.1M  1 loop /snap/snapd/7264
 loop8    7:8    0  30.3M  1 loop /snap/snapd/9279
-sda      8:0    0    40G  0 disk 
+sda      8:0    0    40G  0 disk
 ├─sda1   8:1    0   512M  0 part /boot/efi
-├─sda2   8:2    0     1K  0 part 
+├─sda2   8:2    0     1K  0 part
 └─sda5   8:5    0  39.5G  0 part /
-sr0     11:0    1  1024M  0 rom 
+sr0     11:0    1  1024M  0 rom
 ```
 
 Check the partitions that are mounted on boot:
-```
+```bash
 cat /etc/fstab
 ```
 
-Check filesystem types:
+Amount of free space available:
+```bash
+df
+df -h
 ```
+
+Check filesystem types:
+```bash
 df -Th
 ```
 
 Formatting a partition:
-```
+```bash
 sudo mkfs -t ext4 /dev/sdb3
 ```
 
-Mounting a filesystem: it maps the filesystem with a directory. 
-```
+Mounting a filesystem: it maps the filesystem with a directory.
+```bash
 sudo mount /dev/sdb3 /newdrive
 ```
 
 Mounting Windows network drive in WSL:
-```
+```bash
 sudo mkdir /mnt/k
 sudo mount -t drvfs K: /mnt/k
 ```

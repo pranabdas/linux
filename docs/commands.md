@@ -1,422 +1,645 @@
-### Basic Linux/UNIX commands 
+---
+title: The commandline
+slug: /
+---
+You will appreciate Linux / UNIX if you care about simplicity, openness, and
+complete power to the user. In this tutorial, we will focus on various command
+line tools. We will see that command line tools are simple and more powerful
+than graphical tools. We will also learn to write scripts to automate tasks.
 
-- Print working directory:
-```
+## Navigating around
+Print current working directory:
+```bash
 pwd
 ```
 
-- List current directory:
-```
+List files and folders current directory:
+```bash
 ls
 ```
 
-- List a directory with details and hidden files:
+List a directory with more details:
+```bash
+ls -l
 ```
+
+Above `-l` stands for long. In some shells, the above command is aliased to
+`ll`.
+
+List hidden (all) files:
+```bash
 ls -la
 ```
 
-- You can list not only current directory but another directory:
-```
+You can list not only current directory but another directory:
+```bash
 ls sub_directory
 ```
 
-- Your current directory is represented by ```.```
-```
-ls .
-```
+**Common `ls` options:**
 
-- Parent directory is represented by ```..```
-```
-cd ..
-```
+| Option | Description |
+| ------ | ----------- |
+| -a     | List all files |
+| -h     | Display file sizes in more human readable format instead of bytes |
+| -l     | Long format |
+| -r     | Reverse order |
+| -S     | Sort by size |
+| -t     | Sort by time |
 
-There is a nice utility **tree** which displays the tree structure of a directory:
-```
-tree 
+Your current directory is denoted by `.`, and parent directory by `..`
+
+There is a nice utility **tree** which displays the tree structure of a
+directory:
+```bash
+tree
 tree -aCd -L 2 /
 ```
 
-- Create new directory:
-```
-mkdir new_dir
-```
-
-- Change directory:
-```
-cd dir_name
+Change directory:
+```bash
+cd home
+cd ..
 ```
 
-- Previous working directory:
-```
+Go to previous working directory:
+```bash
 cd -
 ```
 
-- Copy ```file_original``` to ```file_final```:
+Go to home directory (any of the below):
+```bash
+cd
+cd ~
 ```
+
+## Files and folders
+
+Determine a file content with `file` command:
+```bash
+file profile.jpg
+```
+
+Copy ```file_original``` to ```file_final```:
+```bash
 cp file_original file_final
 ```
 
-- Move file:
-```
+Move file or directory:
+```bash
 mv file_source file_destination
 ```
 
-- Copy a directory along with the contents inside recursively:
-```
+Copy a directory along with the contents inside recursively:
+```bash
 cp -r source_path destination_path
 ```
 
-- Sometimes we need to copy files along with permissions, timestamps, and other attributes, use the `-p` flag:
-```
+Sometimes we need to copy files along with permissions, timestamps, and other
+attributes, use the `-p` flag:
+```bash
 cp -rp source_path destination_path
 ```
 
-- Move directory:
-```
-mv dir_source dir_destination
+Create new directory:
+```bash
+mkdir new_dir
 ```
 
-- Disk usage, find folder size: 
+Delete a directory:
+```bash
+rm -rf my_dir
 ```
-du -hs 
+
+Delete an empty directory:
+```bash
+rmdir empty_dir
+# or use its alias
+rd empty_dir
+```
+
+:::tip
+
+One of the fastest way to delete a large directory:
+```bash
+mkdir empty && \
+  rsync -r --delete empty/ large_dir && \
+  rm -r large_dir empty
+```
+
+:::
+
+Disk usage, find folder size:
+```bash
+du -hs
 du -hs path/
-``` 
-
-- Display string/variable:
 ```
+
+Display string/variable:
+```bash
 echo string
-echo $varialble
+echo $variable
+
+# with variable expansion
+echo ${variable}
+
+# write/rewrite to a file
 echo string > file
+
+# append to an existing file
 echo string >> existing-file
 ```
 
-- Print (concatenate the contents to the standard output) the contents of a file: 
-```
-cat file.txt 
-``` 
-
-- Print only the head (default first 5 lines) of a file: 
-```
-head file.txt 
-``` 
-
-- You can print particular number of lines: 
-``` 
-head -3 file.txt 
-``` 
-
-- Print as much as fits in the shell window: 
-```
-more file.txt 
-``` 
-
-- See the end of a file: 
-``` 
-tail file.txt 
-tail -10 file.txt 
-``` 
-
-- Print the contents to a file: 
-``` 
-cat file.txt > file-copy.txt 
-``` 
-
-- This seems same as copy. But you can use this to combine multiple files: 
-``` 
-cat file.txt, file2.txt > file-copy.txt 
-``` 
-
-- Instead of overwriting file, you can append: 
-``` 
-cat file3.txt >> file-copy.txt 
+Print (concatenate the contents to the standard output) the contents of a file:
+```bash
+cat file.txt
 ```
 
-- You can use *paste* to combine files as well:
-```
-paste file* > file-all.txt 
+Print only the head (default first 10 lines) of a file:
+```bash
+head file.txt
 ```
 
-- Look for lines containing certain word. This will list the lines that contain the word *file* in the *cat* manual: 
-``` 
-man cat | grep file 
-``` 
-
-- Working with large files:
+You can print particular number of lines:
+```bash
+head -20 file.txt
 ```
+
+Print as much as fits in the shell window:
+```bash
+more file.txt
+```
+
+See the end of a file:
+```bash
+tail file.txt
+tail -20 file.txt
+```
+
+Print the contents to a file:
+```bash
+cat file.txt > file-copy.txt
+```
+
+This seems same as copy. But you can use this to combine multiple files:
+```bash
+cat file.txt, file2.txt > file-copy.txt
+```
+
+Instead of overwriting file, you can append:
+```bash
+cat file3.txt >> file-copy.txt
+```
+
+You can use *paste* to combine files as well:
+```bash
+paste file* > file-all.txt
+```
+
+Look for lines containing certain word. This will list the lines that contain
+the word *file* in the *cat* manual:
+```bash
+man cat | grep file
+```
+
+Working with large files:
+```bash
 less file.txt
 man top | less
 cat file.txt | less
 ```
+**Common `less` keyboard shortcuts:**
 
-- Create symbolic links:
+Shortcut | Description
+-------- | -----------
+space    | Scroll forward one page
+b        | Scroll back one page
+G        | Move to the end of file
+g        | Move to the beginning of file
+/char    | Search forward
+n        | Search for next occurrence
+q        | Quit
+
+Redirecting output:
+```bash
+# throw away output
+npm install &> /dev/null
 ```
+
+Writing stdout and stderr to a file
+```bash
+npm install &> log.txt
+
+# or
+npm install >log.txt 2>&1
+
+# write to separate files
+npm install > result_log.txt 2> error_log.txt
+
+# throw away stderr
+npm install > result_log.txt 2> /dev/null
+
+npm install 2>&1 > result_log.txt
+```
+
+Create symbolic links:
+```bash
 ln -s /path/to/file.txt /path/to/link.txt
 ```
 
-- Bash expansion: If you need to create/copy/move/delete a series of files:
-```
+Bash expansion: If you need to create/copy/move/delete a series of files:
+```bash
 touch file_{01..05}.txt
 ```
-It will create file_01.txt, file_02.txt and so on. 
+It will create file_01.txt, file_02.txt and so on.
 
-- Previous command: 
-```
+Recall previous command:
+```bash
 apt update
 sudo !!
 ```
 
-- Check IP address: 
+Untar files:
+```bash
+tar -zxvf file.tar.gz
 ```
+
+If you have got a zip file to unzip. You need to install *unzip*.
+```bash
+sudo apt install unzip
+sudo dnf install unzip
+```
+
+Then:
+```bash
+unzip filename.zip
+```
+
+Verify the checksum
+```bash
+md5 path/file.iso
+shasum -a 256 path/file.iso
+shasum -a 512 path/file.iso
+```
+
+## sed
+
+Use **s**tream **ed**itor to find and replace text.
+
+```bash
+# substitute first string occurrence in every line
+sed s/pattern/replace_string/ file.txt
+
+# substitute all string occurrences in every line
+sed s/pattern/replace_string/g file.txt
+
+# substitute al string occurrences in range of lines
+sed 1,5s/pattern/replace_string/g file.txt
+
+# case insensitive search
+sed s/pattern/replace_string/gI file.txt
+
+# write the output to a file
+sed s/pattern/replace_string/gI file.txt > newfile.txt
+
+# save changes to the same file
+sed -i.bak s/pattern/replace_string/gI file.txt
+```
+
+In the last command it will create a backup of the original file named
+`file.txt.bak`.
+
+## wget
+Download a file using `wget`:
+```bash
+wget https://example.com/pic.jpg
+```
+
+Download and save to a path/name:
+```bash
+wget https://example.com/pic.jpg -O images/profile.jpg
+```
+
+## ssh
+
+ssh can be used to connect to remote machines. First you need to know the IP
+address or hostname of remote machine:
+```bash
 ip addr
 ```
 
-- Connecting to a ssh server: 
-```
+Connecting to a ssh server:
+```bash
 ssh <username>@<xxx.xx.xx.xxx> -p <yyyy>
 ```
-where xxx.xx.xx.xxx is the IP address and yyyy is the port. 
+where `xxx.xx.xx.xxx` is the IP address and `yyyy` is the port number.
 
-- You can disconnect from the remote ssh by pressing [control] + [d] or typing `exit` on the terminal. 
+You can disconnect from the remote ssh by pressing **[control]+[d]** or typing
+`exit` on the terminal.
 
-- Running ssh server on Windows Subsystem for Linux. Open the following file: 
-```
+Running ssh server on Windows Subsystem for Linux. Open the following file:
+```bash
 sudo vi /etc/ssh/sshd_config
-``` 
-- Change the port to anything above 1000 (default 22 might conflict with host Windows system). 
-- Change `PasswordAuthentication yes` 
-- Add `AllowUsers <your username>` 
+```
 
-- Save and exit. Following commands should be self explanatory: 
-```
-service ssh status 
-sudo service ssh start 
-sudo service ssh stop 
-sudo service ssh --full-restart 
-``` 
+Change the port to anything above `1000` (default `22` might conflict with host
+Windows system if you are using WSL).
+Change `PasswordAuthentication yes`
+Add `AllowUsers <your username>`
 
-- Port forwarding. Let's say you are working on a python jupyter notebook on the remote server via ssh and you want to see the notebook in your local browser. You can forward the specific port to your local machine: 
+Save and exit. Following commands should be self explanatory:
+```bash
+service ssh status
+sudo service ssh start
+sudo service ssh stop
+sudo service ssh --full-restart
 ```
-ssh -L 8888:127.0.0.1:8888 pranab@xxx.xx.x.xxx -p yyyy -i ~/.ssh/id_rsa 
-```
-Now you can see the notebook in your client machine. 
 
-- Adding SSH key-pair to connect to a server. Generate the key-pair in your client computer:
+Port forwarding. Let's say you are working on a python jupyter notebook on the
+remote server via ssh and you want to see the notebook in your local browser.
+You can forward the specific port to your local machine:
+```bash
+ssh -L 8888:127.0.0.1:8888 pranab@xxx.xx.x.xxx -p yyyy -i ~/.ssh/id_rsa
 ```
+
+Now you can see the notebook in your client machine.
+
+Adding SSH key-pair to connect to a server. Generate the key-pair in your client
+computer:
+```bash
 ssh-keygen
 ```
-You may leave everything default and press enter. It will generate public and private key pair inside `~/.ssh` directory. Now we need to copy the public key to the host machine. Connect to remote host using password. Create a `.ssh` directory in the remote home directory. You can print the public key in your terminal `cat id_rsa.pub` and copy it to clipboard.
+You may leave everything default and press enter. It will generate public and
+private key pair inside `~/.ssh` directory. Now we need to copy the public key
+to the host machine. Connect to remote host using password. Create a `.ssh`
+directory in the remote home directory. You can print the public key in your
+terminal `cat id_rsa.pub` and copy it to clipboard.
 
-```
+```bash
 ssh <username>@<xxx.xx.xx.xxx> -p <yyyy>
 mkdir .ssh
 vi .ssh/authorized_keys
 ```
-Paste the public key, save and exit. Then open `/etc/ssh/sshd_config` with `sudo vi` and uncomment the line `PubkeyAuthentication yes`. You may choose to set `PasswordAuthentication no` if you want. Set the following permissions: 
-```
+
+Paste the public key, save and exit. Then open `/etc/ssh/sshd_config` with
+`sudo vi` and uncomment the line `PubkeyAuthentication yes`. You may choose to
+set `PasswordAuthentication no` if you want. Set the following permissions:
+```bash
 sudo chmod 700 .ssh
 sudo chmod 600 .ssh/authorized_keys
 ```
 
 Restart the ssh service on remote host
-```
-sudo service ssh restart 
-```
-
-Now you can connect from your remote computer using:
-```
-ssh pranab@172.16.1.183 -p 2127 -i ~/.ssh/id_rsa
+```bash
+sudo service ssh restart
 ```
 
-- Copying files via scp from remote to local or remote to local: 
+Now you can connect from your local computer using:
+```bash
+ssh pranab@xxx.xx.x.xxx -p yyyy -i ~/.ssh/id_rsa
 ```
+
+Copying files via scp from remote to local or vice-versa:
+```bash
 scp remote_username@10.10.0.2:/remote/file.txt /local/directory
 scp file.txt remote_username@10.10.0.2:/remote/directory
 ```
 
 You can use `scp` to transfer files as well using ssh-keys:
-```
+```bash
 scp -i ~/.ssh/id_rsa remote_username@10.10.0.2:/remote/file.txt /local/directory
 scp -P yyyy -i ~/.ssh/id_rsa file.txt remote_username@10.10.0.2:remote/directory
 ```
 
 We can secure copy a directory using `-r` flag:
-```
-scp -i "ssh_key.pem" -r ~/Documents/mydir user@domain.com:Downloads/mydir 
-```
-
-- Untar files: 
-```
-tar -zxvf file.tar.gz
-``` 
-
-If you have got a zip file to unzip. You need to install *unzip*.
-```
-sudo apt install unzip 
-sudo dnf install unzip
-```
-Then: 
-```
-unzip filename.zip
+```bash
+scp -i "ssh_key.pem" -r ~/Documents/mydir user@domain.com:Downloads/mydir
 ```
 
-- Make a script file executable: 
-1. Create a file filename.sh 
-2. Write down your script 
-3. Make the file executable: `chmod +x filename.sh` 
-4. Run the script: `./filename.sh`
+## openssl
 
-- Verify the checksum 
-```
-md5 path/file.iso 
-shasum -a 256 path/file.iso 
-shasum -a 512 path/file.iso
+There are various encription options available in openssl. In the above, we have
+used AES-256 (Advanced Encryption Standard with 256 bit key length) symmetric
+encryption in CBC (Cipher Blocker Chaining) mode, used salt hashing, pbkdf2
+(Password-Based Key Derivation Function 2) key stretching, and armor output
+(`-a`). Check openssl documentation for more details.
+
+Some good set of options:
+```bash
+# to encrypt
+openssl enc -e -aes-256-cbc \
+  -salt \
+  -pbkdf2 \
+  -iter 1000000 \
+  -md sha512 \
+  -base64 \
+  -in somefile \
+  -out somefile.enc
+
+# to decrypt
+openssl enc -d -aes-256-cbc \
+  -salt \
+  -pbkdf2 \
+  -iter 1000000 \
+  -md sha512 \
+  -base64 \
+  -in somefile.enc \
+  -out somefile
 ```
 
-#### Encrypt/decrypt using Openssl
-```
-openssl aes-256-cbc -a -salt -pbkdf2 -in message.txt -out message.txt.enc
-openssl aes-256-cbc -d -a -salt -pbkdf2 -in message.txt.enc -out message-copy.txt
-```
-There are various options available in openssl. In the above, we have used AES-256 (Advanced Encryption Standard with 256 bit key length) symmetric encryption in CBC (Cipher Blocker Chaining) mode, used salt hashing, pbkdf2 (Password-Based Key Derivation Function 2) key stretching, and armor output (`-a`). Check openssl documentation for more details. 
+## File permissions
 
-#### File permissions
+When we list a file using `ls -la` or similar, we see permissions strings. What
+does they mean?
 
-When we list a file using `ls -la` or similar, we see permissions strings. What does they mean? 
-r => read
-w => write 
-x => execute 
+r → read <br/>
+w → write <br/>
+x → execute <br/>
 
-and they are listed for user, group, and others. We can set the file permissions by using numeric conventions. r = 4, w = 2, and x = 1. Say we want to set rwx for user, rx for group and only x for others, we can set that by:
-```
+and they are listed for user, group, and others. We can set the file permissions
+by using numeric conventions. r=4, w=2, and x=1. Say we want to set `rwx`
+for user, `rx` for group and only `x` for others, we can set that by:
+```bash
 chmod 751 file.sh
 ```
-Similarly, in symbolic notation, we can assign or add or remove permissions:
-```
+
+Alternatively, in symbolic notation, we can assign or add or remove permissions:
+```bash
 chmod u=rwx, g=rx, o= file.sh
 chmod u+x file.sh
 chmod g-x file.sh
 ```
+
 We can change file permissions recursively as well:
-```
+```bash
 chmod -R ugo-x /home/pranab
 chmod -R a-x /home/pranab
 ```
 
-#### Backup files using `rsync`
-It can be used to mirror/copy files and folders in a local machine as well as to/from remote machines. It is a very powerful tool with lots of options and customizations. Here are few common ones: 
+Make a script file executable:
+1. Create a file filename.sh
+2. Write down your script
+3. Make the file executable: `chmod +x filename.sh`
+4. Run the script: `./filename.sh`
 
-- Copy/Sync files locally:
-```
+## rsync
+It can be used to mirror/copy files and folders in a local machine as well as
+to / from remote machines. It is a very powerful tool with lots of options and
+customizations. Here are few common ones:
+
+Copy / sync files locally:
+```bash
 rsync -avh backup.tar /tmp/backups/
 ```
 
-- Copy folders locally:
-```
+Copy folders locally:
+```bash
 rsync -avzh /root/rpmpkgs /tmp/backups/
+rsync -avzh /root/rpmpkgs/ /tmp/backups/rpmpkgs
 ```
 
-- Copy files over ssh:
-```
+Copy files over ssh:
+```bash
 rsync -avzhe "ssh -i ~/.ssh/id_rsa -p yyyy" pranab@xxx.xx.x.xxx:file.txt ~/Desktop/
 rsync -avzhe "ssh -i ~/.ssh/id_rsa -p yyyy" ~/Desktop/file.txt pranab@xxx.xx.x.xxx:docs
 ```
 
-- By default rsync won't remove deleted files from the destination. If you want to delete:
-```
+By default rsync won't remove deleted files from the destination. If you want to
+delete:
+```bash
 rsync -avzh --delete /home/file.txt /usr/desktop/
 ```
 
-- Commonly used flags: 
-
--v : verbose  
--r : copies data recursively (but don’t preserve timestamps and permission while transferring data  
--a : archive mode, archive mode allows copying files recursively and it also preserves symbolic links, file permissions, user & group ownerships and timestamps  
--z : compress file data  
--h : human-readable  
--e : protocol option.  
-
-If you are looking for more advanced and secure backup options, check out [https://borgbackup.readthedocs.io/en/stable/](https://borgbackup.readthedocs.io/en/stable/){:target="_blank"}
-
-#### System process:
-See processes in the current shell
+Exclude a file or directory from syncing:
+```bash
+rsync -avzh --delete --exclude .git /home/my-project/ /mnt/d/my-project
+rsync -avzh --delete --exclude *.iso /home/my-project/ /mnt/d/my-project
+rsync -avzh --max-size=500m /home/my-project/ /mnt/d/my-project
+rsync -avzh --exclude={'*.log','dir-x','dir-y'} /home/my-project/ /mnt/d/my-project
+rsync -avzh --exclude-from={'exclude.txt'} /home/my-project/ /mnt/d/my-project
 ```
+
+Where `exclude.txt` contains list of files and directories:
+```bash title="exclude.txt"
+.gitignore
+.git
+*.log
+test*
+```
+
+Commonly used flags:
+
+Flags | Description
+----- | -----------
+-v    | verbose
+-r    | copies data recursively, doesn’t preserve timestamps and permission
+-a    | archive mode, copies recursively and preserves ownerships and timestamps
+-z    | compress data while transferring
+-h    | human-readable
+-e    | with protocol option.
+
+If you are looking for more advanced and secure backup options, check out
+<https://borgbackup.readthedocs.io/en/stable/>
+
+## Processes
+See processes in the current shell
+```bash
 ps
 ```
 
 Show all processes:
-```
+```bash
 ps -ef
 ```
 
 Show all processes of all users
-```
+```bash
 ps -aux
 ps -aux | head -10
 ```
 You can exit by typing `q`. You can press `k` and provide PID to kill a process.
 
 You can kill a process by:
-```
+```bash
 kill -SIGKILL <pid>
 ```
 
-On the command line, you can terminate a command by `CTRL+C` or suspend by `CTRL+Z`. 
+On the command line, you can terminate a command by `CTRL+C` or suspend by
+`CTRL+Z`.
 
 View process tree:
-```
+```bash
 ps tree
 ```
 
 Check load balance:
-```
+```bash
 top
-``` 
-
-#### Using tmux 
-tmux has many use case scenarios, one them is running something on a remote machine without interruption. Say you are working on a remote machine over ssh, and you need to update your remote machine. The updating process can be catastrophic if it is interrupted, it can leave your system on a broken state. Therefore it is a good idea to run the process using tmux so that even if you are disconnected from the ssh session, the process can continue. 
-
-Installing tmux: 
 ```
+
+## tmux
+tmux has many use case scenarios, one them is running something on a remote
+machine without interruption. Say you are working on a remote machine over ssh,
+and you need to update your remote machine. The updating process can be
+catastrophic if it is interrupted, it can leave your system on a broken state.
+Therefore it is a good idea to run the process using tmux so that even if you
+are disconnected from the ssh session, the process can continue.
+
+Installing tmux:
+```bash
 sudo apt install tmux
 ```
 
 Launch a tmux window:
-```
+```bash
 tmux
 ```
 
-Run a process/command there. Now we can detach from tmux using keyboard shortcut: first send the tmux bind-key `[control] + [b]` followed by `[d]`. Now we get back our main terminal. We can create multiple tmux sessions. We can list tmux sessions by: 
-```
+Run a process/command there. Now we can detach from tmux using keyboard
+shortcut: first send the tmux bind-key `[control] + [b]` followed by `[d]`.
+Now we get back our main terminal. We can create multiple tmux sessions. We can
+list tmux sessions by:
+```bash
 tmux ls
 ```
 
 We can attach particular session:
-```
+```bash
 tmux attach -c 2
 ```
 
 Or attach the last working session or if there is only one session:
-```
+```bash
 tmux attach
 ```
 
-When we are in one of tmux window, we can use `[control] + [b]` followed by `[w]` for tmux window list. 
+When we are in one of tmux window, we can use `[control] + [b]` followed by
+`[w]` for tmux window list.
 
-We can exit the tmux session by typing `exit` on the tmux window. Or when we are in main terminal: 
-```
+We can exit the tmux session by typing `exit` on the tmux window. Or when we are
+in main terminal:
+```bash
 tmux kill-session -t 0
 ```
 
-#### Keyboard shortcuts 
-These are tested on macOS: 
+## Keyboard shortcuts
+Shortcuts | Description
+--------- | -----------
+CTRL + A  | Move to the beginning of a line
+CTRL + E  | Move to the end of a line
+CTRL + K  | Kill/delete/cut from the cursor to the end
+CTRL + U  | Delete from the cursor to the start of the line
+Ctrl + X + Backspace | removes all the text from the cursor to the beginning
+CTRL + W  | Delete from cursor to the start of word
+CTRL + Y  | Undo last deletion
+ALT + Left arrow | Move left one word
+ALT + Right arrow | Move right one word
+CTRL + L  | Clear screen
+CTRL + C  | Terminate the foreground process
+CTRL + Z  | Suspend the foreground process
+CTRL + D  | Exit shell.
 
-- CTRL-A: Move to the beginning of a line 
-- CTRL-E: Move to the end of a line 
-- ALT-LEFT: Move left one word 
-- ALT-RIGHT: Move right one word 
-- CTRL-K: kill/delete/cut from the cursor to the end 
-- Ctrl-X + Backspace: removes all the text from the cursor to the beginning 
-- CTRL-L: Clear screen 
-- CTRL-C: Terminate the foreground process 
-- CTRL-Z: Suspend the foreground process 
-- CTRL-D: Exit shell. 
+## Learn more
+- [Art of commandline](https://github.com/jlevy/the-art-of-command-line)
+- [IBM Linux tutorials](https://developer.ibm.com/technologies/linux/series/learn-linux-101/)
+- *The Linux command line: a complete introduction* by *William E. Shotts*.
