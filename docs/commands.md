@@ -282,6 +282,106 @@ shasum -a 256 path/file.iso
 shasum -a 512 path/file.iso
 ```
 
+## find
+Search for files using `find` command:
+```bash
+find /home/pranab -type f -name profile.jpg
+
+# find in several directories
+find /home/pranab /users/pranab -type f -name profile.jpg
+
+# case insensitive search
+find /home/pranab -type f -iname profile.jpg
+
+# by filetype
+find /home/pranab -type f -name *.pdf
+```
+Useful `-type` flags: `f`: regular files, `d`: directory, `l`: symbolic link.
+
+Find by file permission:
+```bash
+find . -perm 0600  -print
+find . -perm 0644  -type f -name tests.py -print
+
+# without permission
+find . -type f ! -perm 777
+
+# find all executables
+find . -perm /a=x
+```
+
+Find by file size:
+```bash
+find /tmp -type f -size 1024c
+
+# less than 1 megabyte
+find . -type f -size -1M
+
+# bigger than 1 kilobyte
+find . -type f -size +1k
+
+# between 512 MB and 1 GB
+find . -type f -size +512M -size -1G
+```
+
+Find files based on modification time
+```bash
+# find files modified in last 7 days
+find . -name "*.md" -mtime 7
+
+# modified in last hour
+find . -name "*.md" -mmin 60
+
+# last modified more than 7 days before
+find . -name "*.md" -mtime +7 -daystart
+```
+
+Find and delete file:
+```bash
+find . -type f -name .DS_Store -delete
+```
+
+:::danger
+
+Run above command with caution. First run the command without the `-delete` flag
+to be sure what your are deleting. If the expression prior to `-delete` is what
+you did not mean, it could delete something that you did not want.
+
+:::
+
+Look for multiple filetype at once:
+```bash
+find . -type f \( -name \*.jpg -o -name \*.png \)
+```
+
+## grep
+Find specific string/words in a file or set of files.
+```bash
+grep estimation output.txt
+grep "energy estimation" output.txt
+
+# find in multiple files
+grep estimation output.txt output2.txt
+
+# find in all files in a directory
+grep estimation *
+
+# ignore case
+grep -i estimation *
+
+# search subdirectories
+grep -r estimation *
+
+# list of matching files
+grep -l estimation *
+
+# count number of matches
+grep -c estimation *
+
+# search for multiple strings
+grep -e estimation -e "total energy" *
+```
+
 ## sed
 
 Use **s**tream **ed**itor to find and replace text.
@@ -622,7 +722,7 @@ in main terminal:
 tmux kill-session -t 0
 ```
 
-## Keyboard shortcuts
+## Terminal shortcuts
 Shortcuts | Description
 --------- | -----------
 CTRL + A  | Move to the beginning of a line

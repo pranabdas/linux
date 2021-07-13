@@ -26,15 +26,23 @@ module.exports = {
     },
     navbar: {
       title: "Linux tutorial",
+      hideOnScroll: true,
       logo: {
         alt: "Logo",
         src: "img/favicon.ico",
       },
       items: [
         {
-          label: "Other Docs",
+          label: "Docs",
           position: "left",
           items: [
+            {
+              label: "Linux Tutorial",
+              to: "/",
+            },
+            {
+              label: "~ ~ ~ Other Docs ~ ~ ~",
+            },
             {
               label: "ARPES Python Tools",
               to: "https://pranabdas.github.io/arpespythontools/",
