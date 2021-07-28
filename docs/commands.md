@@ -1,5 +1,6 @@
 ---
 title: The commandline
+sidebar_label: Commandline
 slug: /
 ---
 You will appreciate Linux / UNIX if you care about simplicity, openness, and
@@ -594,8 +595,8 @@ rsync -avh backup.tar /tmp/backups/
 
 Copy folders locally:
 ```bash
-rsync -avzh /root/rpmpkgs /tmp/backups/
-rsync -avzh /root/rpmpkgs/ /tmp/backups/rpmpkgs
+rsync -avh /root/rpmpkgs /tmp/backups/
+rsync -avh /root/rpmpkgs/ /tmp/backups/rpmpkgs
 ```
 
 Copy files over ssh:
@@ -607,16 +608,16 @@ rsync -avzhe "ssh -i ~/.ssh/id_rsa -p yyyy" ~/Desktop/file.txt pranab@xxx.xx.x.x
 By default rsync won't remove deleted files from the destination. If you want to
 delete:
 ```bash
-rsync -avzh --delete /home/file.txt /usr/desktop/
+rsync -avh --delete /home/file.txt /usr/desktop/
 ```
 
 Exclude a file or directory from syncing:
 ```bash
-rsync -avzh --delete --exclude .git /home/my-project/ /mnt/d/my-project
-rsync -avzh --delete --exclude *.iso /home/my-project/ /mnt/d/my-project
-rsync -avzh --max-size=500m /home/my-project/ /mnt/d/my-project
-rsync -avzh --exclude={'*.log','dir-x','dir-y'} /home/my-project/ /mnt/d/my-project
-rsync -avzh --exclude-from={'exclude.txt'} /home/my-project/ /mnt/d/my-project
+rsync -avh --delete --exclude .git /home/my-project/ /mnt/d/my-project
+rsync -avh --delete --exclude *.iso /home/my-project/ /mnt/d/my-project
+rsync -avh --max-size=500m /home/my-project/ /mnt/d/my-project
+rsync -avh --exclude={'*.log','dir-x','dir-y'} /home/my-project/ /mnt/d/my-project
+rsync -avh --exclude-from='exclude.txt' /home/my-project/ /mnt/d/my-project
 ```
 
 Where `exclude.txt` contains list of files and directories:

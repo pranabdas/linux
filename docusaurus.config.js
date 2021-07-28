@@ -33,6 +33,7 @@ module.exports = {
       },
       items: [
         {
+          to: "/",
           label: "Docs",
           position: "left",
           items: [
@@ -42,10 +43,17 @@ module.exports = {
             },
             {
               label: "~ ~ ~ Other Docs ~ ~ ~",
+              to: "https://pranabdas.github.io/docs/",
+              target: "_self",
             },
             {
               label: "ARPES Python Tools",
               to: "https://pranabdas.github.io/arpespythontools/",
+              target: "_self",
+            },
+            {
+              label: "Fortran Programming",
+              to: "https://pranabdas.github.io/fortran/",
               target: "_self",
             },
             {
@@ -71,10 +79,6 @@ module.exports = {
             {
               label: "Condensed Matter Notes",
               href: "https://pranabdas.github.io/docs/condmat-notes/",
-            },
-            {
-              label: "Fortran Programming",
-              href: "https://pranabdas.github.io/docs/fortran/",
             },
             {
               label: "FullProf Tutorial",

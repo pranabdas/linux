@@ -158,6 +158,11 @@ You can add all changes and commit by combing:
 git commit -a -m "commit all changes"
 ```
 
+You can also have multi-line commit messages:
+```bash
+git commit -m "commit message one" -m "another message"
+```
+
 Often you forget some files to add or commit to early. You can add those files
 and amend the commit:
 ```bash

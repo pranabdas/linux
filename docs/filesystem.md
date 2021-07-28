@@ -81,3 +81,13 @@ Mounting Windows network drive in WSL:
 sudo mkdir /mnt/k
 sudo mount -t drvfs K: /mnt/k
 ```
+
+CPU info:
+```bash
+cat /proc/cpuinfo
+```
+
+RAM info:
+```bash
+free
+```

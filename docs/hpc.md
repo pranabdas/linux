@@ -24,9 +24,9 @@ sudo apt install libfftw3-3
 **LAPACK, BLAS, TMGLIB**
 Resources: <http://www.netlib.org/lapack/>
 ```bash
-wget https://github.com/Reference-LAPACK/lapack/archive/v3.9.0.tar.gz
-tar -xzvf v3.9.0.tar.gz
-cd lapack-3.9.0
+wget https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.10.0.tar.gz
+tar -xzvf v3.10.0.tar.gz
+cd lapack-3.10.0
 cp make.inc.example make.inc
 make blaslib
 make lapacklib

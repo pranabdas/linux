@@ -212,6 +212,48 @@ Launch:
 docker run -ti --net=host -v /host/path:/home arptools bash
 ```
 
+Add non-root user and group:
+```docker
+RUN groupadd -r noroot && useradd -r -g noroot noroot
+
+# make owner of certain directory / executables
+RUN chown -R noroot:noroot build_dir
+
+# set user
+USER noroot
+```
+
+More details on `adduser` (also check `useradd --help`):
+```docker
+ENV NON_ROOT_USER="noroot"
+ARG NON_ROOT_USER_PASSWORD="gf3r-trf5-6etd"
+ENV NON_ROOT_USER_GROUP="noroot"
+
+RUN groupadd -r $NON_ROOT_USER_GROUP -g 1000 \
+ && useradd \
+    --uid 1000 \
+    --system \
+    --gid $NON_ROOT_USER_GROUP \
+    --create-home \
+    --home-dir /home/$NON_ROOT_USER/ \
+    --shell /bin/bash \
+    --comment "non-root user" \
+    $NON_ROOT_USER \
+ && chmod 755 /home/$NON_ROOT_USER/ \
+ && echo "$NON_ROOT_USER:$NON_ROOT_USER_PASSWORD" | chpasswd
+```
+
+:::tip
+
+Running `chown` on a large directory may increase the image size significantly.
+In such case build the directory using another instance, and copy it to new
+image using:
+```bash
+COPY --chown=noroot:noroot /home/build_dir /noroot/build_dir
+```
+
+:::
+
 ## Docker hub
 
 Login:

@@ -1,6 +1,7 @@
 ---
 title: Shell scripting
 ---
+import CodeBlock from '@theme/CodeBlock';
 
 Choose a unique name for the scripting file. Try following commands to see if an
 executable with the same name exists:
@@ -52,7 +53,7 @@ bash myscript.sh
 
 :::info
 
-`sh` and `bash` are not exactly the same, and might give slightly different
+**sh** and **bash** are not exactly the same, and might give slightly different
 result in some cases. bash refers to Born Again SHell while sh refers to the
 original UNIX shell.
 
@@ -70,9 +71,9 @@ echo $my_num
 
 :::tip
 
-Bash uses capitalized variable names for global variables (e.g., `PATH`, `PWD`).
-Perhaps it is a good idea to name local variables with lower case letters to
-avoid conflict.
+**bash** uses capitalized variable names for global variables (e.g., `PATH`,
+`PWD`). Perhaps it is a good idea to name local variables with lower case
+letters to avoid conflict.
 
 :::
 
@@ -104,6 +105,15 @@ $ my_arr2=`seq 0 2 10`; echo $my_arr2
 8
 10
 ```
+
+:::tip
+
+In **bash** the array index starts from 0, while in **zsh** it starts from 1. If
+you want your script to be cross compatible, you may use
+`${array[@]:offset:length}` e.g., only first element `${array[@]:0:1}`; only
+second element `${array[@]:1:1}`; first and second element `${array[@]:0:2}`.
+
+:::
 
 If condition:
 ```bash
@@ -142,24 +152,33 @@ $ echo {2020..2021}-{01..12}
 ```
 
 A bash script to convert degree Celsius to Fahrenheit:
-```bash title="src/deg_f_to_c_conv.sh"
-#!/bin/bash
-# this reports undefined variables
-shopt -s -o nounset
 
-# declare integer variables
-declare -i tempF
-declare -i tempC
+import deg_f_to_c_conv from '!!raw-loader!/src/deg_f_to_c_conv.sh';
 
-printf "Fahrenheit-Celsius Conversion\n\n"
+<CodeBlock className="bash" title="src/deg_f_to_c_conv.sh">{deg_f_to_c_conv}</CodeBlock>
 
-# read value via prompt
-read -p "Enter temperature in Celsius (integer only): " tempC
-tempF="9*tempC/5+32"
-printf "The Fahrenheit temperature is %d\n" "$tempF"
-exit 0
+## String substitution
+Rename files example:
+```bash
+$ ls
+item_01.txt item_03.txt item_05.txt item_07.txt item_09.txt
+item_02.txt item_04.txt item_06.txt item_08.txt item_10.txt
+
+# match string at end with %
+$ for i in $( ls );do mv ${i} ${i%*.txt}.md; done; ls
+item_01.md item_03.md item_05.md item_07.md item_09.md
+item_02.md item_04.md item_06.md item_08.md item_10.md
+
+# match string at beginning with #
+$ for i in $( ls );do mv ${i} slide_${i#*_*}; done; ls
+slide_01.md slide_03.md slide_05.md slide_07.md slide_09.md
+slide_02.md slide_04.md slide_06.md slide_08.md slide_10.md
+
+# or
+$ for i in $( ls );do mv ${i} slide_${i#item_*}; done
 ```
 
 ## Learn more
 - *Learning the bash Shell: Unix Shell Programming* by *C. Newham*.
 - *Linux Shell Scripting With Bash* by *K. O. Burtch*.
+- <https://tldp.org/guides.html>
