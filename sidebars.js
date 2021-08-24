@@ -20,6 +20,7 @@ module.exports = {
         "nextcloud",
         "selinux",
         "hpc",
+        "brew",
       ],
     },
     "license",

@@ -421,6 +421,25 @@ Download and save to a path/name:
 wget https://example.com/pic.jpg -O images/profile.jpg
 ```
 
+Continue with interrupted download:
+```bash
+wget -c http://example.com/file.ext
+```
+
+Mirror a website locally using wget:
+```bash
+wget --mirror \
+  --convert-links \
+  --html-extension \
+  --wait=1 \
+  -o log \
+  http://example.com
+```
+
+`--convert-links` will convert the links suitable for viewing with local paths;
+`--html-extensions` will handle if there are no extension at the end of URLs;
+`--wait` to specify waiting time between successive retrievals.
+
 ## ssh
 
 ssh can be used to connect to remote machines. First you need to know the IP
