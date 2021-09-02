@@ -86,10 +86,6 @@ module.exports = {
               href: "https://pranabdas.github.io/docs/condmat-notes/",
             },
             {
-              label: "FullProf Tutorial",
-              href: "https://pranabdas.github.io/docs/fullprof/",
-            },
-            {
               label: "Javascript Tutorial",
               href: "https://pranabdas.github.io/docs/js-learning/",
             },

@@ -88,6 +88,12 @@ Delete images:
 docker rmi <image-name>
 ```
 
+Reclaim space immediately (otherwise it may take several minutes to reflect
+storage space after a cleanup operation):
+```bash
+docker run --privileged --pid=host --rm docker/desktop-reclaim-space
+```
+
 Delete all the stopped containers and images:
 ```bash
 docker system prune -a

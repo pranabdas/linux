@@ -49,12 +49,18 @@ Upgrade all installed packages:
 brew upgrade
 ```
 
+The above does not upgrade the casks if the casks are set to auto update. You
+can upgrade anyway via brew by:
+```bash
+brew upgrade --cask --greedy
+```
+
 Switch off analytics
 ```bash
 brew analytics off
 ```
 
-Cleanup (use the flag `--dry-run` to list what will be removed before actually
+Cleanup (use the flag `--dry-run` to list what will be deleted before actually
 deleting):
 ```bash
 brew cleanup --prune=all --dry-run
@@ -67,7 +73,7 @@ brew autoremove --dry-run
 brew autoremove
 ```
 
-Auto fix issues:
+Troubleshooting issues:
 ```bash
 brew doctor
 ```

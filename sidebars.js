@@ -4,7 +4,6 @@ module.exports = {
     "vi",
     "git",
     "docker",
-    "setup",
     "shell-scripting",
     {
       type: "category",
@@ -12,6 +11,8 @@ module.exports = {
       collapsed: true,
       items: [
         "pgp",
+        "gnuplot",
+        "setup",
         "filesystem",
         "network-setup",
         "firewall",

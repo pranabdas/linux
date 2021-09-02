@@ -134,6 +134,18 @@ Disk usage, find folder size:
 ```bash
 du -hs
 du -hs path/
+
+# list all folders with wild card
+du -hs *
+
+# list folder sizes and sort
+du -hs * | sort -n
+
+# total usage line in the end
+du -hsc *
+
+# list sizes by controlling depth
+du -d 2 -h
 ```
 
 Display string/variable:
@@ -432,13 +444,14 @@ wget --mirror \
   --convert-links \
   --html-extension \
   --wait=1 \
+  --user-agent="Mozilla/5.0 (Linux x86_64; rv:92.0) Gecko/20100101 Firefox/92.0" \
   -o log \
   http://example.com
 ```
 
 `--convert-links` will convert the links suitable for viewing with local paths;
 `--html-extensions` will handle if there are no extension at the end of URLs;
-`--wait` to specify waiting time between successive retrievals.
+`--wait` to specify waiting time between successive retrievals in seconds.
 
 ## ssh
 
@@ -553,7 +566,7 @@ openssl enc -e -aes-256-cbc \
   -iter 1000000 \
   -md sha512 \
   -base64 \
-  -in somefile \
+  -in somefile.txt \
   -out somefile.enc
 
 # to decrypt
@@ -564,7 +577,24 @@ openssl enc -d -aes-256-cbc \
   -md sha512 \
   -base64 \
   -in somefile.enc \
-  -out somefile
+  -out somefile.txt
+```
+
+For on the fly encryption and decryption with terminal input and output:
+```bash
+openssl enc -e -aes-256-cbc \
+  -salt \
+  -pbkdf2 \
+  -iter 1000000 \
+  -md sha512 \
+  -base64 <<< "Secret message."
+
+openssl enc -d -aes-256-cbc \
+  -salt \
+  -pbkdf2 \
+  -iter 1000000 \
+  -md sha512 \
+  -base64 <<< "U2FsdGVkX18Y9d6MT+d8kbrmfsgd1j/vnNlZ5T7LQ6I="
 ```
 
 ## File permissions
