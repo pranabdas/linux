@@ -8,6 +8,13 @@ complete power to the user. In this tutorial, we will focus on various command
 line tools. We will see that command line tools are simple and more powerful
 than graphical tools. We will also learn to write scripts to automate tasks.
 
+:::tip
+
+You can try my webapp [Cheatsheets](https://pranabdas.github.io/cheatsheets/)
+to get a quick summary of various Linux/ UNIX commands.
+
+:::
+
 ## Navigating around
 Print current working directory:
 ```bash
@@ -272,9 +279,30 @@ apt update
 sudo !!
 ```
 
-Untar files:
+## tar
+Create a tar archive of files:
 ```bash
-tar -zxvf file.tar.gz
+tar -czvf files.tar.gz file1.pdf file2.pdf
+```
+
+Create a tar archive of a directory:
+```bash
+tar -czvf files.tar.gz /home/files
+```
+
+Untar an archive:
+```bash
+tar -xzvf files.tar.gz
+```
+
+Extract on a different directory:
+```bash
+tar -xzvf files.tar.gz -C /tmp/
+```
+
+List contents of a tar file:
+```bash
+tar -tf files.tar.gz
 ```
 
 If you have got a zip file to unzip. You need to install *unzip*.
@@ -580,6 +608,23 @@ openssl enc -d -aes-256-cbc \
   -out somefile.txt
 ```
 
+:::note
+
+It is very important to write down which encryption options you use in order to
+decrypt them. Default options may not be the best choice.
+
+The ASCII armor (base64) output will increase the file size. If you don't need
+to copy and pase the output (say, you need to send via an email message), it is
+better to leave them as binary.
+
+If you are going to compress your data, you should do it before encrypting.
+After encryption, it is basically random gibberish which won't benefit from
+compression algorithms (e.g., dictionary based compression).
+
+You can also use [GPG](./pgp) program to perform symmetric encryption.
+
+:::
+
 For on the fly encryption and decryption with terminal input and output:
 ```bash
 openssl enc -e -aes-256-cbc \
@@ -596,6 +641,12 @@ openssl enc -d -aes-256-cbc \
   -md sha512 \
   -base64 <<< "U2FsdGVkX18Y9d6MT+d8kbrmfsgd1j/vnNlZ5T7LQ6I="
 ```
+
+If you are on Windows, you can get OpenSSL by installing git. You can consider
+having the [portable git version](https://git-scm.com/download/win) if you don't
+need to install git in your computer. Run using full path to executable:
+`'C:\Program Files\Git\usr\bin\openssl.exe'` if the bin directory is not added
+to `PATH` environment variable.
 
 ## File permissions
 
@@ -659,6 +710,10 @@ delete:
 ```bash
 rsync -avh --delete /home/file.txt /usr/desktop/
 ```
+
+While using the `--delete` flag, it is a good idea to first run the command with
+`--dry-run` flag to see the changes before actually deleting the files. The
+`--dry-run` flag let you see the output without actually applying the command.
 
 Exclude a file or directory from syncing:
 ```bash

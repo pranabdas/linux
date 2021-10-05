@@ -107,16 +107,22 @@ You can download anyone's protonmail public key by visiting the URL:
 https://api.protonmail.ch/pks/lookup?op=get&search={username}@protonmail.com
 ```
 
-You can use PGP to perform symmetric encryption (AES-256 default) as well.
-Encrypt a file using passphrase:
+You can use PGP to perform symmetric encryption as well. Encrypt a file using
+passphrase:
 ```bash
 gpg -c file.txt
+# with more options
+gpg --symmetric \
+    --armor \
+    --cipher-algo AES256 \
+    --output file.enc \
+    file.txt
 ```
 
-If you want armor text:
-```bash
-gpg -c --armor file.txt
-```
+By default gpg uses some compression leading to output size less than that of
+input for non armor outputs. You can change the compression algorithm and
+compression level by `--compress-algo` and `-z` options, respectively. See the
+manual for more details.
 
 Decryption:
 ```bash

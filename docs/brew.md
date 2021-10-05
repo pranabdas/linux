@@ -77,3 +77,9 @@ Troubleshooting issues:
 ```bash
 brew doctor
 ```
+
+Check the dependency tree:
+```bash
+brew deps --tree --installed
+brew deps --tree --installed gnupg
+```

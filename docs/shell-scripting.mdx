@@ -55,7 +55,8 @@ bash myscript.sh
 
 **sh** and **bash** are not exactly the same, and might give slightly different
 result in some cases. bash refers to Born Again SHell while sh refers to the
-original UNIX shell.
+original UNIX shell. To know which shell interpreter is currently running,
+issue: `echo $0`.
 
 :::
 
@@ -165,17 +166,22 @@ item_01.txt item_03.txt item_05.txt item_07.txt item_09.txt
 item_02.txt item_04.txt item_06.txt item_08.txt item_10.txt
 
 # match string at end with %
-$ for i in $( ls );do mv ${i} ${i%*.txt}.md; done; ls
+$ for i in $( ls ); do mv ${i} ${i%*.txt}.md; done; ls
 item_01.md item_03.md item_05.md item_07.md item_09.md
 item_02.md item_04.md item_06.md item_08.md item_10.md
 
 # match string at beginning with #
-$ for i in $( ls );do mv ${i} slide_${i#*_*}; done; ls
+$ for i in $( ls ); do mv ${i} slide_${i#*_*}; done; ls
 slide_01.md slide_03.md slide_05.md slide_07.md slide_09.md
 slide_02.md slide_04.md slide_06.md slide_08.md slide_10.md
 
 # or
-$ for i in $( ls );do mv ${i} slide_${i#item_*}; done
+$ for i in $( ls ); do mv ${i} slide_${i#item_*}; done
+```
+
+Replace spaces in the filenames with underscores:
+```bash
+for file in *\ *; do mv "$file" "${file// /_}"; done
 ```
 
 ## Learn more
