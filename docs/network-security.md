@@ -25,6 +25,13 @@ server is made via a secure protocol, and it's hard for the sniffing attackers
 to decipher the traffic, however a malicious or vulnerable webserver still could
 expose your information, so always be careful which website you visit and trust.
 
+Different layers have their own headers, and many of these headers are visible
+to anyone in the network. Luckily, nowadays most of the websites encrypt the
+actual data they transport between client and server. However, still it might
+reveal a lot of metadata.
+
+![network-headers](/img/network-headers.png)
+
 ## Address Resolution Protocol (ARP)
 This is used by the devices in the same LAN or Wi-Fi network to discover each
 other. Check the devices' IP address and MAC address mapping in your network:
@@ -270,3 +277,11 @@ Now we can launch wireshark:
 ```bash
 wireshark &
 ```
+
+:::tip
+
+If you are learning WireShark, there are various sample captures available at
+<https://packetlife.net/captures/>. You can open them in CloudShark from your
+browser, or download and open in WireShark.
+
+:::

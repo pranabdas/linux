@@ -22,6 +22,7 @@ module.exports = {
         "selinux",
         "hpc",
         "brew",
+        "privacy",
       ],
     },
     "license",

@@ -156,7 +156,7 @@ A bash script to convert degree Celsius to Fahrenheit:
 
 import deg_f_to_c_conv from '!!raw-loader!/src/deg_f_to_c_conv.sh';
 
-<CodeBlock className="bash" title="src/deg_f_to_c_conv.sh">{deg_f_to_c_conv}</CodeBlock>
+<CodeBlock className="language-bash" title="src/deg_f_to_c_conv.sh">{deg_f_to_c_conv}</CodeBlock>
 
 ## String substitution
 Rename files example:
@@ -183,6 +183,14 @@ Replace spaces in the filenames with underscores:
 ```bash
 for file in *\ *; do mv "$file" "${file// /_}"; done
 ```
+
+### Running python code in bash script
+You can include python, ruby, or any other language code in a bash script. Here
+is an example:
+
+import github_emoji from '!!raw-loader!/src/github_emoji.sh';
+
+<CodeBlock className="language-bash" title="src/github_emoji.sh">{github_emoji}</CodeBlock>
 
 ## Learn more
 - *Learning the bash Shell: Unix Shell Programming* by *C. Newham*.
