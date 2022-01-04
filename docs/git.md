@@ -170,6 +170,12 @@ git commit --amend
 git commit --amend --no-edit
 ```
 
+Empty commit to trigger GitHub action
+```bash
+git commit --allow-empty -m "empty commit to trigger github actions"
+git commit --allow-empty --amend --no-edit
+```
+
 Check the records/commits of your project:
 ```bash
 git log

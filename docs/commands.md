@@ -216,6 +216,11 @@ You can use *paste* to combine files as well:
 paste file* > file-all.txt
 ```
 
+Text redirect with `sudo`:
+```bash
+echo "something" | sudo tee /ect/something.config
+```
+
 Look for lines containing certain word. This will list the lines that contain
 the word *file* in the *cat* manual:
 ```bash
@@ -483,8 +488,13 @@ wget --mirror \
 
 ## ssh
 
-ssh can be used to connect to remote machines. First you need to know the IP
-address or hostname of remote machine:
+ssh can be used to connect to remote machines. First make sure you have the ssh
+installed in your machines:
+```bash
+sudo apt install --no-install-recommends openssh-server
+```
+
+You need to know the IP address or hostname of remote machine:
 ```bash
 ip addr
 ```

@@ -23,6 +23,7 @@ module.exports = {
         "hpc",
         "brew",
         "privacy",
+        "latex",
       ],
     },
     "license",

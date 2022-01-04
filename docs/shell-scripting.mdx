@@ -192,6 +192,34 @@ import github_emoji from '!!raw-loader!/src/github_emoji.sh';
 
 <CodeBlock className="language-bash" title="src/github_emoji.sh">{github_emoji}</CodeBlock>
 
+### Input password
+Here is a solution for the bash:
+```bash
+#!/bin/bash
+read -s -p "Password: " passwd; echo
+# do something with the passwd
+echo $passwd
+unset passwd
+```
+
+A POSIX compatible alternative:
+```bash
+#!/bin/sh
+# disable echo
+stty -echo
+printf "Password: "
+read passwd
+# enable echo
+stty echo
+printf "\n"
+echo $passwd
+```
+
+New line in `echo`:
+```bash
+echo -e "First line.\nSecond line."
+```
+
 ## Learn more
 - *Learning the bash Shell: Unix Shell Programming* by *C. Newham*.
 - *Linux Shell Scripting With Bash* by *K. O. Burtch*.

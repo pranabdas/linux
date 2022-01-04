@@ -119,6 +119,10 @@ Set MAC address:
 docker run -it --mac-address 02:42:ac:11:0d:11 ubuntu bash
 ```
 
+You can also pass environment variables with `-e` flag, e.g.,`-e LANG=C.UTF-8`,
+`-e TZ=Asia/Singapore`. You can pass multiple `-e` flags to pass multiple such
+variables.
+
 ## Running GUI apps on docker
 First we need to install a X-window system. On linux, we can choose X11. On
 macOS [X-Quartz](https://www.xquartz.org), on Windows [xming](

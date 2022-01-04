@@ -69,7 +69,7 @@ source $OSH/oh-my-bash.sh
 Terminal size: 96 by 30 col. Text and background color: gray on black, Palette:
 solarized.
 
-## Installing fonts in Ubuntu / Debian
+### Installing fonts in Ubuntu / Debian
 
 You can get a nice collection of fonts by installing the powerline fonts:
 ```bash
@@ -90,6 +90,7 @@ If you are going to access your system remotely via SSH, install the SSH server.
 sudo apt install openssh-server
 ```
 
+### Python packages
 Setting up Python development. It will depend on your needs though.
 ```bash
 sudo apt install python3 python3-pip
@@ -111,12 +112,12 @@ Append following to your `.bashrc`:
 export PATH="/home/<username>/.local/bin:$PATH"
 ```
 
-## Mkdocs
+### Mkdocs
 ```bash
 pip3 install mkdocs mkdocs-material
 ```
 
-## Nodejs
+### Nodejs
 Your package manager might have older version of nodejs, in order install the
 current LTS version:
 ```bash
@@ -124,7 +125,7 @@ wget -O - https://deb.nodesource.com/setup_lts.x | bash - && \
 apt update && apt install -y --no-install-recommends nodejs
 ```
 
-## Jekyll
+### Jekyll
 ```bash
 sudo apt install ruby-full build-essential zlib1g-dev
 echo '# Install Ruby Gems to ~/gems' >> ~/.zshrc
@@ -140,13 +141,13 @@ sudo dnf install ruby ruby-devel
 sudo dnf install gcc-c++
 ```
 
-## Dropbox
+### Dropbox
 ```bash
 cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 ~/.dropbox-dist/dropboxd
 ```
 
-## Proton VPN
+### Proton VPN
 ```bash
 sudo apt install -y openvpn dialog python3-pip python3-setuptools
 sudo pip3 install protonvpn-cli
@@ -156,7 +157,7 @@ protonvpn c -f
 ```
 `-r` or `-f` flags for connecting random and fastest servers, respectively.
 
-## Zsh
+### Zsh
 
 You may try Z-shell (instead of BASH) with Oh My Zsh. It has tab auto
 completion, better history recall, and other cool features.
@@ -180,7 +181,7 @@ are some useful Oh My Zsh extensions:
 - zsh-syntax-highlighting
 - zsh-autosuggestions
 
-## Graphical apps
+### Graphical apps
 
 - Visual Studio Code
 - Standard Notes
@@ -189,7 +190,7 @@ Always backup your user files (documents you create, codes you write, important
 notes etc.) in a safe and secure place. You may encrypt your files and upload to
 a cloud service. You may keep another copy in an external drive.
 
-## Changing hostname
+### Changing hostname
 Print the current name and other information with `hostnamectl`
 ```bash
 hostnamectl --static set-hostname="ubuntu-work"
@@ -197,7 +198,12 @@ hostnamectl --pretty set-hostname="ubuntu-work"
 ```
 You need to restart the system to take effect the changes.
 
-## Installing snap on RHEL
+### Finding dependencies in apt
+```bash
+apt-cache depends <package-name>
+```
+
+### Installing snap on RHEL
 ```bash
 sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 sudo dnf upgrade
@@ -205,4 +211,18 @@ sudo dnf install snapd
 sudo systemctl enable --now snapd.socket
 sudo ln -s /var/lib/snapd/snap /snap
 sudo reboot
+```
+
+### Duplicate a disc using Ubuntu bootable USB
+You may need to set legacy boot option in the BIOS. By making a clone of a full
+disc of Windows 10 machine, I was able to boot from the new drive:
+```bash
+sudo dd if=/dev/sda of=/dev/sdb conv=sync,noerror bs=1M status=progress
+
+# the above option will copy byte by byte, you will need disc with same
+# or higher capacity.
+
+# the below option to compress the data
+sudo dd if=/dev/sda bs=4M conv=sync,noerror | gzip -c > /path/to/backup.img.gz
+gunzip -c /path/to/backup.img.gz | sudo dd of=/dev/sdb status=progress bs=4M
 ```
