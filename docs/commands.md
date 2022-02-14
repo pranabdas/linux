@@ -477,7 +477,7 @@ wget --mirror \
   --convert-links \
   --html-extension \
   --wait=1 \
-  --user-agent="Mozilla/5.0 (Linux x86_64; rv:92.0) Gecko/20100101 Firefox/92.0" \
+  --user-agent="Mozilla/5.0 (Linux x86_64; rv:97.0) Gecko/20100101 Firefox/97.0" \
   -o log \
   http://example.com
 ```

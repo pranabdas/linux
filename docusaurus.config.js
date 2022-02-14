@@ -138,6 +138,20 @@ async function config() {
         }),
       ],
     ],
+
+    themes: [
+      [
+        // https://github.com/easyops-cn/docusaurus-search-local
+        require.resolve("@easyops-cn/docusaurus-search-local"),
+        {
+          hashed: false,
+          docsRouteBasePath: "/",
+          indexBlog: false,
+          indexPages:true,
+          highlightSearchTermsOnTargetPage: true,
+        },
+      ],
+    ],
   };
 }
 
