@@ -1,19 +1,7 @@
 ---
 title: The commandline
 sidebar_label: Commandline
-slug: /
 ---
-You will appreciate Linux / UNIX if you care about simplicity, openness, and
-complete power to the user. In this tutorial, we will focus on various command
-line tools. We will see that command line tools are simple and more powerful
-than graphical tools. We will also learn to write scripts to automate tasks.
-
-:::tip
-
-You can try my webapp [Cheatsheets](https://pranabdas.github.io/cheatsheets/)
-to get a quick summary of various Linux/ UNIX commands.
-
-:::
 
 ## Navigating around
 Print current working directory:

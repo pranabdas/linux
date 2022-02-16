@@ -1,5 +1,6 @@
 module.exports = {
   docs: [
+    "index",
     "commands",
     "vi",
     "git",
