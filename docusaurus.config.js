@@ -134,6 +134,7 @@ async function config() {
             routeBasePath: "/",
             // Please change this to your repo.
             editUrl: "https://github.com/pranabdas/linux/blob/master/",
+            // breadcrumbs: false,
           },
           theme: {
             customCss: require.resolve("./src/css/custom.css"),

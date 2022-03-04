@@ -273,6 +273,96 @@ git merge --abort
 git reset --hard HEAD
 ```
 
+Collapse/combine multiple commits into one: say we have following situation:
+```bash
+commit 4baeaaf9168beccd43d726b6f3baad8c35a47366 (HEAD -> master)
+Author: Pranab Das <31024886+pranabdas@users.noreply.github.com>
+Date:   Thu Mar 3 23:29:59 2022 +0800
+
+    a patch for feature y
+
+commit ec716b0b25095b6c81a34b2bc9351bae3fb64101
+Author: Pranab Das <31024886+pranabdas@users.noreply.github.com>
+Date:   Thu Mar 3 23:29:31 2022 +0800
+
+    added feature y
+
+commit 43503465d89a0ae6fd2db795e061820268c4456e
+Author: Pranab Das <31024886+pranabdas@users.noreply.github.com>
+Date:   Thu Mar 3 23:28:54 2022 +0800
+
+    added feature x
+
+commit ff239cdc856b641cae95f537c3227e32318a42bc
+Author: Pranab Das <31024886+pranabdas@users.noreply.github.com>
+Date:   Thu Mar 3 23:28:21 2022 +0800
+
+    first commit
+```
+
+We want to merge last two commits into one.
+
+```bash
+git reset --soft HEAD~2
+# or
+git reset --soft ec716b0
+```
+
+This will reset the commit index to desired commit, but leave the changes ready
+to be committed.
+```bash
+git commit -m "added feature y"
+```
+
+What if we need to combine the very first and the next one?
+```bash
+git rebase -i --root
+```
+
+This will give you interactive editor with helpful hint:
+```bash
+pick ff239cd first commit
+pick 4350346 added feature x
+pick ec716b0 added feature y
+pick 4baeaaf a patch for feature y
+
+# Rebase ff239cd..4baeaaf onto ff239cd (3 commands)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup [-C | -c] <commit> = like "squash" but keep only the previous
+#                    commit's log message, unless -C is used, in which case
+#                    keep only this commit's message; -c is same as -C but
+#                    opens the editor
+# x, exec <command> = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+# .       create a merge commit using the original merge commit's
+# .       message (or the oneline, if no original merge commit was
+# .       specified); use -c <commit> to reword the commit message
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
+```
+
+We can squash the second commit
+```bash
+pick ff239cd first commit
+squash 4350346 added feature x
+pick ec716b0 added feature y
+pick 4baeaaf a patch for feature y
+```
+
 ## Working with remotes
 
 Here I use the example of GitHub. You can choose another provider, like Gitlab,

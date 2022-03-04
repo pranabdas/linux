@@ -10,6 +10,9 @@ module.exports = {
       type: "category",
       label: "Misc",
       collapsed: true,
+      link: {
+        type: "generated-index",
+      },
       items: [
         "pgp",
         "gnuplot",
