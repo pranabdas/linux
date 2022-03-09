@@ -187,3 +187,7 @@ h4 {
 .hero__title {
   font-size: 2em;
 }
+
+thead {
+  background-color: var(--ifm-table-stripe-background);
+}

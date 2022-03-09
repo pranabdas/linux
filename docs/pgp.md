@@ -152,4 +152,5 @@ let g:GPGDefaultRecipients=["default@example.com"]
 
 - <https://protonmail.com/blog/what-is-pgp-encryption/>
 - <https://www.gnupg.org/gph/en/manual.html>
+- <https://emailselfdefense.fsf.org/>
 - <https://blog.ghostinthemachines.com/2015/03/01/how-to-use-gpg-command-line/>

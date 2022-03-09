@@ -13,16 +13,9 @@ sudo apt install -y --no-install-recommends \
 ```
 
 ### Misc
-- Various Fira font weights:
-    - \firathin
-    - \firaultralight
-    - \firaextralight
-    - \firalight
-    - \firabook
-    - \firamedium
-    - \firasemibold
-    - \firaextrabold
-    - \firaheavy
+- Various Fira font weights: `\firathin`, `\firaultralight`, `\firaextralight`,
+`\firalight`, `\firabook`, `\firamedium`, `\firasemibold`, `\firaextrabold`,
+`\firaheavy`.
 
 
 ### Resources

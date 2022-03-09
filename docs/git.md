@@ -8,6 +8,8 @@ development. But you can use it to keep track of almost anything from your
 manuscripts, drawings to complicated code structure. It can provide you with
 many advantages. It's worth putting some effort to learn git. Happy learning!
 
+### Configuration
+
 Check if you have git already installed by issuing following command in Terminal
 ```bash
 git --version
@@ -40,6 +42,22 @@ You can check your setting by:
 git config --list
 ```
 
+We can save/move to another computer our git configuration in a `~/.gitconfig`
+file:
+```
+[user]
+	name = Pranab Das
+	email = 31024886+pranabdas@users.noreply.github.com
+[core]
+	editor = code --wait
+[push]
+	default = current
+[github]
+	user = pranabdas
+```
+
+### Basics
+
 Initialize current project directory:
 ```bash
 git init
@@ -69,6 +87,8 @@ There is a short status version, which will output a concise status message:
 ```bash
 git status -s
 ```
+
+### gitignore
 
 Often you want to ignore some files or directories in your project. You can do
 that by creating a *.gitignore* in your project root, and including the files
@@ -122,6 +142,8 @@ git checkout --.
 git checkout --*.html
 ```
 
+### diff
+
 To see what changes you have made but not staged:
 ```bash
 git diff
@@ -147,6 +169,8 @@ You can also remove something, or everything from staging using:
 git reset HEAD filename
 git reset HEAD
 ```
+
+### commit
 
 Commit git (save staging state):
 ```bash
@@ -186,6 +210,8 @@ Go back to (undo) previous commits
 ```bash
 git checkout <commit-hash>
 ```
+
+### branch
 
 It will create a separate branch (main branch is called master). You can check
 branches by:
@@ -246,6 +272,8 @@ merged:
 git branch -D <branch-name>
 ```
 
+### reset
+
 Following will reset all changes after the specified commit. This preserves the
 history locally.
 ```bash
@@ -272,6 +300,8 @@ You can undo a merge by using either of following two:
 git merge --abort
 git reset --hard HEAD
 ```
+
+### rebase
 
 Collapse/combine multiple commits into one: say we have following situation:
 ```bash
@@ -363,7 +393,7 @@ pick ec716b0 added feature y
 pick 4baeaaf a patch for feature y
 ```
 
-## Working with remotes
+### Working with remotes
 
 Here I use the example of GitHub. You can choose another provider, like Gitlab,
 Bitbucket.
@@ -454,6 +484,21 @@ Pull changes and discard local changes (not recommended, do it with caution):
 git fetch
 git reset --hard origin/master
 ```
+
+### Override language stat
+
+How can we make GitHub ignore certain languages or recognize as different
+language in GitHub language statistics? Create a `.gitattributes` file in the
+project root with content:
+```bash
+# reclassifies `.ipynb` files as Python:
+*.ipynb linguist-language=Python
+
+# ignore certain paths
+not-actual-project-code/* linguist-vendored
+```
+More info [here](
+https://github.com/github/linguist/blob/master/docs/overrides.md).
 
 ## Resources
 - <https://git-scm.com/book/en/v2>

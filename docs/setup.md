@@ -212,17 +212,3 @@ sudo systemctl enable --now snapd.socket
 sudo ln -s /var/lib/snapd/snap /snap
 sudo reboot
 ```
-
-### Duplicate a disc using Ubuntu bootable USB
-You may need to set legacy boot option in the BIOS. By making a clone of a full
-disc of Windows 10 machine, I was able to boot from the new drive:
-```bash
-sudo dd if=/dev/sda of=/dev/sdb conv=sync,noerror bs=1M status=progress
-
-# the above option will copy byte by byte, you will need disc with same
-# or higher capacity.
-
-# the below option to compress the data
-sudo dd if=/dev/sda bs=4M conv=sync,noerror | gzip -c > /path/to/backup.img.gz
-gunzip -c /path/to/backup.img.gz | sudo dd of=/dev/sdb status=progress bs=4M
-```

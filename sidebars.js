@@ -28,6 +28,7 @@ module.exports = {
         "brew",
         "privacy",
         "latex",
+        "wsl",
       ],
     },
     "license",

@@ -575,6 +575,20 @@ We can secure copy a directory using `-r` flag:
 scp -i "ssh_key.pem" -r ~/Documents/mydir user@domain.com:Downloads/mydir
 ```
 
+## diff
+
+Compare two files:
+```bash
+diff file.txt file_new.txt
+```
+
+Compare two folders:
+```bash
+diff -rq folder folder_new
+```
+Here the `q` flag is for the brief mode, otherwise it would not only show which
+files are different but also show line-by-line differences.
+
 ## openssl
 
 There are various encription options available in openssl. In the above, we have
