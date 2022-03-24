@@ -14,6 +14,7 @@ async function config() {
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
+        metadata: [{name: 'theme-color', content: '#006bb3'}],
         prism: {
           theme: require("prism-react-renderer/themes/github"),
           darkTheme: require("prism-react-renderer/themes/nightOwl"),
@@ -133,7 +134,7 @@ async function config() {
             sidebarPath: require.resolve("./sidebars.js"),
             routeBasePath: "/",
             // Please change this to your repo.
-            editUrl: "https://github.com/pranabdas/linux/blob/master/",
+            editUrl: "https://github.com/pranabdas/linux/blob/main/",
             // breadcrumbs: false,
           },
           theme: {

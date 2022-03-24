@@ -25,7 +25,7 @@
   --ifm-color-primary-lightest: var(--color-primary);
   --ifm-toc-border-color: var(--border-color);
   --ifm-global-shadow-lw: 0px;
-  --ifm-table-head-background: rgba(0, 0, 0, 0.06);
+  --ifm-table-head-background: var(--ifm-table-stripe-background);
   --ifm-table-row-hover-color: rgba(0, 0, 0, 0.01);
 }
 
@@ -39,7 +39,6 @@ html[data-theme='dark'] {
   --ifm-toc-link-color: var(--color-white);
   --ifm-tabs-color: var(--color-white);
   --ifm-background-surface-color: #161b22;
-  --ifm-table-head-background: rgba(255, 255, 255, 0.14);
   --ifm-table-row-hover-color: rgba(255, 255, 255, 0.05);
 }
 
@@ -194,4 +193,9 @@ h4 {
 
 tr:hover td {
   background: var(--ifm-table-row-hover-color);
+}
+
+table td, table th {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }

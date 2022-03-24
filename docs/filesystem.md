@@ -102,6 +102,38 @@ sudo dd if=/dev/sda of=/dev/sdb conv=sync,noerror bs=1M status=progress
 # or higher capacity.
 
 # the below option to compress the data
-sudo dd if=/dev/sda bs=4M conv=sync,noerror | gzip -c > /path/to/backup.img.gz
-gunzip -c /path/to/backup.img.gz | sudo dd of=/dev/sdb status=progress bs=4M
+sudo dd if=/dev/sda bs=1M conv=sync,noerror | gzip -c > /path/to/backup.img.gz
+gunzip -c /path/to/backup.img.gz | sudo dd of=/dev/sdb status=progress bs=1M
 ```
+
+Note that optimal block size may not be 1MB for all drives, and should be found
+out by running tests/ benchmarks.
+
+### Disk partitioning
+
+Check overview of current partition table:
+```bash
+sudo fdisk -l
+```
+
+We will work on a partition that is not in the boot device. We can specifically
+check the a certain device:
+```bash
+sudo fdisk -l /dev/sdb
+```
+
+We will partition the device `/dev/sdb`:
+```bash
+sudo fdisk /dev/sdb
+```
+
+- To get a list of all available commands enter `m`
+- Use the `p` command to list the current partition scheme
+- Enter `g` to create a new empty GPT partition table
+- Enter `n` command to create a new partition. We will choose default values for
+partition number and first sector. Here we want to create a partition size of
+20GB, so we will enter `+20G` as the last sector input.
+- Save the changes by running the `w` command.
+
+### Resources
+- <https://linuxize.com/post/fdisk-command-in-linux/>

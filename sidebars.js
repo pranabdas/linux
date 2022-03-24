@@ -1,7 +1,7 @@
 module.exports = {
   docs: [
     "index",
-    "commands",
+    "commandline",
     "vi",
     "git",
     "docker",
@@ -31,6 +31,7 @@ module.exports = {
         "wsl",
       ],
     },
+    "resources",
     "license",
   ],
 };

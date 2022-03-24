@@ -18,7 +18,7 @@ to get a quick summary of various Linux/ UNIX commands.
 :::
 
 ### Table of Contents
-+ [The commandline](commands.md)
++ [The commandline](commandline.md)
 + [VI editor](vi.md)
 + [Git](git.md)
 + [Docker](docker.md)
@@ -39,4 +39,5 @@ to get a quick summary of various Linux/ UNIX commands.
     - [Privacy and security tips](privacy.md)
     - [LaTeX](latex.md)
     - [Windows Subsystem for Linux](wsl.md)
++ [Resources](resources.md)
 + [License](license.md)

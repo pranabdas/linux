@@ -204,6 +204,12 @@ Check the records/commits of your project:
 ```bash
 git log
 git shortlog
+git log --pretty=oneline --abbrev-commit
+```
+
+Show the changes in a commit
+```bash
+git show --pretty=oneline --abbrev-commit HEAD
 ```
 
 Go back to (undo) previous commits
@@ -428,6 +434,11 @@ git remote add origin https://github.com/user/repository.git
 You can have multiple remotes. You can check the remotes:
 ```bash
 git remote -v
+```
+
+Change remote to a new url:
+```bash
+git remote set-url origin <new-url>
 ```
 
 Push changes to the GitHub:
