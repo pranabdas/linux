@@ -1,5 +1,6 @@
 ---
 title: Git
+keywords: ["git", "github", "version control"]
 ---
 
 Git is a content aware filesystem. It is used for version control. It is used by

@@ -2,6 +2,7 @@
 title: Learning Linux
 sidebar_label: Welcome
 slug: /
+keywords: ["linux", "unix", "commandline", "vi", "vim", "git", "shell", "bash", "scripting", "docker", "developer tools", "security", "privacy", "latex", "homebrew"]
 ---
 
 You will appreciate Linux / UNIX if you care about simplicity, openness, and

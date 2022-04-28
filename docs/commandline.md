@@ -1,6 +1,7 @@
 ---
 title: The commandline
 sidebar_label: Commandline
+keywords: ["linux", "unix", "commandline", "shell", "ssh", "sed", "grep", "wget", "openssl"]
 ---
 
 ## Navigating around

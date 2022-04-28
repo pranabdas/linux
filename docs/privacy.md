@@ -1,6 +1,7 @@
 ---
 title: Privacy and security tips
 sidebar_label: Privacy tips
+keywords: ["privacy and security", "PGP", "ProtonMail", "encryption", "metadata", "VPN"]
 ---
 
 Delete unnecessary accounts to reduce your online footprints. Setup
@@ -110,3 +111,4 @@ history and cookies regularly or set to clear when you quit browser.
 ### Resources
 
 - [macOS Security and Privacy Guide](https://github.com/drduh/macOS-Security-and-Privacy-Guide)
+- <https://blog.torproject.org/browser-fingerprinting-introduction-and-challenges-ahead/>

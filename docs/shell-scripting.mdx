@@ -1,5 +1,6 @@
 ---
 title: Shell scripting
+keywords: ["shell scripting", "bash scripting", "scripting in linux"]
 ---
 import CodeBlock from '@theme/CodeBlock';
 
@@ -156,7 +157,7 @@ A bash script to convert degree Celsius to Fahrenheit:
 
 import deg_f_to_c_conv from '!!raw-loader!/src/deg_f_to_c_conv.sh';
 
-<CodeBlock language="bash" title="src/deg_f_to_c_conv.sh">{deg_f_to_c_conv}</CodeBlock>
+<CodeBlock language="bash" title="src/deg_f_to_c_conv.sh" showLineNumbers>{deg_f_to_c_conv}</CodeBlock>
 
 ## String substitution
 Rename files example:
@@ -190,7 +191,7 @@ is an example:
 
 import github_emoji from '!!raw-loader!/src/github_emoji.sh';
 
-<CodeBlock language="bash" title="src/github_emoji.sh">{github_emoji}</CodeBlock>
+<CodeBlock language="bash" title="src/github_emoji.sh" showLineNumbers>{github_emoji}</CodeBlock>
 
 ### Input password
 Here is a solution for the bash:
@@ -218,6 +219,26 @@ echo $passwd
 New line in `echo`:
 ```bash
 echo -e "First line.\nSecond line."
+```
+
+### Check command availability
+```bash
+COMMANDS=("git" "node" "python3" "ruby")
+
+for COMMAND in $COMMANDS; do
+  if ! command -v "$COMMAND" &> /dev/null; then
+    echo "Please install $COMMAND";
+    # exit 1;
+  fi
+done
+```
+
+### Check environment variable
+```bash
+if [ -z "$HOME" ]; then
+  echo "Seems "\$HOME" is not defined :(";
+  # exit 1;
+fi
 ```
 
 ## Learn more

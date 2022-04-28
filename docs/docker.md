@@ -1,5 +1,6 @@
 ---
 title: Docker
+keywords: ["docker", "developer tools", "container"]
 ---
 
 Follow the installation instruction from [Docker website](

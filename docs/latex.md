@@ -1,5 +1,6 @@
 ---
 title: LaTeX
+keywords: ["latex setup", "texlive setup", "texlive installation in ubuntu", "latex installation in ubuntu"]
 ---
 ### Installation in Ubuntu/Debian
 ```bash
@@ -19,5 +20,8 @@ sudo apt install -y --no-install-recommends \
 
 
 ### Resources
+- <https://www.overleaf.com/learn>
 - <https://texfaq.org/> (On [GitHub](https://github.com/texfaq))
 - <https://www.learnlatex.org/en/> (On [GitHub](https://github.com/learnlatex))
+- <https://latexcolor.com/>
+- <https://github.com/pranabdas/LaTeX>
