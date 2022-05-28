@@ -30,7 +30,10 @@ to anyone in the network. Luckily, nowadays most of the websites encrypt the
 actual data they transport between client and server. However, still it might
 reveal a lot of metadata.
 
-![network-headers](/img/network-headers.png)
+<picture>
+  <source type="image/webp" srcset={require("/img/network-headers.webp").default} />
+  <img src={require("/img/network-headers.png").default} alt="network-headers" />
+</picture>
 
 ## Address Resolution Protocol (ARP)
 This is used by the devices in the same LAN or Wi-Fi network to discover each

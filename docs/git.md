@@ -426,6 +426,11 @@ Shallow cloning:
 git clone --depth 1 https://github.com/user/repository.git
 ```
 
+What if I want to have full histroy later:
+```bash
+git fetch --unshallow
+```
+
 Add GitHub remote directory:
 ```bash
 git remote add <short-name> <url>
@@ -469,6 +474,16 @@ If everything is alright, you can pull the data from remote:
 git pull <remote> <remote-master>
 git pull origin master
 git pull --all
+```
+
+What happens if the remote is force pushed, therefore the commit hash changed:
+```bash
+# reset local to parent commit
+# carefull --hard will remove everything after specified commit
+git reset --hard HEAD~
+git pull origin main --no-rebase
+# if you have more than only parent commit hash mismatch
+git reset --hard HEAD~<number of commits to reset>
 ```
 
 Rename remote:
