@@ -37,12 +37,12 @@ of your collaborators. If you are on Windows, you can open the file properties
 from the right-click context menu, see the metadata and remove them.
 
 <picture>
-  <source type="image/webp" srcset={require("/img/metadata-removal-1.webp").default} />
+  <source type="image/webp" srcSet={require("/img/metadata-removal-1.webp").default} />
   <img src={require("/img/metadata-removal-1.png").default} alt="metadata-removal-1" />
 </picture>
 
 <picture>
-  <source type="image/webp" srcset={require("/img/metadata-removal-2.webp").default} />
+  <source type="image/webp" srcSet={require("/img/metadata-removal-2.webp").default} />
   <img src={require("/img/metadata-removal-2.png").default} alt="metadata-removal-2" />
 </picture>
 

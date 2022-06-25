@@ -31,7 +31,7 @@ actual data they transport between client and server. However, still it might
 reveal a lot of metadata.
 
 <picture>
-  <source type="image/webp" srcset={require("/img/network-headers.webp").default} />
+  <source type="image/webp" srcSet={require("/img/network-headers.webp").default} />
   <img src={require("/img/network-headers.png").default} alt="network-headers" />
 </picture>
 

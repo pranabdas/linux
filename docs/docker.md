@@ -74,6 +74,16 @@ docker run -v /home/host/docs:/home -ti centos bash
 docker run -v ${PWD}:/home -ti ubuntu bash
 ```
 
+Check docker storage usage:
+```bash
+docker system df
+```
+
+Remove build cache:
+```bash
+docker builder prune
+```
+
 Delete container:
 ```bash
 docker rm <id-or-name>

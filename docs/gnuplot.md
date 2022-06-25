@@ -25,7 +25,7 @@ gnuplot> plot besj0(x)
 ```
 
 <picture>
-  <source type="image/webp" srcset={require("/img/gnuplot-01.webp").default} />
+  <source type="image/webp" srcSet={require("/img/gnuplot-01.webp").default} />
   <img src={require("/img/gnuplot-01.png").default} alt="gnuplot-01" />
 </picture>
 
@@ -35,7 +35,7 @@ gnuplot> plot [-pi:pi] sin(x)
 ```
 
 <picture>
-  <source type="image/webp" srcset={require("/img/gnuplot-02.webp").default} />
+  <source type="image/webp" srcSet={require("/img/gnuplot-02.webp").default} />
   <img src={require("/img/gnuplot-02.png").default} alt="gnuplot-02" />
 </picture>
 
@@ -45,7 +45,7 @@ gnuplot> plot [-pi:pi] [-1.2:1.5] sin(x)
 ```
 
 <picture>
-  <source type="image/webp" srcset={require("/img/gnuplot-03.webp").default} />
+  <source type="image/webp" srcSet={require("/img/gnuplot-03.webp").default} />
   <img src={require("/img/gnuplot-03.png").default} alt="gnuplot-03" />
 </picture>
 
@@ -55,7 +55,7 @@ gnuplot> plot sin(x), besj0(x)
 ```
 
 <picture>
-  <source type="image/webp" srcset={require("/img/gnuplot-04.webp").default} />
+  <source type="image/webp" srcSet={require("/img/gnuplot-04.webp").default} />
   <img src={require("/img/gnuplot-04.png").default} alt="gnuplot-04" />
 </picture>
 
@@ -65,7 +65,7 @@ gnuplot> splot x**2+y**2
 ```
 
 <picture>
-  <source type="image/webp" srcset={require("/img/gnuplot-05.webp").default} />
+  <source type="image/webp" srcSet={require("/img/gnuplot-05.webp").default} />
   <img src={require("/img/gnuplot-05.png").default} alt="gnuplot-05" />
 </picture>
 
@@ -85,7 +85,7 @@ gnuplot> replot
 ```
 
 <picture>
-  <source type="image/webp" srcset={require("/img/gnuplot-06.webp").default} />
+  <source type="image/webp" srcSet={require("/img/gnuplot-06.webp").default} />
   <img src={require("/img/gnuplot-06.png").default} alt="gnuplot-06" />
 </picture>
 
@@ -118,7 +118,7 @@ gnuplot> replot
 ```
 
 <picture>
-  <source type="image/webp" srcset={require("/img/gnuplot-07.webp").default} />
+  <source type="image/webp" srcSet={require("/img/gnuplot-07.webp").default} />
   <img src={require("/img/gnuplot-07.png").default} alt="gnuplot-07" />
 </picture>
 
@@ -132,7 +132,7 @@ gnuplot> plot sin(1/x)
 ```
 
 <picture>
-  <source type="image/webp" srcset={require("/img/gnuplot-08.webp").default} />
+  <source type="image/webp" srcSet={require("/img/gnuplot-08.webp").default} />
   <img src={require("/img/gnuplot-08.png").default} alt="gnuplot-08" />
 </picture>
 
@@ -142,7 +142,7 @@ gnuplot> replot
 ```
 
 <picture>
-  <source type="image/webp" srcset={require("/img/gnuplot-09.webp").default} />
+  <source type="image/webp" srcSet={require("/img/gnuplot-09.webp").default} />
   <img src={require("/img/gnuplot-09.png").default} alt="gnuplot-09" />
 </picture>
 
