@@ -241,6 +241,16 @@ if [ -z "$HOME" ]; then
 fi
 ```
 
+### Assign variable using basic calculator
+Make sure you have basic calculator installed:
+```bash
+apt install bc
+```
+
+```bash
+var2=$(echo "scale=7;${var}/2" | bc)
+```
+
 ## Learn more
 - *Learning the bash Shell: Unix Shell Programming* by *C. Newham*.
 - *Linux Shell Scripting With Bash* by *K. O. Burtch*.
