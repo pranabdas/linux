@@ -24,6 +24,7 @@ to get a quick summary of various Linux/ UNIX commands.
 + [Git](git.md)
 + [Docker](docker.md)
 + [Shell scripting](shell-scripting.mdx)
++ [Regular Expression](regex.md)
 + [Miscellaneous](/category/misc)
     - [PGP encryption](pgp.md)
     - [GNU Plot](gnuplot.md)

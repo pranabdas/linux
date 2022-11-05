@@ -210,6 +210,24 @@ Text redirect with `sudo`:
 echo "something" | sudo tee /ect/something.config
 ```
 
+Redirect multiple lines with `cat`:
+```bash
+# cat << EOF > test.txt
+cat > test.txt << EOF
+Hello World!
+Have a good day.
+EOF
+```
+
+Redirect multiple lines with `sudo` privilege:
+```bash
+cat << EOF | sudo tee /etc/jupyter/jupyter_server_config.py > /dev/null
+c.ServerApp.ip = '0.0.0.0'
+c.ServerApp.allow_root = True
+c.ServerApp.open_browser = False
+EOF
+```
+
 Look for lines containing certain word. This will list the lines that contain
 the word *file* in the *cat* manual:
 ```bash
@@ -299,15 +317,28 @@ List contents of a tar file:
 tar -tf files.tar.gz
 ```
 
+## zip
+
 If you have got a zip file to unzip. You need to install *unzip*.
 ```bash
-sudo apt install unzip
-sudo dnf install unzip
+sudo apt install zip unzip
+sudo dnf install zip unzip
 ```
 
 Then:
 ```bash
 unzip filename.zip
+unzip filename.zip -d /home/destination
+
+# see contents of zip file without unzipping
+unzip -l filename.zip
+```
+
+Zip file(s) or folders:
+```bash
+zip output.zip file1.txt file2.md
+zip -r output.zip source_dir
+zip -rq output.zip source_dir
 ```
 
 Verify the checksum
@@ -856,6 +887,25 @@ CTRL + L  | Clear screen
 CTRL + C  | Terminate the foreground process
 CTRL + Z  | Suspend the foreground process
 CTRL + D  | Exit shell.
+
+## HereDoc
+```bash
+[COMMAND] <<[-] 'DELIMITER'
+  Line 1
+  Line 2
+  ...
+DELIMITER
+```
+
+- `COMMAND` is optional. Works for any command that accepts redirection.
+- `<<` is the redirection operator for forwarding a HereDoc to the `COMMAND`.
+- `-` is an optional parameter for tab suppression. Tab (not spaces) can be used
+for indentation.
+- `DELIMITER` in the first line defines a HereDoc delimiter token. `END`, `EOT`,
+and `EOF` are most common, but any multicharacter word that won't appear in the
+body works. Omit single quotes on the first line to allow command and variable
+expansion. The `DELIMITER` in the last line indicates the end of a HereDoc. Use
+the same word from the first line without the leading whitespaces.
 
 ## Learn more
 - [Art of commandline](https://github.com/jlevy/the-art-of-command-line)

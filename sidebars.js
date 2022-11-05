@@ -6,6 +6,7 @@ module.exports = {
     "git",
     "docker",
     "shell-scripting",
+    "regex",
     {
       type: "category",
       label: "Misc",
