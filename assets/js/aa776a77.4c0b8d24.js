@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunklinux_tutorial=self.webpackChunklinux_tutorial||[]).push([[302],{1234:function(i){i.exports=JSON.parse('{"title":"Misc","slug":"/category/misc","permalink":"/linux/category/misc","navigation":{"previous":{"title":"Shell scripting","permalink":"/linux/shell-scripting"},"next":{"title":"PGP Encryption","permalink":"/linux/pgp"}}}')}}]);
