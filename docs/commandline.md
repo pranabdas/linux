@@ -341,6 +341,47 @@ zip -r output.zip source_dir
 zip -rq output.zip source_dir
 ```
 
+Encrypt ZIP files using [7-zip](https://www.7-zip.org/). The ZIP files are
+compatible with Windows (use 7-zip, or WinZip/WinRAR) and macOS (use [Keka](
+https://www.keka.io)).
+
+```bash
+# install 7-zip in ubuntu/debian
+sudo apt update
+sudo apt install 7zip
+
+# encrypt and add to zip archive
+7zz a archive.zip file1.txt file2.pdf -mem=AES256 -p -tzip
+
+# encrypt directory
+7zz a -mem=AES256 -p -tzip archive.zip dir
+
+7zz a -mem=AES256 -p -tzip archive.zip -r dir/*
+
+7zz a -tzip archive.zip -r src/*.c src/*.h
+
+# alternatively you can provide password with the `-p${passwd}` flag
+
+# list contents of archive
+7zz l archive.zip
+
+# extract files
+7zz x archive.zip
+
+# set output directory
+7zz x archive.zip -o./new-dir
+```
+
+:::caution
+
+The above method does not encrypt the file/directory names while using ZIP
+format. If you want to encrypt archive headers, use `-mhe` switch with other
+compression methods such as `7z`. Find more details [here](
+https://sevenzip.osdn.jp/chm/cmdline/commands/index.htm) and [here](
+https://sevenzip.osdn.jp/chm/cmdline/switches/index.htm).
+
+:::
+
 Verify the checksum
 ```bash
 md5 path/file.iso
@@ -634,7 +675,6 @@ Some good set of options:
 # to encrypt
 openssl enc -e -aes-256-cbc \
   -salt \
-  -pbkdf2 \
   -iter 1000000 \
   -md sha512 \
   -base64 \
@@ -644,7 +684,6 @@ openssl enc -e -aes-256-cbc \
 # to decrypt
 openssl enc -d -aes-256-cbc \
   -salt \
-  -pbkdf2 \
   -iter 1000000 \
   -md sha512 \
   -base64 \
@@ -656,6 +695,9 @@ openssl enc -d -aes-256-cbc \
 
 It is very important to write down which encryption options you use in order to
 decrypt them. Default options may not be the best choice.
+
+`-salt` flag is very crucial, it is used by default while encrypting using
+openssl. Use of `-iter` also enables `-pbkdf2` for key stretching.
 
 The ASCII armor (base64) output will increase the file size. If you don't need
 to copy and pase the output (say, you need to send via an email message), it is
@@ -673,14 +715,12 @@ For on the fly encryption and decryption with terminal input and output:
 ```bash
 openssl enc -e -aes-256-cbc \
   -salt \
-  -pbkdf2 \
   -iter 1000000 \
   -md sha512 \
   -base64 <<< "Secret message."
 
 openssl enc -d -aes-256-cbc \
   -salt \
-  -pbkdf2 \
   -iter 1000000 \
   -md sha512 \
   -base64 <<< "U2FsdGVkX18Y9d6MT+d8kbrmfsgd1j/vnNlZ5T7LQ6I="
@@ -702,8 +742,9 @@ w → write <br/>
 x → execute <br/>
 
 and they are listed for user, group, and others. We can set the file permissions
-by using numeric conventions. r=4, w=2, and x=1. Say we want to set `rwx`
-for user, `rx` for group and only `x` for others, we can set that by:
+by using numeric conventions. r=4 (binary 100), w=2 (010), and x=1 (001). Say we
+want to set `rwx` for user, `rx` for group and only `x` for others, we can set
+that by:
 ```bash
 chmod 751 file.sh
 ```

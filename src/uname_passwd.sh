@@ -4,7 +4,6 @@ read uname
 read -s -p "Password: " passwd; echo
 message=`openssl enc -d -aes-256-cbc \
   -salt \
-  -pbkdf2 \
   -iter 1000000 \
   -md sha512 \
   -k "${passwd}" \

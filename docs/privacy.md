@@ -36,15 +36,20 @@ contain geo-location, camera (phone) model; your office files may contain names
 of your collaborators. If you are on Windows, you can open the file properties
 from the right-click context menu, see the metadata and remove them.
 
+<div>
 <picture>
   <source type="image/webp" srcSet={require("/img/metadata-removal-1.webp").default} />
   <img src={require("/img/metadata-removal-1.png").default} alt="metadata-removal-1" />
 </picture>
+</div>
+<br />
 
+<div>
 <picture>
   <source type="image/webp" srcSet={require("/img/metadata-removal-2.webp").default} />
   <img src={require("/img/metadata-removal-2.png").default} alt="metadata-removal-2" />
 </picture>
+</div>
 
 There is a cross-platform exifdata removal tool particularly for images -
 <https://github.com/exiftool/exiftool>. If you are on macOS, you can install it
