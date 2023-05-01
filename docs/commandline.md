@@ -206,11 +206,19 @@ paste file* > file-all.txt
 ```
 
 Text redirect with `sudo`:
+
 ```bash
 echo "something" | sudo tee /ect/something.config
 ```
 
+If you need to append instead of overwriting:
+
+```bash
+echo "something" | sudo tee -a /ect/something.config
+```
+
 Redirect multiple lines with `cat`:
+
 ```bash
 # cat << EOF > test.txt
 cat > test.txt << EOF
