@@ -1,0 +1,85 @@
+---
+title: Modules
+---
+
+Create module files to set environment variables for various compilers and
+libraries.
+
+Install Environment modules in Debian/Ubuntu:
+
+```bash
+sudo apt update
+sudo apt install --no-install-recommends environment-modules
+```
+
+`source` following script so that `module` command is available. You may include
+in your `.bashrc` as well.
+
+```bash
+source /etc/profile.d/modules.sh
+```
+
+Here we will try to create a module for GCC. Download GCC source code and build:
+
+```bash
+wget https://mirror.freedif.org/GNU/gcc/gcc-12.3.0/gcc-12.3.0.tar.gz
+tar zxf gcc-12.3.0.tar.gz
+cd gcc-12.3.0
+./contrib/download_prerequisites
+cd ..
+mkdir objdir
+cd objdir
+${PWD}/../gcc-12.3.0/configure --prefix=/workspaces/compilers/gcc-12.3.0 --enable-languages=c,c++,fortran,go --disable-multilib
+make -j16  # time consuming task, parallelize on large number of processors
+make install
+
+cd ..
+rm gcc-12.3.0.tar.gz
+rm -rf gcc-12.3.0
+rm -rf objdir
+```
+
+Here is our modulefile:
+
+import CodeBlock from '@theme/CodeBlock';
+import gcc from '!!raw-loader!/src/modulefiles/gcc-12.3.0';
+
+<CodeBlock language="bash" title="src/modulefiles/gcc-12.3.0" showLineNumbers>{gcc}</CodeBlock>
+
+We will store our module files under `/workspaces/linux/src/modulefiles`.
+
+```bash
+export MODULEPATH=${MODULEPATH}:/workspaces/linux/src/modulefiles
+```
+
+Now we can test our module:
+
+```bash
+gcc --version
+module --help
+module avail
+module load gcc-12.3.0  # module add gcc-12.3.0
+gcc --version
+module list
+module purge  # module remove gcc-12.3.0
+gcc --version
+```
+
+Useful commands to use in module file:
+
+Command       | Description
+------------- | -----------
+setenv        | set the specified environment variable to the supplied value.
+unsetenv      | unset the specified environment variable. If an argument is supplied, then, while unloading the module, the variable will be re-set, to that argument.
+append-path   | put the supplied argument on the end of the specified variable. The variable should be a list of colon-separated entries. PATH is one such variable.
+prepend-path  | put the supplied argument at the start of the specified variable.
+remove-path   | remove the supplied argument from the specified variable, wherever along its length it might be.
+prereq        | insist that the specified module be loaded before loading the current module. (Note: Usually, it's easier to just put a "module load" in to get the dependency.)
+conflict      | insist that the specified module not be loaded.
+module load   | load the specified module.
+module-whatis | follow with a help string, to be printed whenever the user issues the "module whatis" command on this module. It should briefly describe the software loaded by this module.
+
+
+## Resources
+
+- <https://www.prl.res.in/prl-eng/hpc/getting_started/creating_custom_modules>

@@ -1,0 +1,25 @@
+#%Module 1.0
+## module gcc-12.3.0
+## /workspaces/linux/src/modulefiles/gcc-12.3.0
+## Author: Pranab Das
+
+proc ModulesHelp { } {
+  global version modroot
+  puts stderr "gcc-12.3.0 - sets the Environment for gcc-12.3.0"
+}
+
+module-whatis "Sets the Environment for gcc-12.3.0"
+
+set             topdir          /workspaces/compilers/gcc-12.3.0
+set             version         12.3.0
+
+setenv          CC              $topdir/bin/gcc
+setenv          GCC             $topdir/bin/gcc
+setenv          FC              $topdir/bin/gfortran
+setenv          F77             $topdir/bin/gfortran
+setenv          F90             $topdir/bin/gfortran
+
+prepend-path    PATH            $topdir/include
+prepend-path    PATH            $topdir/bin
+prepend-path    MANPATH         $topdir/man
+prepend-path    LD_LIBRARY_PATH $topdir/lib

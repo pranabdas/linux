@@ -37,6 +37,7 @@ to get a quick summary of various Linux/ UNIX commands.
     - [NextCloud](nextcloud.md)
     - [SELinux](selinux.md)
     - [High Performance Computing](hpc.md)
+    - [Environment Modules](module.mdx)
     - [Homebrew](brew.md)
     - [Privacy and security tips](privacy.md)
     - [LaTeX](latex.md)

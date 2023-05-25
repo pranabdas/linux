@@ -1,6 +1,6 @@
 ---
 title: Setting up Linux
-sidebar_label: Setup related
+sidebar_label: Linux setup
 ---
 
 Specifically, here we will install Ubuntu. Ubuntu is very stable and popular
@@ -39,7 +39,7 @@ sudo apt install --no-install-recommends \
 
 Oh-my-bash: <https://github.com/ohmybash/oh-my-bash>
 ```bash
-git clone git://github.com/ohmybash/oh-my-bash.git ~/.oh-my-bash
+git clone https://github.com/ohmybash/oh-my-bash.git ~/.oh-my-bash
 ```
 
 Append the following to your `.bashrc`:

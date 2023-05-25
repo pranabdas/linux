@@ -26,6 +26,7 @@ module.exports = {
         "nextcloud",
         "selinux",
         "hpc",
+        "module",
         "brew",
         "privacy",
         "latex",

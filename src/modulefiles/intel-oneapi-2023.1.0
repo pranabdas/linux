@@ -1,0 +1,51 @@
+#%Module1.0
+## modules intel-oneapi-2023.1.0
+## modulefiles/intel-oneapi-2023.1.0
+## Author: Pranab Das
+
+proc ModulesHelp { } {
+  global version modroot
+  puts stderr "intel-oneapi-2023.1.0 - sets the Environment for intel-oneapi-2023.1.0"
+}
+
+module-whatis "Sets the Environment for intel-oneapi-2023.1.0"
+
+## prereq
+
+set    topdir                    /opt/intel/oneapi
+set    version                   2023.1.0
+set    sys                       GNU/Linux_x86_64
+
+setenv CLCK_ROOT                 ${topdir}/clck/2021.7.3
+setenv CMPLR_ROOT                ${topdir}/compiler/2023.1.0
+setenv DPL_ROOT                  ${topdir}/dpl/2022.1.0
+setenv FPGA_VARS_DIR             ${topdir}/compiler/2023.1.0/linux/lib/oclfpga
+setenv GDB_INFO                  ${topdir}/debugger/2023.1.0/documentation/info/
+setenv I_MPI_ROOT                ${topdir}/mpi/2021.9.0
+setenv INSPECTOR_2023_DIR        ${topdir}/inspector/2023.1.0
+setenv INTEL_PYTHONHOME          ${topdir}/debugger/2023.1.0/dep
+setenv MKLROOT                   ${topdir}/mkl/2023.1.0
+setenv ONEAPI_ROOT               ${topdir}
+setenv TBBROOT                   ${topdir}/tbb/2021.9.0/env/..
+setenv VT_ADD_LIBS               "-ldwarf -lelf -lvtunwind -lm -lpthread"
+setenv VT_LIB_DIR                ${topdir}/itac/2021.9.0/lib
+setenv VT_MPI                    impi4
+setenv VT_ROOT                   ${topdir}/itac/2021.9.0
+setenv VT_SLIB_DIR               ${topdir}/itac/2021.9.0/slib
+
+prepend-path CLASSPATH           ${topdir}/mpi/2021.9.0//lib/mpi.jar
+prepend-path CPATH               ${topdir}/tbb/2021.9.0/env/../include:${topdir}/mpi/2021.9.0//include:${topdir}/mkl/2023.1.0/include:${topdir}/dpl/2022.1.0/linux/include:${topdir}/dev-utilities/2021.9.0/include
+prepend-path CPLUS_INCLUDE_PATH  ${topdir}/clck/2021.7.3/include
+prepend-path DIAGUTIL_PATH       ${topdir}/debugger/2023.1.0/sys_check/debugger_sys_check.py:${topdir}/compiler/2023.1.0/sys_check/sys_check.sh
+prepend-path FI_PROVIDER_PATH    ${topdir}/mpi/2021.9.0//libfabric/lib/prov:/usr/lib64/libfabric
+prepend-path INFOPATH            ${topdir}/debugger/2023.1.0/gdb/intel64/lib
+prepend-path INTEL_LICENSE_FILE  ${topdir}/intel/licenses:/home/pranab/intel/licenses:${topdir}/clck/2021.7.3/licensing:${topdir}/intel/licenses:/home/pranab/intel/licenses:/Users/Shared/Library/Application Support/Intel/Licenses
+prepend-path INTELFPGAOCLSDKROOT ${topdir}/compiler/2023.1.0/linux/lib/oclfpga
+prepend-path LD_LIBRARY_PATH     ${topdir}/tbb/2021.9.0/env/../lib/intel64/gcc4.8:${topdir}/mpi/2021.9.0//libfabric/lib:${topdir}/mpi/2021.9.0//lib/release:${topdir}/mpi/2021.9.0//lib:${topdir}/mkl/2023.1.0/lib/intel64:${topdir}/itac/2021.9.0/slib:${topdir}/debugger/2023.1.0/gdb/intel64/lib:${topdir}/debugger/2023.1.0/libipt/intel64/lib:${topdir}/debugger/2023.1.0/dep/lib:${topdir}/compiler/2023.1.0/linux/lib:${topdir}/compiler/2023.1.0/linux/lib/x64:${topdir}/compiler/2023.1.0/linux/lib/oclfpga/host/linux64/lib:${topdir}/compiler/2023.1.0/linux/compiler/lib/intel64_lin
+prepend-path LIBRARY_PATH        ${topdir}/tbb/2021.9.0/env/../lib/intel64/gcc4.8:${topdir}/mpi/2021.9.0//libfabric/lib:${topdir}/mpi/2021.9.0//lib/release:${topdir}/mpi/2021.9.0//lib:${topdir}/mkl/2023.1.0/lib/intel64:${topdir}/compiler/2023.1.0/linux/compiler/lib/intel64_lin:${topdir}/compiler/2023.1.0/linux/lib:${topdir}/clck/2021.7.3/lib/intel64
+prepend-path MAKE_PREFIX_PATH    ${topdir}/tbb/2021.9.0/env/..:${topdir}/compiler/2023.1.0/linux/IntelDPCPP
+prepend-path MANPATH             ${topdir}/mpi/2021.9.0/man:${topdir}/itac/2021.9.0/man:${topdir}/debugger/2023.1.0/documentation/man:${topdir}/compiler/2023.1.0/documentation/en/man/common:${topdir}/clck/2021.7.3/man::
+prepend-path NLSPATH             ${topdir}/mkl/2023.1.0/lib/intel64/locale/%l_%t/%N:${topdir}/compiler/2023.1.0/linux/compiler/lib/intel64_lin/locale/%l_%t/%N
+prepend-path OCL_ICD_FILENAMES   libintelocl_emu.so:libalteracl.so:${topdir}/compiler/2023.1.0/linux/lib/x64/libintelocl.so
+prepend-path PATH                ${topdir}/mpi/2021.9.0//libfabric/bin:${topdir}/mpi/2021.9.0//bin:${topdir}/mkl/2023.1.0/bin/intel64:${topdir}/itac/2021.9.0/bin:${topdir}/inspector/2023.1.0/bin64:${topdir}/dev-utilities/2021.9.0/bin:${topdir}/debugger/2023.1.0/gdb/intel64/bin:${topdir}/compiler/2023.1.0/linux/lib/oclfpga/bin:${topdir}/compiler/2023.1.0/linux/bin/intel64:${topdir}/compiler/2023.1.0/linux/bin:${topdir}/clck/2021.7.3/bin/intel64
+prepend-path PKG_CONFIG_PATH     ${topdir}/tbb/2021.9.0/env/../lib/pkgconfig:${topdir}/mpi/2021.9.0/lib/pkgconfig:${topdir}/mkl/2023.1.0/lib/pkgconfig:${topdir}/inspector/2023.1.0/include/pkgconfig/lib64:${topdir}/dpl/2022.1.0/lib/pkgconfig:${topdir}/compiler/2023.1.0/lib/pkgconfig
