@@ -608,6 +608,18 @@ Adding SSH key-pair to connect to a server. Generate the key-pair in your client
 computer:
 ```bash
 ssh-keygen
+
+# generate key with specific algorithm
+ssh-keygen -t ed25519 -C "email@example.com"
+
+# for legacy systems use 4096 bit RSA
+ssh-keygen -t rsa -b 4096 -C “email@example.com”
+
+# find bit length of an existing key
+ssh-keygen -l -f ~/.ssh/id_ed25519.pub
+
+# add or change password of an existing key
+ssh-keygen -p -f ~/.ssh/id_ed25519
 ```
 You may leave everything default and press enter. It will generate public and
 private key pair inside `~/.ssh` directory. Now we need to copy the public key
@@ -960,3 +972,4 @@ the same word from the first line without the leading whitespaces.
 - [Art of commandline](https://github.com/jlevy/the-art-of-command-line)
 - [IBM Linux tutorials](https://developer.ibm.com/technologies/linux/series/learn-linux-101/)
 - *The Linux command line: a complete introduction* by *William E. Shotts*.
+- [Managing SSH keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)

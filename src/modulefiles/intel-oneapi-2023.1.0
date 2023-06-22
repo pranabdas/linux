@@ -14,7 +14,7 @@ module-whatis "Sets the Environment for intel-oneapi-2023.1.0"
 
 set    topdir                    /opt/intel/oneapi
 set    version                   2023.1.0
-set    sys                       GNU/Linux_x86_64
+set    sys                       x86_64-linux-gnu
 
 setenv CLCK_ROOT                 ${topdir}/clck/2021.7.3
 setenv CMPLR_ROOT                ${topdir}/compiler/2023.1.0
