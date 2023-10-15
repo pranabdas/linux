@@ -42,5 +42,6 @@ to get a quick summary of various Linux/ UNIX commands.
     - [Privacy and security tips](privacy.md)
     - [LaTeX](latex.md)
     - [Windows Subsystem for Linux](wsl.md)
+    - [More tips and tricks](more-tips-tricks.md)
 + [Resources](resources.md)
 + [License](license.md)

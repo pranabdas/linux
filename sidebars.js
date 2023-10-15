@@ -31,6 +31,7 @@ module.exports = {
         "privacy",
         "latex",
         "wsl",
+        "more-tips-tricks",
       ],
     },
     "resources",
