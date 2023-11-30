@@ -448,6 +448,39 @@ pick ec716b0 added feature y
 pick 4baeaaf a patch for feature y
 ```
 
+### Cherry-pick
+
+git `cherry-pick` enables arbitrary Git commits to be picked by reference and
+appended to the current working `HEAD`. Let's assume we have following branch
+state:
+
+```
+a - b - c - d   Main
+         \
+           e - f - g Feature
+```
+
+We would like to pick `f` commit from the feature branch and merge into the
+main.
+
+```bash
+git checkout main
+git cherry-pick <commit-hash>
+git cherry-pick f
+```
+
+After cherry picking, the branch state would be:
+
+```bash
+a - b - c - d - f   Main
+         \
+           e - f - g Feature
+```
+
+If working with remote branches, make sure they are pulled locally first. If you
+like to edit the commit message, use `--edit` option; if you like to bring the
+commit contents without creating commits, use `--no-commit` option.
+
 ### Working with remotes
 
 Here I use the example of GitHub. You can choose another provider, like Gitlab,

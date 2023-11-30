@@ -15,6 +15,8 @@ issues. I will use the minimal network boot ISO for installation.
 
 Get the minimal ISO of [Ubuntu 20.04 here](
 http://archive.ubuntu.com/ubuntu/dists/focal/main/installer-amd64/current/legacy-images/netboot/mini.iso).
+For newer versions, the minimal ISO images are no longer maintained, you may try
+[server image](https://ubuntu.com/download/server) instead.
 
 During installation, I selected:
 
@@ -31,10 +33,10 @@ sudo apt update && sudo apt upgrade
 Install essentials:
 ```bash
 sudo apt install --no-install-recommends \
-    build-essential \
-    git \
-    vim \
-    wget
+  build-essential \
+  git \
+  vim \
+  wget
 ```
 
 Oh-my-bash: <https://github.com/ohmybash/oh-my-bash>
@@ -69,7 +71,7 @@ source $OSH/oh-my-bash.sh
 Terminal size: 96 by 30 col. Text and background color: gray on black, Palette:
 solarized.
 
-### Installing fonts in Ubuntu / Debian
+### Installing fonts in Ubuntu/Debian
 
 You can get a nice collection of fonts by installing the powerline fonts:
 ```bash
@@ -121,9 +123,15 @@ pip3 install mkdocs mkdocs-material
 Your package manager might have older version of nodejs, in order install the
 current LTS version:
 ```bash
-wget -O - https://deb.nodesource.com/setup_lts.x | bash - && \
-apt update && apt install -y --no-install-recommends nodejs
+sudo apt-get update && sudo apt-get install -y ca-certificates curl gnupg
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+NODE_MAJOR=20
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+sudo apt-get update && sudo apt-get install nodejs -y
 ```
+
+Find more details [here](https://deb.nodesource.com) and [here](
+https://github.com/nodesource/distributions)
 
 ### Jekyll
 ```bash

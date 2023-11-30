@@ -15,9 +15,9 @@ module.exports = {
         type: "generated-index",
       },
       items: [
+        "setup",
         "pgp",
         "gnuplot",
-        "setup",
         "filesystem",
         "network-setup",
         "firewall",

@@ -55,7 +55,7 @@ openssl req -new -key ca.key -out ca.csr
 openssl x509 -req -days 365 -in ca.csr -signkey ca.key -out ca.crt
 ```
 
-## Setting up apache in CentOS / Fedora
+## Setting up apache in CentOS/Fedora
 
 Installation:
 ```bash

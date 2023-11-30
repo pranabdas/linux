@@ -137,10 +137,18 @@ variables.
 ## Running GUI apps on docker
 First we need to install a X-window system. On linux, we can choose X11. On
 macOS [X-Quartz](https://www.xquartz.org), on Windows [xming](
-https://sourceforge.net/projects/xming/). On macOS, once you launch XQuartz (you
-may launch for terminal by `open -a XQuartz`), issue `xhost +`. More about
-X-window system [here](
-https://developer.ibm.com/technologies/linux/tutorials/l-lpic1-106-1/).
+https://sourceforge.net/projects/xming/). On macOS, allow connections from
+network clients:
+
+<picture>
+  <source type="image/webp" srcSet={require("/img/x-quartz.webp").default} />
+  <img src={require("/img/x-quartz.png").default} alt="x-quartz" width="450px" />
+</picture>
+
+After launching XQuartz (you may launch for terminal by `open -a XQuartz`),
+issue `xhost +`. More about X-window system [here](
+https://developer.ibm.com/tutorials/l-lpic1-106-1/).
+
 
 ```bash
 # macOS
@@ -187,11 +195,18 @@ docker ps
 docker kill <container-id>
 ```
 
+Stop all running containers:
+
+```bash
+docker stop $(docker ps -a -q)
+```
+
 ## Dockerfile
+
 Write the `Dockerfile`:
 ```docker
-# Start from Ubuntu 20.04 LTS
-FROM ubuntu:focal
+# Start from Ubuntu 22.04 LTS
+FROM ubuntu:jammy
 
 # Update OS
 RUN apt update \

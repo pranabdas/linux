@@ -4,13 +4,16 @@
 FROM ubuntu:jammy
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV NODE_MAJOR=20
 
 RUN apt update --fix-missing; apt upgrade -yq; \
     apt install -yq --no-install-recommends \
         build-essential \
+        curl \
         # firefox \
         fonts-open-sans \
         git \
+        gnupg \
         libgl1-mesa-glx \
         locales \
         mesa-utils \
@@ -24,7 +27,7 @@ RUN apt update --fix-missing; apt upgrade -yq; \
         xorg \
         zip \
         zlib1g-dev && \
-
+#
 # Install pip packages
     pip3 install \
         astropy \
@@ -35,7 +38,7 @@ RUN apt update --fix-missing; apt upgrade -yq; \
         # missingno \
         # mkdocs \
         # mkdocs-material \
-        networkx \
+        # networkx \
         numpy \
         openpyxl \
         pandas \
@@ -43,11 +46,12 @@ RUN apt update --fix-missing; apt upgrade -yq; \
         # scikit-learn \
         scipy \
         xlrd && \
-
-# nodejs LTS
-    wget -O - https://deb.nodesource.com/setup_lts.x | bash - && \
+#
+# nodejs 20.x (LTS)
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list && \
     apt update && apt install -y --no-install-recommends nodejs && \
-
+#
 # bash configs
     echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc && \
     echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc && \
@@ -56,14 +60,14 @@ RUN apt update --fix-missing; apt upgrade -yq; \
     (echo 'export LANG=en_US.UTF-8' && \
      echo 'export LANGUAGE=en_US:en' && \
      echo 'export LC_ALL=en_US.UTF-8') >> $HOME/.bashrc && \
-
+#
 # jupyter-lab settings
     mkdir /etc/jupyter && \
     (echo "c.ServerApp.ip = '0.0.0.0'" && \
      echo "c.ServerApp.allow_root = True" && \
      echo "c.ServerApp.open_browser = False") \
        >> /etc/jupyter/jupyter_server_config.py && \
-
+#
 # Bundler and jekyll
     gem install bundler jekyll && \
 #    mkdir tmpjekyll && \
@@ -72,10 +76,10 @@ RUN apt update --fix-missing; apt upgrade -yq; \
 #    bundle install && \
 #    cd .. && \
 #    rm -rf tmpjekyll && \
-
+#
 # remove apt lists
     rm -rf /var/lib/apt/lists/* && \
-
+#
 # oh-my-bash
     git clone https://github.com/ohmybash/oh-my-bash.git ~/.oh-my-bash && \
     wget https://raw.githubusercontent.com/pranabdas/dotfiles/main/oh-my-bash.bashrc && \
@@ -83,7 +87,7 @@ RUN apt update --fix-missing; apt upgrade -yq; \
     rm oh-my-bash.bashrc && \
     wget https://raw.githubusercontent.com/pranabdas/dotfiles/main/bash_history \
     -O ~/.bash_history
-
+#
 # matplotlib customizations
 # RUN mkdir -p $HOME/.config/matplotlib && \
 #     wget https://raw.githubusercontent.com/pranabdas/dotfiles/main/matplotlibrc \
