@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunklinux_tutorial=self.webpackChunklinux_tutorial||[]).push([[302],{1234:function(i){i.exports=JSON.parse('{"title":"Misc","slug":"/category/misc","permalink":"/linux/category/misc","navigation":{"previous":{"title":"Regular Expression","permalink":"/linux/regex"},"next":{"title":"PGP Encryption","permalink":"/linux/pgp"}}}')}}]);
