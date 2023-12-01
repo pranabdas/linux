@@ -131,7 +131,7 @@ gpg -d file.txt.gpg > file-copy.txt
 
 ## Using PGP encryption with VIM editor
 
-Install this plugin <https://github.com/jamessan/vim-gnupg>
+Install this plugin https://github.com/jamessan/vim-gnupg
 
 I experienced a bug: sometimes two characters of second line is missing or
 hidden. To resolve this issue, add this to your `.vimrc` file:
@@ -150,7 +150,7 @@ let g:GPGDefaultRecipients=["default@example.com"]
 
 ## Resources
 
-- <https://protonmail.com/blog/what-is-pgp-encryption/>
-- <https://www.gnupg.org/gph/en/manual.html>
-- <https://emailselfdefense.fsf.org/>
-- <https://blog.ghostinthemachines.com/2015/03/01/how-to-use-gpg-command-line/>
+- https://protonmail.com/blog/what-is-pgp-encryption/
+- https://www.gnupg.org/gph/en/manual.html
+- https://emailselfdefense.fsf.org/
+- https://blog.ghostinthemachines.com/2015/03/01/how-to-use-gpg-command-line/

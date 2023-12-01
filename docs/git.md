@@ -143,7 +143,7 @@ git rm --cached folder/
 ```
 
 Blank lines or the lines that start with `#` are ignored. You can visit this
-page <https://github.com/github/gitignore>, where GitHub maintains a list of
+page https://github.com/github/gitignore, where GitHub maintains a list of
 *.gitignore* for various popular projects.
 
 Remove a file from staging environment:
@@ -448,7 +448,7 @@ pick ec716b0 added feature y
 pick 4baeaaf a patch for feature y
 ```
 
-### Cherry-pick
+### cherry-pick
 
 git `cherry-pick` enables arbitrary Git commits to be picked by reference and
 appended to the current working `HEAD`. Let's assume we have following branch
@@ -655,6 +655,6 @@ git lfs migrate import --verbose --include="*.pdf" --include-ref=HEAD --exclude-
 
 ## Resources
 
-- <https://git-scm.com/book/en/v2>
-- <https://github.com/pluralsight/git-internals-pdf>
+- https://git-scm.com/book/en/v2
+- https://github.com/pluralsight/git-internals-pdf
 - [Removing sensitive data from Git/GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)

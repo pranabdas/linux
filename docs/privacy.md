@@ -52,7 +52,7 @@ from the right-click context menu, see the metadata and remove them.
 </div>
 
 There is a cross-platform exifdata removal tool particularly for images -
-<https://github.com/exiftool/exiftool>. If you are on macOS, you can install it
+https://github.com/exiftool/exiftool. If you are on macOS, you can install it
 using homebrew.
 
 
@@ -96,7 +96,7 @@ When you use a VPN, your traffic is visible to your VPN provider, it is
 important whom you can trust. If you are on a public WiFi, it is always a good
 idea to use a trustable VPN service. I believe ProtonVPN is a good option.
 Today's internet is full of trackers, using a VPN will help you hide your real
-IP address. You can also use <https://www.startpage.com> along with its
+IP address. You can also use https://www.startpage.com along with its
 anonymous view for the same purpose. TOR is another option, however many popular
 websites may not function optimally via TOR.
 
@@ -115,11 +115,11 @@ more metadata than Signal.
 ### Browser and search engines
 
 Use privacy respecting web browsers like Mozilla Firefox or Tor, and search
-engines like <https://www.startpage.com> or duckduckgo. Clear your browsing
+engines like https://www.startpage.com or duckduckgo. Clear your browsing
 history and cookies regularly or set to clear when you quit browser.
 
 
 ### Resources
 
 - [macOS Security and Privacy Guide](https://github.com/drduh/macOS-Security-and-Privacy-Guide)
-- <https://blog.torproject.org/browser-fingerprinting-introduction-and-challenges-ahead/>
+- https://blog.torproject.org/browser-fingerprinting-introduction-and-challenges-ahead/

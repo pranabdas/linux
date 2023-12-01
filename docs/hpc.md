@@ -22,7 +22,7 @@ sudo apt install libfftw3-3
 ```
 
 **LAPACK, BLAS, TMGLIB**
-Resources: <http://www.netlib.org/lapack/>
+Resources: http://www.netlib.org/lapack/
 ```bash
 wget https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.10.0.tar.gz
 tar -xzvf v3.10.0.tar.gz
@@ -89,4 +89,4 @@ source ~/.bashrc
 ```
 
 ## Resources
-- <https://web.corral.tacc.utexas.edu/CompEdu/pdf/stc/EijkhoutIntroToHPC.pdf>
+- https://web.corral.tacc.utexas.edu/CompEdu/pdf/stc/EijkhoutIntroToHPC.pdf

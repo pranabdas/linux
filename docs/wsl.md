@@ -15,4 +15,4 @@ wsl --terminate {DistributionName}
 
 ### Resources
 
-- <https://docs.microsoft.com/en-us/windows/wsl/>
+- https://docs.microsoft.com/en-us/windows/wsl/

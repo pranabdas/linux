@@ -39,7 +39,7 @@ sudo apt install --no-install-recommends \
   wget
 ```
 
-Oh-my-bash: <https://github.com/ohmybash/oh-my-bash>
+Oh-my-bash: https://github.com/ohmybash/oh-my-bash
 ```bash
 git clone https://github.com/ohmybash/oh-my-bash.git ~/.oh-my-bash
 ```
@@ -84,7 +84,7 @@ following path, and rebuilding the font cache:
 mkdir ~/.local/share/fonts
 sudo fc-cache -f -v ~/.local/share/fonts
 ```
-<https://fonts.google.com> has a large collection of awesome fonts. Choose to
+https://fonts.google.com has a large collection of awesome fonts. Choose to
 your liking.
 
 If you are going to access your system remotely via SSH, install the SSH server.

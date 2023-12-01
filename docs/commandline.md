@@ -5,6 +5,7 @@ keywords: ["linux", "unix", "commandline", "shell", "ssh", "sed", "grep", "wget"
 ---
 
 ## Navigating around
+
 Print current working directory:
 ```bash
 pwd
@@ -849,7 +850,7 @@ Flags | Description
 -e    | with protocol option.
 
 If you are looking for more advanced and secure backup options, check out
-<https://borgbackup.readthedocs.io/en/stable/>
+https://borgbackup.readthedocs.io/en/stable/
 
 ## Processes
 See processes in the current shell

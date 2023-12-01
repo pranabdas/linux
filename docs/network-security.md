@@ -36,6 +36,7 @@ reveal a lot of metadata.
 </picture>
 
 ## Address Resolution Protocol (ARP)
+
 This is used by the devices in the same LAN or Wi-Fi network to discover each
 other. Check the devices' IP address and MAC address mapping in your network:
 ```bash
@@ -100,13 +101,15 @@ return the IP address of a forged bank website. Currently there is no encryption
 used in DNS layer. It is only protected by the TCP/UDP layer encryption
 therefore vulnerable to man-in-the-middle position attacks. Remember, last time
 you connected to a Wi-Fi network in a restaurant, you tried to visit say
-www.google.com, but first it send you a form asking to give you name, phone
-number, once you enter, it redirects to intended www.google.com (?). It is even
+*google.com*, but first it send you a form asking to give you name, phone
+number, once you enter, it redirects to intended *google.com* (?). It is even
 abused by some authorities with help of ISPs.
 
 ## Lynis
-Download Lynis [https://cisofy.com/lynis/](https://cisofy.com/lynis/#download)
+
+Download Lynis [https://cisofy.com/lynis/](https://cisofy.com/lynis/#download).
 Un-tar the package:
+
 ```bash
 tar -zxvf lynis-3.0.0.tar.gz
 cd lynis
@@ -114,6 +117,7 @@ cd lynis
 ```
 
 ## Nmap
+
 ```bash
 # On Ubuntu
 sudo apt install nmap
@@ -126,6 +130,7 @@ brew install nmap
 ```
 
 Sample scan report:
+
 ```bash
 $ sudo nmap -Pn ec2-xx-xxx-xx-xx.ap-southeast-1.compute.amazonaws.com
 Starting Nmap 7.70 ( https://nmap.org ) at 2020-07-23 10:02 UTC
@@ -145,6 +150,7 @@ By default it scans 1000 ports, there are 65,535 possible ports. If you have
 IPv6 addresses, use `-6` flag.
 
 Operating system detection:
+
 ```bash
 $ nmap -O ec2-xx-xxx-xx-xx.ap-southeast-1.compute.amazonaws.com
 Starting Nmap 7.70 ( https://nmap.org ) at 2020-07-23 09:50 UTC
@@ -169,6 +175,7 @@ Nmap done: 1 IP address (1 host up) scanned in 3.89 seconds
 Unfortunately, it did not guess correctly the linux version.
 
 Service version detection:
+
 ```bash
 $ sudo nmap -sV ec2-xx-xxx-xx-xx.ap-southeast-1.compute.amazonaws.com
 Starting Nmap 7.70 ( https://nmap.org ) at 2020-07-23 09:58 UTC
@@ -186,17 +193,21 @@ Nmap done: 1 IP address (1 host up) scanned in 14.09 seconds
 ```
 
 This time not only it detected services, it also correctly identified the server Operating system. Scan a single port `-p 80` or the whole range `-p 1-65535`. We can get combine all methods using `-A`.
+
 ```bash
 sudo nmap -A -v -p 80 ec2-xx-xxx-xx-xx.ap-southeast-1.compute.amazonaws.com
 ```
 
 ## nikto
+
 Nikto is a web vulnerability test utility. If you are on Ubuntu, you can simply install from the package manager.
+
 ```bash
 sudo apt install nikto
 ```
 
 If you are on RHEL or CentOS, you need to manually install.
+
 ```bash
 sudo dnf install perl
 git clone https://github.com/sullo/nikto
@@ -207,6 +218,7 @@ perl nikto.pl -h www.example.com
 There are additional dependencies for full functionality, please check the nikto
 documentation. Here is a sample output on a default apache server on latest
 RHEL:
+
 ```bash
 $ perl nikto.pl -h http://xx.xxx.xx.xx
 - Nikto v2.1.6
@@ -239,6 +251,7 @@ Now you get some idea to strengthen the security of your server. For example, my
 server does not need `TRACE`, `POST` and `OPTIONS` HTTP methods.
 
 We can add following to `/etc/httpd/conf/httpd.conf`
+
 ```bash
 <Directory />
     <LimitExcept GET HEAD>
@@ -250,6 +263,7 @@ TraceEnable Off
 ```
 
 Followed by:
+
 ```bash
 sudo mv /etc/httpd/conf.d/manual.conf /etc/httpd/conf.d/manual.conf.bak
 sudo mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.conf.bak
@@ -260,23 +274,28 @@ sudo systemctl restart httpd
 Now if we run nikto again, we will see that some of the issues are resolved.
 
 ## Wireshark
+
 Installing wireshark in Ubuntu:
+
 ```bash
 sudo apt install wireshark
 ```
 
 During installation, it asked me configuration options. In case you need to
 reconfigure wireshark later or manually:
+
 ```bash
 sudo dpkg-reconfigure wireshark-common
 ```
 
 Add user:
+
 ```bash
 sudo adduser $USER wireshark
 ```
 
 Now we can launch wireshark:
+
 ```bash
 wireshark &
 ```
@@ -284,7 +303,7 @@ wireshark &
 :::tip
 
 If you are learning WireShark, there are various sample captures available at
-<https://packetlife.net/captures/>. You can open them in CloudShark from your
+https://packetlife.net/captures/. You can open them in CloudShark from your
 browser, or download and open in WireShark.
 
 :::

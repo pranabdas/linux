@@ -48,8 +48,8 @@ cd ${CWD}
 
 
 ### Resources
-- <https://www.overleaf.com/learn>
-- <https://texfaq.org/> (On [GitHub](https://github.com/texfaq))
-- <https://www.learnlatex.org/en/> (On [GitHub](https://github.com/learnlatex))
-- <https://latexcolor.com/>
-- <https://github.com/pranabdas/LaTeX>
+- https://www.overleaf.com/learn
+- https://texfaq.org/ (On [GitHub](https://github.com/texfaq))
+- https://www.learnlatex.org/en/ (On [GitHub](https://github.com/learnlatex))
+- https://latexcolor.com/
+- https://github.com/pranabdas/LaTeX

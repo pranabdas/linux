@@ -147,4 +147,4 @@ gnuplot> replot
 </picture>
 
 ## Resources
-- <http://www.gnuplot.info>
+- http://www.gnuplot.info

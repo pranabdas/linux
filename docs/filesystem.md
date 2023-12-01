@@ -136,4 +136,4 @@ partition number and first sector. Here we want to create a partition size of
 - Save the changes by running the `w` command.
 
 ### Resources
-- <https://linuxize.com/post/fdisk-command-in-linux/>
+- https://linuxize.com/post/fdisk-command-in-linux/
