@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunklinux_tutorial=self.webpackChunklinux_tutorial||[]).push([[302],{1234:e=>{e.exports=JSON.parse('{"title":"Misc","slug":"/category/misc","permalink":"/linux/category/misc","navigation":{"previous":{"title":"Regular Expression","permalink":"/linux/regex"},"next":{"title":"Linux setup","permalink":"/linux/setup"}}}')}}]);
