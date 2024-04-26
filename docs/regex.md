@@ -153,9 +153,9 @@ complex, but here it used for simple grouping for the optional.
 
 Meta-character | Meaning
 :------------: | -------
-*              | Preceding item zero, or more times
-+              | Preceding item one or more times
-?              | Preceding item one or zero times
+`*`            | Preceding item zero, or more times
+`+`            | Preceding item one or more times
+`?`            | Preceding item one or zero times
 
 Match `<h3 size=14>`:
 ```bash
