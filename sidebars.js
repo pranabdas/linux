@@ -16,6 +16,7 @@ module.exports = {
       },
       items: [
         "setup",
+        "administration",
         "pgp",
         "gnuplot",
         "filesystem",
