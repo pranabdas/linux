@@ -42,14 +42,14 @@ rm -rf objdir
 Here is our modulefile:
 
 import CodeBlock from '@theme/CodeBlock';
-import gcc from '!!raw-loader!/src/modulefiles/gcc-12.3.0';
+import gcc from '!!raw-loader!/hpc/modulefiles/gcc-12.3.0';
 
-<CodeBlock language="bash" title="src/modulefiles/gcc-12.3.0" showLineNumbers>{gcc}</CodeBlock>
+<CodeBlock language="bash" title="hpc/modulefiles/gcc-12.3.0" showLineNumbers>{gcc}</CodeBlock>
 
-We will store our module files under `/workspaces/linux/src/modulefiles`.
+We will store our module files under `/workspaces/linux/hpc/modulefiles`.
 
 ```bash
-export MODULEPATH=${MODULEPATH}:/workspaces/linux/src/modulefiles
+export MODULEPATH=${MODULEPATH}:/workspaces/linux/hpc/modulefiles
 ```
 
 Now we can test our module:
