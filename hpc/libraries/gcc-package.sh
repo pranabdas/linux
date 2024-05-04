@@ -1,4 +1,5 @@
 #!/bin/bash
+# can be used to build deb or rpm packages
 
 GCC_VER=12.3.0
 INSTALL_DIR=/opt/libraries/gcc-${GCC_VER}

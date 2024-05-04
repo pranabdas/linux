@@ -3,6 +3,8 @@
 # download mellanox driver from https://network.nvidia.com/products/infiniband-drivers/linux/mlnx_ofed/
 # tested on AlmaLinux 9.3
 
+# you may first try: ./MLNX_OFED_LINUX-5.8-4.1.5.0-rhel9.3-x86_64/mlnxofedinstall
+# below example will build packages against the kernel headers
 yum install -y \
   autoconf \
   automake \
