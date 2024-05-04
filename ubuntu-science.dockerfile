@@ -62,13 +62,13 @@ RUN apt update; apt -yq upgrade; \
     xxd \
     xxdiff \
     zlib1g \
-    zlib1g-dev
-    && apt autoremove -y
-    && rm -rf /var/apt/lists/*
+    zlib1g-dev \
+    && apt autoremove -y \
+    && rm -rf /var/apt/lists/* \
     && ssh-keygen -A
 
-RUN ln -s /usr/bin/gfortran-7 /usr/bin/f95
-    && ln -s /usr/bin/gfortran-7 /usr/bin/gfortran
+RUN ln -s /usr/bin/gfortran-7 /usr/bin/f95 \
+    && ln -s /usr/bin/gfortran-7 /usr/bin/gfortran \
     && ln -s /usr/bin/gfortran-7 /usr/bin/f90
 
 CMD /bin/bash

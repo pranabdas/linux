@@ -85,4 +85,3 @@ gem install bundler jekyll
 
 # cleanup
 sudo apt autoremove --purge
-

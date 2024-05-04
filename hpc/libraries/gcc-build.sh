@@ -1,10 +1,11 @@
 #!/bin/bash
+
 GCC_VER=12.3.0
 INSTALL_DIR=/opt/libraries/gcc-${GCC_VER}
 
 BUILD_DIR=/tmp/_build_$(date +'%Y%m%d%H%M%S')
 CWD=${PWD}
-cd ${BUILD_DIR}
+mkdir ${BUILD_DIR} && cd $_
 
 NUM_PROCS=$(nproc)
 PROCS_TO_USE=$(expr $NUM_PROCS \* 3 / 2)  # use 1.5 times as the build is heavily io bound
