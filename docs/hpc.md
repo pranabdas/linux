@@ -83,7 +83,7 @@ tar zxvf openmpi-4.1.4.tar.gz
 cd openmpi-4.1.4
 ./configure --prefix=/opt/openmpi CC=icc CXX=icpc F77=ifort FC=ifort
 make -j4
-make -j4 install
+make install
 echo 'export PATH=/opt/openmpi/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 ```
