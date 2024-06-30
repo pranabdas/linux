@@ -5,9 +5,10 @@ sidebar_label: Apache
 
 Web server is a piece of software that listens for web requests (via browser,
 applications, or tools like wget and curl) and responds to it. A server can be
-static or dynamic. Static servers response with prebuilt files as is. While
-dynamic servers builds webpages on-demand based on the user requests and
-possibly acquiring data from a database.
+static or dynamic. Static servers response with prebuilt files as is, supporting
+only HTTP GET requests. While dynamic servers builds webpages on-demand based on
+the user requests and possibly acquiring data from a database, it facilitates
+HTTP POST, PATCH in addition to GET requests.
 
 First, we need a server software package. There are a few popular ones like
 **apache** and **nginx**. Here we will try to setup an **apache** on a Ubuntu
@@ -42,11 +43,14 @@ lot more about server to explore.
 The main server configuration file is located at `/etc/apache2/apache2.conf`.
 
 ## Server logs
+
 Apache has two logs: *access.log* and *error.log*. We can look them up in the
 `/var/log/apache2` directory.
 
+
 ## Create a self-signed certificate
-In general, you have a get a certificate from a certificate authority. But you
+
+In general, you have to get a certificate from a certificate authority. But you
 can self-sign a certificate for your own purpose.
 
 ```bash
@@ -81,6 +85,7 @@ may need to add HTTP/HTTPS rule for inbound traffic in the security policy
 before you can access over internet.
 
 ## Security hardening
+
 Open `/etc/httpd/conf/httpd.conf` and consider following settings:
 
 Disable trace route:

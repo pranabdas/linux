@@ -313,3 +313,44 @@ docker pull ubuntu
 docker save -o ubuntu_image.docker ubuntu
 docker load -i ubuntu_image.docker
 ```
+
+## Docker compose
+
+Docker compose can help create, run, and manage the lifecycle of the containers.
+For example below docker run command
+
+```bash
+docker run -d --name apache -p 8080:80 -v $(PWD)/build:/usr/local/apache2/htdocs/ httpd:latest
+```
+
+would translate into following docker-compose specification:
+
+```yml title="compose.yaml"
+services:
+  apache:
+    image: httpd:latest
+    container_name: apache
+    ports:
+      - '8080:80'
+    volumes:
+      - ./build:/usr/local/apache2/htdocs
+```
+
+Now go to the directory where `compose.yaml` is saved and issue:
+
+```bash
+docker-compose up
+```
+
+Now we can access our website at `localhost:8080` using a web browser.
+
+Some other useful docker-compose commands are
+
+```bash
+docker-compose down
+docker-compose stop
+docker-compose --help
+```
+
+## References
+- [https://docs.docker.com/compose/](https://docs.docker.com/compose/)
