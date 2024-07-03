@@ -134,7 +134,9 @@ You can also pass environment variables with `-e` flag, e.g.,`-e LANG=C.UTF-8`,
 `-e TZ=Asia/Singapore`. You can pass multiple `-e` flags to pass multiple such
 variables.
 
+
 ## Running GUI apps on docker
+
 First we need to install a X-window system. On linux, we can choose X11. On
 macOS [X-Quartz](https://www.xquartz.org), on Windows [xming](
 https://sourceforge.net/projects/xming/). On macOS, allow connections from
@@ -162,6 +164,7 @@ docker run --rm -tid -e DISPLAY=host.docker.internal:0 ubuntu firefox
 ```
 
 I assumed you have the X version of firefox is installed in the ubuntu image.
+
 
 ## Running apache on docker
 
@@ -200,6 +203,7 @@ Stop all running containers:
 ```bash
 docker stop $(docker ps -a -q)
 ```
+
 
 ## Dockerfile
 
@@ -290,6 +294,7 @@ COPY --chown=noroot:noroot /home/build_dir /noroot/build_dir
 
 :::
 
+
 ## Docker hub
 
 Login:
@@ -307,12 +312,15 @@ Push a local image:
 sudo docker push username/localimage:latest
 ```
 
+
 ## Transferring image offline
+
 ```bash
 docker pull ubuntu
 docker save -o ubuntu_image.docker ubuntu
 docker load -i ubuntu_image.docker
 ```
+
 
 ## Docker compose
 
@@ -320,10 +328,10 @@ Docker compose can help create, run, and manage the lifecycle of the containers.
 For example below docker run command
 
 ```bash
-docker run -d --name apache -p 8080:80 -v $(PWD)/build:/usr/local/apache2/htdocs/ httpd:latest
+docker run -d --name apache -p 8080:80 -v ${PWD}/build:/usr/local/apache2/htdocs/ httpd:latest
 ```
 
-would translate into following docker-compose specification:
+would translate to following docker compose specification:
 
 ```yml title="compose.yaml"
 services:
@@ -339,17 +347,29 @@ services:
 Now go to the directory where `compose.yaml` is saved and issue:
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
 Now we can access our website at `localhost:8080` using a web browser.
 
-Some other useful docker-compose commands are
+We can run a service in the background with `-d` (detached) flag.
 
 ```bash
-docker-compose down
-docker-compose stop
-docker-compose --help
+docker compose up -d
+```
+
+Once we are done, we can `stop` or `down` (`down` stops the container and
+removes the container).
+
+```bash
+docker compose stop
+docker compose down
+```
+
+Explore more docker compose commands with
+
+```bash
+docker compose --help
 ```
 
 ## References
