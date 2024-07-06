@@ -372,5 +372,18 @@ Explore more docker compose commands with
 docker compose --help
 ```
 
+How can we access the shell of a container running a service? List running
+containers:
+
+```bash
+docker ps
+```
+
+Then access the shell:
+
+```bash
+docker exec -it <container-id> bash
+```
+
 ## References
 - [https://docs.docker.com/compose/](https://docs.docker.com/compose/)
