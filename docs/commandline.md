@@ -964,10 +964,75 @@ DELIMITER
 - `-` is an optional parameter for tab suppression. Tab (not spaces) can be used
 for indentation.
 - `DELIMITER` in the first line defines a HereDoc delimiter token. `END`, `EOT`,
-and `EOF` are most common, but any multicharacter word that won't appear in the
+and `EOF` are most common, but any multi-character word that won't appear in the
 body works. Omit single quotes on the first line to allow command and variable
 expansion. The `DELIMITER` in the last line indicates the end of a HereDoc. Use
 the same word from the first line without the leading whitespaces.
+
+
+## Base64
+
+Encode a string into base64 string:
+
+```bash
+echo "TestString" | base64
+```
+
+In the above method string would contain newline char in the end. We can remove
+the trailing newline char by:
+
+```bash
+echo -n "TestString" | base64
+printf "TestString" | base64
+```
+
+If we have `null` chars in the input string, we can use `\0`:
+
+```bash
+printf "FirstPart\0SecondPart" | base64
+echo -ne "FirstPart\0SecondPart" | base64
+```
+
+Decoding base64 output:
+
+```bash
+echo "VGVzdFN0cmluZw==" | base64 -d
+```
+
+The base64 output length is not multiples of 4, it is padded with `=` to make it
+so. If you need to remove the padding chars:
+
+```bash
+printf "TestString" | base64 | sed 's/=//'
+```
+
+If you need to send output as a string query parameter, it is often encoded into
+base64url format, where `+` is replaced by `-`, and `/` by `_`, because `+` and
+`/` have special meanings in url.
+
+```bash
+printf "<<???>>" | base64 | sed 's/=//' | sed 's/+/-/' | sed 's/\//_/'
+```
+
+Sometimes we need to url-encode. We can use [jq](https://jqlang.github.io/jq/):
+
+```bash
+printf "TestString" | base64 | jq -sRr @uri
+```
+
+[jq](https://jqlang.github.io/jq/) can be installed using linux package mangers
+or homebrew:
+
+```bash
+brew install jq
+
+# debian/ubuntu
+apt install jq
+
+# fedora/rhel
+dnf install jq
+```
+
 
 ## Learn more
 - [Art of commandline](https://github.com/jlevy/the-art-of-command-line)
