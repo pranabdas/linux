@@ -1,0 +1,12 @@
+# launch docker
+docker run --rm -ti -e DISPLAY=docker.for.mac.host.internal:0 -v /Volumes/Pranabs-HD/Backups:/mnt ubuntu bash
+
+# install rclone
+apt install -y rclone
+
+# configure dropbox
+rclone config
+
+# follow onscreen instructions
+
+# more details: https://rclone.org/dropbox/

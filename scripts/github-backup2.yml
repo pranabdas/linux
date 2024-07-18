@@ -1,0 +1,104 @@
+name: Build docs, deploy and mirror
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  push:
+    branches:
+      - main
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Backup
+        run: |
+          sudo apt update
+          sudo apt install -y --no-install-recommends \
+          wget \
+          zip
+
+          wget https://prerelease.keybase.io/keybase_amd64.deb
+          sudo apt install -y --no-install-recommends ./keybase_amd64.deb
+          run_keybase -g &> /dev/null
+          keybase oneshot -u ${{ secrets.KEYBASE_USER_NAME }} --paperkey "${{ secrets.KEYBASE_PAPER_KEY }}"
+          BACKUP_FOLDER=github_backup_$(date +'%Y%m%d')
+
+          KEYBASE_FOLDER_EXIST=`keybase fs ls /keybase/public/${{ secrets.KEYBASE_USER_NAME }}/github_backups/${BACKUP_FOLDER}.zip 2> /dev/null || true`
+          if [ -z "${KEYBASE_FOLDER_EXIST}" ]; then
+            :
+          else
+            echo "File already exist in destination. Deleting..."
+            keybase fs rm /keybase/public/${{ secrets.KEYBASE_USER_NAME }}/github_backups/${BACKUP_FOLDER}.zip
+          fi
+
+          mkdir ${BACKUP_FOLDER} && cd $_
+          repo_list=()
+          repo_list+=(Access-OneDrive-via-Microsoft-Graph-Python)
+          repo_list+=(arpes-manual)
+          repo_list+=(arpespythontools)
+          repo_list+=(c-cpp)
+          repo_list+=(cheatsheets)
+          repo_list+=(condmat-notes)
+          repo_list+=(deploy-jekyll-github-action)
+          repo_list+=(dotfiles)
+          repo_list+=(espresso)
+          repo_list+=(fortran)
+          repo_list+=(fullprof)
+          repo_list+=(github-emoji-assets)
+          repo_list+=(gnu-c-intro-ref)
+          repo_list+=(grid)
+          repo_list+=(javascript)
+          repo_list+=(LaTeX)
+          repo_list+=(linux)
+          repo_list+=(machine-learning)
+          repo_list+=(openmx)
+          repo_list+=(openssl.vim)
+          repo_list+=(orientx)
+          repo_list+=(passphrase)
+          repo_list+=(planets)
+          repo_list+=(pranab)
+          repo_list+=(python-tutorial)
+          repo_list+=(react-learning)
+          repo_list+=(retasks)
+          repo_list+=(rust)
+          repo_list+=(sg-tax-calculator)
+          repo_list+=(sg-traffic-camera)
+          repo_list+=(suvapp)
+          repo_list+=(suvtools)
+          repo_list+=(vim-gnupg)
+          repo_list+=(wasm-rust-react)
+          repo_list+=(xps)
+
+          for repo in "${repo_list[@]}"
+          do mkdir ${repo}
+            cd ${repo}
+            git clone --mirror https://github.com/pranabdas/${repo}.git .git
+            git config --unset core.bare
+            git reset --hard
+            cd ..
+          done
+          cd ..
+          zip -r ${BACKUP_FOLDER}.zip ${BACKUP_FOLDER}
+
+          keybase fs cp ${BACKUP_FOLDER}.zip /keybase/public/${{ secrets.KEYBASE_USER_NAME }}/github_backups
+          while :
+          do
+            KEYBASE_STATUS=`keybase fs uploads`
+            KEYBASE_STATUS=`echo ${KEYBASE_STATUS} | sed 's/\ /-/g' | sed 's/:/-/g'`
+            COMPLETED_STATUS="There-are-currently-no-uploads-in-progress"
+
+            if [ "${KEYBASE_STATUS}" = "${COMPLETED_STATUS}" ]; then
+              break
+            fi
+
+            sleep 15s
+          done
