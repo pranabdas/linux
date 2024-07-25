@@ -35,6 +35,7 @@ to get a quick summary of various Linux/ UNIX commands.
     - [Firewall](firewall.md)
     - [Network security](network-security.md)
     - [TLS Key management](tls-key-management.md)
+    - [Storage management](storage-management.md)
     - [Apache webserver](apache.md)
     - [NextCloud](nextcloud.md)
     - [SELinux](selinux.md)
