@@ -23,7 +23,7 @@ module.exports = {
         "network-setup",
         "firewall",
         "network-security",
-        "key-management",
+        "tls-key-management",
         "apache",
         "nextcloud",
         "selinux",

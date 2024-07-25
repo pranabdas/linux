@@ -1,6 +1,6 @@
 ---
 title: Managing public key infrastructure
-sidebar_label: Key management
+sidebar_label: TLS Key management
 keywords: ["linux", "openssl", "tls"]
 ---
 
@@ -42,6 +42,7 @@ Inspect other details in a private key:
 
 ```bash
 openssl rsa -text -in private.key
+openssl rsa -check -noout -in private.key
 ```
 
 
@@ -69,6 +70,12 @@ Create private key and csr together:
 openssl req -new -noenc \
   -subj '/CN=domain.example.com/O=Example Ltd/C=SG/L=Singapore' \
   -newkey rsa:2048 -keyout private2.key -out domain2.example.com.csr
+```
+
+Check CSR details:
+
+```bash
+openssl req -text -noout -verify -in mongo.csr.pem
 ```
 
 
@@ -120,7 +127,13 @@ Sign CSR:
 
 ```bash
 openssl x509 -req -in domain.example.com.csr -CA ca.crt -CAkey ca.key \
-  -out domain.example.com.crt
+  -days 365 -out domain.example.com.crt
+```
+
+Check certificate details:
+
+```bash
+openssl x509 -text -noout -in domain.example.com.crt
 ```
 
 Verify:
