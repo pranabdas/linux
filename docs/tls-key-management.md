@@ -14,8 +14,8 @@ openssl genrsa -out private.key 2048
 
 :::info
 
-Key with larger bit (say, RSA 4096) are more secure but it comes with additional
-computing overhead for encryption and decryption.
+Key with higher bit size (say, RSA 4096 bit or even 8192 bit) are more secure
+but it comes with additional computing overhead for encryption and decryption.
 
 :::
 
@@ -26,19 +26,20 @@ keys. Extract the public key:
 openssl rsa -pubout -in private.key
 ```
 
-We can encrypt the `private.key`:
+We can encrypt the `private.key` with a passphrase during creation instead of
+writing in plaintext:
 
 ```bash
 openssl genrsa -aes256 -out private.key 2048
 ```
 
-Convert an encrypted key to a un-encrypted file:
+Convert an encrypted key file to a un-encrypted file:
 
 ```bash
 openssl rsa -in private.key -out unencrypted.key
 ```
 
-Inspect other details in a private key:
+Inspect various details in a private key:
 
 ```bash
 openssl rsa -text -in private.key
@@ -48,7 +49,8 @@ openssl rsa -check -noout -in private.key
 
 ## Certificate Signing Request
 
-Create CSR (interactively):
+Create CSR (interactively, it will ask for various required and optional
+parameters):
 
 ```bash
 openssl req -new -key private.key -out domain.example.com.csr

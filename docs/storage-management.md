@@ -24,7 +24,7 @@ Swap:             0B          0B          0B
 
 Create an empty file of size 4GB for swap:
 ```bash
-dd if=/dev/zero of=/swapfile bs=1024 count=4194304
+dd if=/dev/zero of=/swapfile bs=1M count=4096
 ```
 
 Set file permissions:
