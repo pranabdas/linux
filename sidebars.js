@@ -28,6 +28,7 @@ module.exports = {
         "apache",
         "nextcloud",
         "selinux",
+        "jenkins",
         "hpc",
         "module",
         "brew",

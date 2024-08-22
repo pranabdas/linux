@@ -39,6 +39,7 @@ to get a quick summary of various Linux/ UNIX commands.
     - [Apache webserver](apache.md)
     - [NextCloud](nextcloud.md)
     - [SELinux](selinux.md)
+    - [CI/CD with Jenkins](jenkins.md)
     - [High Performance Computing](hpc.md)
     - [Environment Modules](module.mdx)
     - [Homebrew](brew.md)
