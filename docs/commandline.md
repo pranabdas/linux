@@ -306,6 +306,13 @@ Create a tar archive of files:
 tar -czvf files.tar.gz file1.pdf file2.pdf
 ```
 
+:::warning
+
+It is important that the `-f` or `--file` flag is used just preceding the output
+file name.
+
+:::
+
 Create a tar archive of a directory:
 ```bash
 tar -czvf files.tar.gz /home/files
