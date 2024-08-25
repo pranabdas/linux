@@ -7,6 +7,19 @@ title: CI/CD with Jenkins
 Install jenkins by following the instructions specific to your operating system
 of choice - [Installing Jenkins](https://www.jenkins.io/doc/book/installing/).
 
+We can use bellow commands to install Jenkins in RHEL 9 system:
+
+```bash
+dnf install -y wget java-17-openjdk
+wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+dnf install -y jenkins
+```
+
+Then we can use systemd to start the jenkins service:
+```bash
+service jenkins start
+```
 
 ## Running jenkins in docker
 
@@ -27,6 +40,14 @@ docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
 Go to http://localhost:8080, provide the above admin password. Next step, we may
 select install suggested plugins.
+
+Alternatively, we could share an existing JENKINS_HOME data directory with the
+container.
+
+```bash
+export JENKINS_HOME=/workspaces/jenkins_home
+docker run -d --rm -p 8080:8080 -v $JENKINS_HOME:/var/lib/jenkins -e JENKINS_HOME=/var/lib/jenkins jenkins/jenkins:lts
+```
 
 
 ## Jenkins CLI tool
