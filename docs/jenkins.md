@@ -60,6 +60,31 @@ wget http://localhost:8080/jnlpJars/jenkins-cli.jar
 chmod +x jenkins-cli.jar
 ```
 
+Perhaps the most important command: getting help.
+```bash
+java -jar /usr/bin/jenkins-cli.jar -s http://localhost:8080 -auth $JENKINS_USER:$SECRET help
+```
+
+List installed plugins:
+```bash
+java -jar /usr/bin/jenkins-cli.jar -s http://localhost:8080 -auth $JENKINS_USER:$SECRET list-plugins
+```
+
+Install a plugin:
+```bash
+java -jar /usr/bin/jenkins-cli.jar -s http://localhost:8080 -auth $JENKINS_USER:$SECRET install-plugin <plugin-name>
+java -jar /usr/bin/jenkins-cli.jar -s http://localhost:8080 -auth $JENKINS_USER:$SECRET install-plugin git
+```
+
+Update Jenkins plugins ([ref](https://stackoverflow.com/a/25647793)):
+```bash
+UPDATE_LIST=$( java -jar /root/jenkins-cli.jar -s http://localhost:8080/ -auth $JENKINS_USER:$SECRET list-plugins | grep -e ')$' | awk '{ print $1 }' );
+if [ ! -z "${UPDATE_LIST}" ]; then
+    echo Updating Jenkins Plugins: ${UPDATE_LIST};
+    java -jar /root/jenkins-cli.jar -s http://localhost:8080/ -auth $JENKINS_USER:$SECRET install-plugin ${UPDATE_LIST};
+    java -jar /root/jenkins-cli.jar -s http://localhost:8080/ -auth $JENKINS_USER:$SECRET safe-restart;
+fi
+```
 
 ## Backup and restore Jenkins data
 
