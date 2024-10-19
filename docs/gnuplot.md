@@ -24,50 +24,35 @@ Plot a function:
 gnuplot> plot besj0(x)
 ```
 
-<picture>
-  <source type="image/webp" srcSet={require("/img/gnuplot-01.webp").default} />
-  <img src={require("/img/gnuplot-01.png").default} alt="gnuplot-01" />
-</picture>
+![gnuplot-01](../static/img/gnuplot-01.webp)
 
 Maybe you want fix the x-range:
 ```bash
 gnuplot> plot [-pi:pi] sin(x)
 ```
 
-<picture>
-  <source type="image/webp" srcSet={require("/img/gnuplot-02.webp").default} />
-  <img src={require("/img/gnuplot-02.png").default} alt="gnuplot-02" />
-</picture>
+![gnuplot-02](../static/img/gnuplot-02.webp)
 
 Maybe you want fix both x and y-range:
 ```bash
 gnuplot> plot [-pi:pi] [-1.2:1.5] sin(x)
 ```
 
-<picture>
-  <source type="image/webp" srcSet={require("/img/gnuplot-03.webp").default} />
-  <img src={require("/img/gnuplot-03.png").default} alt="gnuplot-03" />
-</picture>
+![gnuplot-03](../static/img/gnuplot-03.webp)
 
 Plotting multiple functions at the same time:
 ```bash
 gnuplot> plot sin(x), besj0(x)
 ```
 
-<picture>
-  <source type="image/webp" srcSet={require("/img/gnuplot-04.webp").default} />
-  <img src={require("/img/gnuplot-04.png").default} alt="gnuplot-04" />
-</picture>
+![gnuplot-04](../static/img/gnuplot-04.webp)
 
 Making surface plot
 ```bash
 gnuplot> splot x**2+y**2
 ```
 
-<picture>
-  <source type="image/webp" srcSet={require("/img/gnuplot-05.webp").default} />
-  <img src={require("/img/gnuplot-05.png").default} alt="gnuplot-05" />
-</picture>
+![gnuplot-05](../static/img/gnuplot-05.webp)
 
 Making things look prettier, setting grid:
 ```bash
@@ -84,10 +69,7 @@ gnuplot> set title “Theta vs. Sin(theta)”
 gnuplot> replot
 ```
 
-<picture>
-  <source type="image/webp" srcSet={require("/img/gnuplot-06.webp").default} />
-  <img src={require("/img/gnuplot-06.png").default} alt="gnuplot-06" />
-</picture>
+![gnuplot-06](../static/img/gnuplot-06.webp)
 
 Plotting data from file (the file contains two column data)
 ```bash
@@ -117,10 +99,7 @@ gnuplot> set xlabel "X"
 gnuplot> replot
 ```
 
-<picture>
-  <source type="image/webp" srcSet={require("/img/gnuplot-07.webp").default} />
-  <img src={require("/img/gnuplot-07.png").default} alt="gnuplot-07" />
-</picture>
+![gnuplot-07](../static/img/gnuplot-07.webp)
 
 ### Sample size
 Set samples size in Gnuplot while plotting functions. Sometimes the finest
@@ -131,20 +110,14 @@ following example.
 gnuplot> plot sin(1/x)
 ```
 
-<picture>
-  <source type="image/webp" srcSet={require("/img/gnuplot-08.webp").default} />
-  <img src={require("/img/gnuplot-08.png").default} alt="gnuplot-08" />
-</picture>
+![gnuplot-08](../static/img/gnuplot-08.webp)
 
 ```bash
 gnuplot> set samples 200
 gnuplot> replot
 ```
 
-<picture>
-  <source type="image/webp" srcSet={require("/img/gnuplot-09.webp").default} />
-  <img src={require("/img/gnuplot-09.png").default} alt="gnuplot-09" />
-</picture>
+![gnuplot-09](../static/img/gnuplot-09.webp)
 
 ## Resources
 - http://www.gnuplot.info

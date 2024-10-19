@@ -142,10 +142,7 @@ macOS [X-Quartz](https://www.xquartz.org), on Windows [xming](
 https://sourceforge.net/projects/xming/). On macOS, allow connections from
 network clients:
 
-<picture>
-  <source type="image/webp" srcSet={require("/img/x-quartz.webp").default} />
-  <img src={require("/img/x-quartz.png").default} alt="x-quartz" width="450px" />
-</picture>
+![x-quartz](../static/img/x-quartz.webp)
 
 After launching XQuartz (you may launch for terminal by `open -a XQuartz`),
 issue `xhost +`. More about X-window system [here](

@@ -30,10 +30,7 @@ to anyone in the network. Luckily, nowadays most of the websites encrypt the
 actual data they transport between client and server. However, still it might
 reveal a lot of metadata.
 
-<picture>
-  <source type="image/webp" srcSet={require("/img/network-headers.webp").default} />
-  <img src={require("/img/network-headers.png").default} alt="network-headers" />
-</picture>
+![network-headers](../static/img/network-headers.webp)
 
 ## Address Resolution Protocol (ARP)
 
