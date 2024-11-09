@@ -1,9 +1,10 @@
 import { themes } from "prism-react-renderer";
+const site_url = "https://pranabdas.github.io";
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Linux tutorial",
   tagline: "Get jobs done using Linux/UNIX",
-  url: "https://pranabdas.github.io",
+  url: site_url,
   baseUrl: "/linux/", // must have a trailing "/"
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -53,67 +54,67 @@ const config = {
               },
               {
                 label: "~ ~ ~ Other Docs ~ ~ ~",
-                to: "https://pranabdas.github.io/docs/",
+                to: site_url + "/docs/",
                 target: "_self",
               },
               {
                 label: "ARPES Python Tools",
-                to: "https://pranabdas.github.io/arpespythontools/",
+                to: site_url + "/arpespythontools/",
                 target: "_self",
               },
               {
                 label: "C and C++ Programming",
-                to: "https://pranabdas.github.io/c-cpp/",
+                to: site_url + "/c-cpp/",
                 target: "_self",
               },
               {
                 label: "Condensed Matter Notes",
-                to: "https://pranabdas.github.io/condmat-notes/",
+                to: site_url + "/condmat-notes/",
                 target: "_self",
               },
               {
                 label: "Fortran Programming",
-                to: "https://pranabdas.github.io/fortran/",
+                to: site_url + "/fortran/",
                 target: "_self",
               },
               {
                 label: "Javascript Tutorial",
-                to: "https://pranabdas.github.io/javascript/",
+                to: site_url + "/javascript/",
                 target: "_self",
               },
               {
                 label: "Machine Learning Notes",
-                to: "https://pranabdas.github.io/machine-learning/",
+                to: site_url + "/machine-learning/",
                 target: "_self",
               },
               {
                 label: "OpenMX tutorial",
-                to: "https://pranabdas.github.io/openmx/",
+                to: site_url + "/openmx/",
                 target: "_self",
               },
               {
                 label: "Python Tutorial",
-                to: "https://pranabdas.github.io/python-tutorial/",
+                to: site_url + "/python-tutorial/",
                 target: "_self",
               },
               {
                 label: "Quantum Espresso Tutorial",
-                to: "https://pranabdas.github.io/espresso/",
+                to: site_url + "/espresso/",
                 target: "_self",
               },
               {
                 label: "Rust Programming",
-                to: "https://pranabdas.github.io/rust/",
+                to: site_url + "/rust/",
                 target: "_self",
               },
               {
                 label: "SUV ARPES Manual",
-                to: "https://pranabdas.github.io/arpes-manual/",
+                to: site_url + "/arpes-manual/",
                 target: "_self",
               },
               {
                 label: "SUV Python Tools",
-                to: "https://pranabdas.github.io/suvtools/",
+                to: site_url + "/suvtools/",
                 target: "_self",
               },
             ],
@@ -127,7 +128,7 @@ const config = {
             target: "_self",
           },
           {
-            to: "https://pranabdas.github.io",
+            to: site_url,
             "aria-label": "About me",
             position: "right",
             target: "_self",
@@ -174,6 +175,9 @@ const config = {
       },
     ],
   ],
+  future: {
+    experimental_faster: true,
+  },
 };
 
 export default config;
