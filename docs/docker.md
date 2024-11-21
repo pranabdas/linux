@@ -382,5 +382,9 @@ Then access the shell:
 docker exec -it <container-id> bash
 ```
 
+## Use systemctl in docker
+
+See this project: [docker-systemctl-replacement](https://github.com/gdraheim/docker-systemctl-replacement).
+
 ## References
 - [https://docs.docker.com/compose/](https://docs.docker.com/compose/)

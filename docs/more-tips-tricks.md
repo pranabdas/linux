@@ -53,3 +53,9 @@ export GH_PAT_TOKEN="$(secret-tool lookup 'GH_PAT' 'TOKEN')"
 
 Find more info [here](
 https://bitwarden.com/blog/how-to-securely-store-your-secrets-manager-access-tokens-with-bash-scripting/).
+
+### Launch a service/daemon as another user
+
+```bash
+runuser -u <user> -- /usr/sbin/serviced
+```
