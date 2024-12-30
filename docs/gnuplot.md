@@ -24,35 +24,35 @@ Plot a function:
 gnuplot> plot besj0(x)
 ```
 
-![gnuplot-01](../static/img/gnuplot-01.webp)
+<img alt="gnuplot-01" src={require("../static/img/gnuplot-01.webp").default} class="inv-hue-rot-180"/>
 
 Maybe you want fix the x-range:
 ```bash
 gnuplot> plot [-pi:pi] sin(x)
 ```
 
-![gnuplot-02](../static/img/gnuplot-02.webp)
+<img alt="gnuplot-02" src={require("../static/img/gnuplot-02.webp").default} class="inv-hue-rot-180"/>
 
 Maybe you want fix both x and y-range:
 ```bash
 gnuplot> plot [-pi:pi] [-1.2:1.5] sin(x)
 ```
 
-![gnuplot-03](../static/img/gnuplot-03.webp)
+<img alt="gnuplot-03" src={require("../static/img/gnuplot-03.webp").default} class="inv-hue-rot-180"/>
 
 Plotting multiple functions at the same time:
 ```bash
 gnuplot> plot sin(x), besj0(x)
 ```
 
-![gnuplot-04](../static/img/gnuplot-04.webp)
+<img alt="gnuplot-04" src={require("../static/img/gnuplot-04.webp").default} class="inv-hue-rot-180"/>
 
 Making surface plot
 ```bash
 gnuplot> splot x**2+y**2
 ```
 
-![gnuplot-05](../static/img/gnuplot-05.webp)
+<img alt="gnuplot-05" src={require("../static/img/gnuplot-05.webp").default} class="inv-hue-rot-180"/>
 
 Making things look prettier, setting grid:
 ```bash
@@ -69,7 +69,7 @@ gnuplot> set title “Theta vs. Sin(theta)”
 gnuplot> replot
 ```
 
-![gnuplot-06](../static/img/gnuplot-06.webp)
+<img alt="gnuplot-06" src={require("../static/img/gnuplot-06.webp").default} class="inv-hue-rot-180"/>
 
 Plotting data from file (the file contains two column data)
 ```bash
@@ -99,7 +99,7 @@ gnuplot> set xlabel "X"
 gnuplot> replot
 ```
 
-![gnuplot-07](../static/img/gnuplot-07.webp)
+<img alt="gnuplot-07" src={require("../static/img/gnuplot-07.webp").default} class="inv-hue-rot-180"/>
 
 ### Sample size
 Set samples size in Gnuplot while plotting functions. Sometimes the finest
@@ -110,14 +110,14 @@ following example.
 gnuplot> plot sin(1/x)
 ```
 
-![gnuplot-08](../static/img/gnuplot-08.webp)
+<img alt="gnuplot-08" src={require("../static/img/gnuplot-08.webp").default} class="inv-hue-rot-180"/>
 
 ```bash
 gnuplot> set samples 200
 gnuplot> replot
 ```
 
-![gnuplot-09](../static/img/gnuplot-09.webp)
+<img alt="gnuplot-09" src={require("../static/img/gnuplot-09.webp").default} class="inv-hue-rot-180"/>
 
 ## Resources
 - http://www.gnuplot.info
