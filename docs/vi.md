@@ -26,7 +26,7 @@ vi file.txt
 ```
 
 - Go into `INSERT` mode by (check in the bottom of the window for `--INSERT--`)
-by pressing `[shift]+[i]` or simply `[i]`.
+by pressing `[i]`.
 
 - Go into `REPLACE` mode (check in the bottom for `--REPLACE--`) by pressing
 `[shift] + [r]`.
@@ -103,9 +103,15 @@ dw           | Delete one word forwards
 d$ / D       | Delete to the end of line
 d0           | Delete to the beginning of line
 dd           | Delete a whole line
-u            | Undo (or type `:u`; `:2u` (undo twice) or `:U` (undo all))
+cc           | Clear whole line and enter insert mode
+5dd          | Delete 5 lines below cursor
+dG           | Delete all lines below cursor
+cG           | Clear all lines below cursor and and enter insert mode
+dgg          | Delete all lines above cursor
+cgg          | Clear all lines above cursor and and enter insert mode
+u            | Undo (or type `:u`; `:2u` (undo twice))
 control + r  | Redo
-control + l  | Redraw / reload
+control + l  | Redraw/<wbr/>reload
 z=           | Spelling suggestions
 zg           | Add new word to the user dictionary
 zug          | Remove word from the dictionary
@@ -130,6 +136,9 @@ line or block modes, respectively. Select text using the arrow keys on the key
 board. You can:
 
 - Press `c` it will clear the selected part and enter into insert mode.
+- To delete multiple lines, press `[shift] + v` to enter visual line mode,
+select multiple lines with arrow up/<wbr/>down or `j`/<wbr/>`k` keys, finally
+press `d` to delete or press `c` to clear and enter into insert mode.
 - Press `y` to copy (yanked).
 - You can paste in another location in VIM by pressing `p`.
 - Press `"+y` to copy to system clipboard, you can paste in another program
