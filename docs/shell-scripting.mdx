@@ -251,6 +251,35 @@ apt install bc
 var2=$(echo "scale=7;${var}/2" | bc)
 ```
 
+### Parameter expansion
+Strip everything after the query string `?`:
+
+```bash
+url="https://example.com/resource?query=123&filter=abc"
+path=${url%%\?*}
+echo $path  # https://example.com/resource
+```
+
+An alternate of the above could be:
+```bash
+path=(${url//\?/ })  # substitute `?` with spaces, then assign array
+path=${path[0]}
+```
+
+Select filename from url:
+```bash
+url="https://example.com/file.txt"
+filename=${url##*/}
+echo $url  # file.txt
+```
+
+An alternate of the above could be:
+```bash
+unicode=(${path//\// })  # substitute `/` with spaces, then assign array
+last_index=$(( ${#unicode[@]} - 1 ))
+unicode="${unicode[$last_index]}"
+```
+
 ## Learn more
 - *Learning the bash Shell: Unix Shell Programming* by *C. Newham*.
 - *Linux Shell Scripting With Bash* by *K. O. Burtch*.

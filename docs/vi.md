@@ -110,6 +110,7 @@ cG           | Clear all lines below cursor and and enter insert mode
 dgg          | Delete all lines above cursor
 cgg          | Clear all lines above cursor and and enter insert mode
 u            | Undo (or type `:u`; `:2u` (undo twice))
+U            | Undo all changes in a line (it is considered as a new change, so we can undo `U` action with `u`.)
 control + r  | Redo
 control + l  | Redraw/<wbr/>reload
 z=           | Spelling suggestions
@@ -141,8 +142,9 @@ select multiple lines with arrow up/<wbr/>down or `j`/<wbr/>`k` keys, finally
 press `d` to delete or press `c` to clear and enter into insert mode.
 - Press `y` to copy (yanked).
 - You can paste in another location in VIM by pressing `p`.
-- Press `"+y` to copy to system clipboard, you can paste in another program
-using your system shortcut like `[command] + v` or `[control] + v`.
+- Press `"+y` (`"*y` on macOS) to copy to system clipboard, you can paste in
+another program using your system shortcut like `[command] + v` or
+`[control] + v`.
 
 - Comment multiple lines:
     - Enter block visual mode: `[control] + v`
@@ -185,9 +187,17 @@ hi Search ctermfg=black
 
 - Convert tabs to spaces. Add the following to your `.vimrc`:
 ```vim
-set tabstop=4 shiftwidth=4 expandtab
+set tabstop=2 shiftwidth=2 expandtab
 ```
 Convert existing tabs to spaces by `:retab` (once the above settings are added).
+
+Set different tab width for a specific filetype:
+```vim
+aug python
+    " ftype/python.vim overwrites this
+    au FileType python setlocal ts=4 sts=4 sw=4 noexpandtab
+aug end
+```
 
 ## Plugins
 - Installing vimplug:
@@ -199,7 +209,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 - Installing plugins using vimplug: add this to your `.vimrc`
 ```vim
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/goyo.vim'
 call plug#end()
 ```
 Save the file `:w`. Then install plugins by issuing `:PlugInstall`.
@@ -211,3 +221,11 @@ call **Limelight** along with **Goyo**. Go to
 ```
 
 and add a line `Limelight`. You may add other settings, say, `set spell` etc.
+
+## Getting help
+
+You can type for example:
+```vim
+:help gg
+:help CTRL-V
+```
