@@ -21,7 +21,7 @@ echo "$name is $age years old and lives in $city"
 
 jq can directly read from file:
 ```bash
-cat > data.txt << EOF
+cat > data.json << EOF
 {
   "name": "Alice",
   "age": 30,
@@ -29,12 +29,12 @@ cat > data.txt << EOF
 }
 EOF
 
-name=$(jq '.name' data.txt)
-age=$(jq '.age' data.txt)
-city=$(jq '.city' data.txt)
+name=$(jq '.name' data.json)
+age=$(jq '.age' data.json)
+city=$(jq '.city' data.json)
 
 echo "$name is $age years old and lives in $city"
-rm data.txt
+rm data.json
 ```
 
 Or read from API endpoint:
@@ -47,7 +47,7 @@ echo "$name is from $location."
 
 Iterate over an array of items:
 ```bash
-cat > data.txt << EOF
+cat > data.json << EOF
 [
   {
     "name": "Alice",
@@ -60,15 +60,15 @@ cat > data.txt << EOF
 ]
 EOF
 
-jq -c '.[]' data.txt | while read -r item; do
+jq -c '.[]' data.json | while read -r item; do
   name=$(echo "$item" | jq -r '.name')
   age=$(echo "$item" | jq -r '.age')
   echo "Name: $name, Age: $age"
 done
-rm data.txt
+rm data.json
 ```
 
-In case of arbitrary key in an object:
+In case of arbitrary keys in an object:
 ```bash
 json='{
   "name": "Alice",
@@ -79,6 +79,74 @@ json='{
 echo "$json" | jq -r 'to_entries[] | "\(.key)=\(.value)"' | while IFS='=' read -r key value; do
   echo "key: $key, value: $value"
 done
+```
+
+Update an json object:
+```bash
+cat > data.json << EOF
+{
+  "name": "Alice",
+  "age": 30
+}
+EOF
+
+jq '.age = 32' data.json > tmp.json
+mv tmp.json data.json
+cat data.json
+rm data.json
+```
+
+Update an array of objects based key match:
+```bash
+cat > data.json << EOF
+[
+  {
+    "name": "Alice",
+    "age": 30
+  },
+  {
+    "name": "Bob",
+    "age": 35
+  }
+]
+EOF
+
+jq --arg name "Alice" --arg age 31 'map(if .name == $name then .age = $age else . end)' data.json > tmp.json
+mv tmp.json data.json
+cat data.json
+rm data.json
+```
+
+Select item based on key:
+```bash
+cat > data.json << EOF
+[
+  { "id": 1, "status": "pending" },
+  { "id": 2, "status": "pending" },
+  { "id": 3, "status": "pending" }
+]
+EOF
+
+jq '.[] | select(.id == 2) | .status = "completed"' data.json
+rm data.json
+```
+
+Pretty print/<wbr/>format json using jq:
+```bash
+cat > data.json << EOF
+[{
+    "name": "Alice", "age": 30
+  },
+  {
+     "name": "Bob",
+"age": 35}
+]
+EOF
+
+cat data.json | jq '.' > tmp.json
+mv tmp.json data.json
+cat data.json
+rm data.json
 ```
 
 ## Resources
