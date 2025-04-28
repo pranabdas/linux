@@ -63,9 +63,9 @@ gnuplot> plot sin(x)
 you may use `replot` to plot previous plot
 ```bash
 gnuplot> set grid
-gnuplot> set xlabel “Theta”
-gnuplot> set ylabel “Sin(Theta)”
-gnuplot> set title “Theta vs. Sin(theta)”
+gnuplot> set xlabel "Theta"
+gnuplot> set ylabel "Sin(Theta)"
+gnuplot> set title "Theta vs. Sin(theta)"
 gnuplot> replot
 ```
 

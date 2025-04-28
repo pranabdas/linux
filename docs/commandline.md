@@ -621,7 +621,7 @@ ssh-keygen
 ssh-keygen -t ed25519 -C "email@example.com"
 
 # for legacy systems use 4096 bit RSA
-ssh-keygen -t rsa -b 4096 -C “email@example.com”
+ssh-keygen -t rsa -b 4096 -C "email@example.com"
 
 # find bit length of an existing key
 ssh-keygen -l -f ~/.ssh/id_ed25519.pub
