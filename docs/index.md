@@ -45,6 +45,7 @@ to get a quick summary of various Linux/ UNIX commands.
     - [Environment Modules](module.mdx)
     - [Homebrew](brew.md)
     - [LaTeX](latex.md)
+    - [Vagrant](vagrant.md)
     - [Windows Subsystem for Linux](wsl.md)
     - [Privacy and security tips](privacy.md)
     - [More tips and tricks](more-tips-tricks.md)

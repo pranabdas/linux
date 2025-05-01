@@ -34,6 +34,7 @@ module.exports = {
         "module",
         "brew",
         "latex",
+        "vagrant",
         "wsl",
         "privacy",
         "more-tips-tricks",
