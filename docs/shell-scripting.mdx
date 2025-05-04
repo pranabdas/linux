@@ -280,6 +280,85 @@ last_index=$(( ${#unicode[@]} - 1 ))
 unicode="${unicode[$last_index]}"
 ```
 
+## Parse arguments in function
+Arguments passed to a Bash script can be accessed using positional parameters:
+- `$0`: The name of the script itself.
+- `$1`, `$2`, `$3`, etc.: The first, second, third, and subsequent arguments.
+- `$#`: The number of arguments passed to the script.
+- `$@`: All arguments as a single string.
+- `$*`: All arguments as separate words.
+
+import add from '!!raw-loader!/src/add.sh';
+
+<CodeBlock language="bash" title="src/add.sh" showLineNumbers>{add}</CodeBlock>
+
+Execute the script file:
+```bash
+bash add.sh
+```
+
+We can process positional argument with case:
+
+import arg from '!!raw-loader!/src/arg.sh';
+
+<CodeBlock language="bash" title="src/arg.sh" showLineNumbers>{arg}</CodeBlock>
+
+Execute the script file:
+```bash
+bash arg.sh morning Pranab
+# Good Morning, Pranab!
+
+bash arg.sh night Pranab
+# Hello, Pranab!
+```
+
+## Getopt
+Process arguments with `getopt`. Basic example:
+
+import getopt from '!!raw-loader!/src/getopt.sh';
+
+<CodeBlock language="bash" title="src/getopt.sh" showLineNumbers>{getopt}</CodeBlock>
+
+```bash
+bash src/getopt.sh -h
+# Help message.
+
+bash src/getopt.sh -v
+# Verbose mode.
+
+bash src/getopt.sh -l
+# Invalid option: -l.
+```
+
+Getopt option with argument (notice the `:` after `x` and `y`):
+
+Process arguments with `getopt`. Basic example:
+
+import getopt_arg from '!!raw-loader!/src/getopt_arg.sh';
+
+<CodeBlock language="bash" title="src/getopt_arg.sh" showLineNumbers>{getopt_arg}</CodeBlock>
+
+:::danger
+
+Note that below `getopt` example does not work on macOS (BSD getopt). Please use
+GNU getopt (found on Linux, or install GNU version on macOS via homebrew).
+
+:::
+
+Getopt with long options:
+
+import getopt_long from '!!raw-loader!/src/getopt_long.sh';
+
+<CodeBlock language="bash" title="src/getopt_long.sh" showLineNumbers>{getopt_long}</CodeBlock>
+
+```bash
+bash src/getopt_long.sh -i input.txt -o output.csv -- more
+
+# Input file: input.txt
+# Output file: output.csv
+# Remaining arguments: more
+```
+
 ## Call function from another script
 
 Define `greeting` function in `function.sh`:
