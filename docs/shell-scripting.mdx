@@ -185,7 +185,7 @@ Replace spaces in the filenames with underscores:
 for file in *\ *; do mv "$file" "${file// /_}"; done
 ```
 
-### Running python code in bash script
+## Running python code in bash script
 You can include python, ruby, or any other language code in a bash script. Here
 is an example:
 
@@ -193,7 +193,7 @@ import github_emoji from '!!raw-loader!/src/github_emoji.sh';
 
 <CodeBlock language="bash" title="src/github_emoji.sh" showLineNumbers>{github_emoji}</CodeBlock>
 
-### Input password
+## Input password
 Here is a solution for the bash:
 ```bash
 #!/bin/bash
@@ -221,7 +221,7 @@ New line in `echo`:
 echo -e "First line.\nSecond line."
 ```
 
-### Check command availability
+## Check command availability
 ```bash
 COMMANDS=("git" "node" "python3" "ruby")
 
@@ -233,7 +233,7 @@ for COMMAND in $COMMANDS; do
 done
 ```
 
-### Check environment variable
+## Check environment variable
 ```bash
 if [ -z "$HOME" ]; then
   echo "Seems "\$HOME" is not defined :(";
@@ -241,7 +241,7 @@ if [ -z "$HOME" ]; then
 fi
 ```
 
-### Assign variable using basic calculator
+## Assign variable using basic calculator
 Make sure you have basic calculator installed:
 ```bash
 apt install bc
@@ -251,7 +251,7 @@ apt install bc
 var2=$(echo "scale=7;${var}/2" | bc)
 ```
 
-### Parameter expansion
+## Parameter expansion
 Strip everything after the query string `?`:
 
 ```bash
@@ -280,7 +280,43 @@ last_index=$(( ${#unicode[@]} - 1 ))
 unicode="${unicode[$last_index]}"
 ```
 
-## Learn more
+## Call function from another script
+
+Define `greeting` function in `function.sh`:
+
+import greeting from '!!raw-loader!/src/function.sh';
+
+<CodeBlock language="bash" title="src/function.sh" showLineNumbers>{greeting}</CodeBlock>
+
+Call in from `main.sh`:
+
+import main from '!!raw-loader!/src/main.sh';
+
+<CodeBlock language="bash" title="src/main.sh" showLineNumbers>{main}</CodeBlock>
+
+Execute `main.sh`:
+
+```bash
+bash main.sh
+
+# Hello, good morning!
+```
+
+## Find location of a script file
+
+import script from '!!raw-loader!/src/script.sh';
+
+<CodeBlock language="bash" title="src/script.sh" showLineNumbers>{script}</CodeBlock>
+
+Execute the script from any directory:
+
+```bash
+bash src/script.sh
+
+# /Users/pranab/Desktop/workspace/sites/linux/src
+```
+
+## Resources
 - *Learning the bash Shell: Unix Shell Programming* by *C. Newham*.
 - *Linux Shell Scripting With Bash* by *K. O. Burtch*.
 - https://tldp.org/guides.html
