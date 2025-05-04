@@ -3,6 +3,8 @@ title: "jq: CLI JSON processor"
 sidebar_label: jq
 ---
 
+## Basic examples
+
 Parse object:
 ```bash
 json='{
@@ -131,7 +133,28 @@ jq '.[] | select(.id == 2) | .status = "completed"' data.json
 rm data.json
 ```
 
-Pretty print/<wbr/>format json using jq:
+## Convert jq array to bash list
+
+```bash
+cat > data.json << EOF
+[
+  "one",
+  "two",
+  "three"
+]
+EOF
+
+list=$( cat data.json | jq -r '.[]' )
+
+for item in "${list[@]}"; do
+  echo $item
+done
+
+rm data.json
+```
+
+## Pretty print json
+
 ```bash
 cat > data.json << EOF
 [{
@@ -151,3 +174,5 @@ rm data.json
 
 ## Resources
 - [jqlang.org](https://jqlang.org)
+- [yq](https://github.com/mikefarah/yq/) (similar to jq, but works with both
+YAML and JSON).

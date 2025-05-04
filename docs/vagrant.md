@@ -4,7 +4,7 @@ title: Vagrant
 
 ## Vagrant commands
 
-Typing vagrant from the command line will display a list of all available
+Typing `vagrant` from the command line will display a list of all available
 commands.
 
 Be sure that you are in the same directory as the `Vagrantfile` when running
@@ -71,6 +71,14 @@ cleanup:
 ```bash
 rm -rf ~/.vagrant.d
 ```
+
+:::warning
+
+Even after `vagrant destroy`, vagrant often keeps some data cache. You may
+need to manually delete a box from `~/.vagrant.d/boxes/{BOX_NAME}` before
+re-creating with the same name.
+
+:::
 
 ## How to resize (expand) Vagrant/VirtualBox disk size?
 
