@@ -99,6 +99,11 @@ Delete images:
 docker rmi <image-name>
 ```
 
+Delete all dangling images:
+```bash
+docker rmi $( docker images --filter "dangling=true" -q )
+```
+
 Reclaim space immediately (otherwise it may take several minutes to reflect
 storage space after a cleanup operation):
 ```bash
@@ -263,11 +268,11 @@ USER noroot
 More details on `adduser` (also check `useradd --help`):
 ```docker
 ENV NON_ROOT_USER="noroot"
-ARG NON_ROOT_USER_PASSWORD="gf3r-trf5-6etd"
 ENV NON_ROOT_USER_GROUP="noroot"
+ARG NON_ROOT_USER_PASSWORD="SECRET-PASSWORD"
 
 RUN groupadd -r $NON_ROOT_USER_GROUP -g 1000 \
- && useradd \
+  && useradd \
     --uid 1000 \
     --system \
     --gid $NON_ROOT_USER_GROUP \
@@ -276,8 +281,10 @@ RUN groupadd -r $NON_ROOT_USER_GROUP -g 1000 \
     --shell /bin/bash \
     --comment "non-root user" \
     $NON_ROOT_USER \
- && chmod 755 /home/$NON_ROOT_USER/ \
- && echo "$NON_ROOT_USER:$NON_ROOT_USER_PASSWORD" | chpasswd
+  && chmod 755 /home/$NON_ROOT_USER/ \
+  && echo "$NON_ROOT_USER:$NON_ROOT_USER_PASSWORD" | chpasswd
+
+USER $NON_ROOT_USER
 ```
 
 :::tip
@@ -355,12 +362,22 @@ We can run a service in the background with `-d` (detached) flag.
 docker compose up -d
 ```
 
+With force build:
+```bash
+docker compose up -d --build
+```
+
 Once we are done, we can `stop` or `down` (`down` stops the container and
 removes the container).
 
 ```bash
 docker compose stop
 docker compose down
+```
+
+Restart a container:
+```bash
+docker compose restart <container-name>
 ```
 
 Explore more docker compose commands with
@@ -374,6 +391,7 @@ containers:
 
 ```bash
 docker ps
+docker ps -a
 ```
 
 Then access the shell:

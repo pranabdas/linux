@@ -395,6 +395,11 @@ bash src/script.sh
 # /Users/pranab/Desktop/workspace/sites/linux/src
 ```
 
+Alternative:
+```bash
+SCRIPT_DIR=$( readlink -f "$0" | xargs dirname )
+```
+
 ## Resources
 - *Learning the bash Shell: Unix Shell Programming* by *C. Newham*.
 - *Linux Shell Scripting With Bash* by *K. O. Burtch*.
