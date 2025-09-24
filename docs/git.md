@@ -657,4 +657,5 @@ git lfs migrate import --verbose --include="*.pdf" --include-ref=HEAD --exclude-
 
 - https://git-scm.com/book/en/v2
 - https://github.com/pluralsight/git-internals-pdf
+- https://www.atlassian.com/git
 - [Removing sensitive data from Git/GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)
