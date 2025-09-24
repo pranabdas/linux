@@ -35,6 +35,22 @@ We can write our script in a file:
 echo "Hello world"
 ```
 
+The first line, starting with shebang (`#!`), indicates which program it should
+use to run the script.
+
+Another, perhaps better alternate to above shebang line is:
+```bash
+#!/usr/bin/env bash
+```
+
+The advantage of second option is that it will search for the program (in this
+case bash) based on the `PATH` environment variable. This is also useful if the
+`PATH` variable on a system has been configured to point to an alternate version
+of the program. For instance, one might install a newer version of bash while
+preserving the original version and insert the location of the newer version
+into the `PATH` variable. The use of #!/bin/bash would result in using the
+original bash, while #!/usr/bin/env bash would make use of the newer version.
+
 Next step is to grant executable permission:
 ```bash
 chmod +x myscript.sh
@@ -404,3 +420,5 @@ SCRIPT_DIR=$( readlink -f "$0" | xargs dirname )
 - *Learning the bash Shell: Unix Shell Programming* by *C. Newham*.
 - *Linux Shell Scripting With Bash* by *K. O. Burtch*.
 - https://tldp.org/guides.html
+- https://github.com/denysdovhan/bash-handbook
+- https://google.github.io/styleguide/shellguide
