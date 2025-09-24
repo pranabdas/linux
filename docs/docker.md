@@ -91,7 +91,13 @@ docker rm <id-or-name>
 
 Delete all idle containers:
 ```bash
-docker container prune
+docker container prune -a
+```
+
+Cleanup docker volumes
+```bash
+docker volume prune -a
+docker volume prune -af  # force, no confirmation guard
 ```
 
 Delete images:
