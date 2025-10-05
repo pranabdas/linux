@@ -333,6 +333,30 @@ List contents of a tar file:
 tar -tf files.tar.gz
 ```
 
+Split tar into multiple parts:
+```bash
+tar -czf - my_directory | split -b 250M - my_directory.tar.gz.part-
+```
+
+This produces parts with names:
+```bash
+my_directory.tar.gz.part-aa
+my_directory.tar.gz.part-ab
+my_directory.tar.gz.part-ac
+...
+```
+
+Join and un-tar:
+```bash
+cat my_directory.tar.gz.part-* > my_directory.tar.gz
+tar -xzf my_directory.tar.gz
+```
+
+Or stream and un-tar:
+```bash
+cat my_directory.tar.gz.part-* | tar -xzf -
+```
+
 ## zip
 
 If you have got a zip file to unzip. You need to install *unzip*.
@@ -355,6 +379,38 @@ Zip file(s) or folders:
 zip output.zip file1.txt file2.md
 zip -r output.zip source_dir
 zip -rq output.zip source_dir
+```
+
+Spit zip files into multiple parts:
+```bash
+zip -r -s 25M my_directory.zip my_directory
+```
+
+This produces:
+```bash
+my_directory.z01
+my_directory.z02
+...
+my_directory.zip  # last part
+```
+
+:::note
+
+`1M` = 1000000 bytes and `1m` = 1024 ⨉ 1024 bytes.
+
+:::
+
+Combine and unzip:
+```bash
+zip -s 0 my_directory.zip --out combined.zip
+
+unzip combined.zip
+```
+
+Note that some zip tools can auto detect the files, and we could unzip with the
+final part:
+```bash
+unzip my_directory.zip
 ```
 
 Encrypt ZIP files using [7-zip](https://www.7-zip.org/). The ZIP files are
