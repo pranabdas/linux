@@ -757,9 +757,8 @@ encryption in CBC (Cipher Blocker Chaining) mode, used salt hashing, pbkdf2
 Some good set of options:
 ```bash
 # to encrypt
-openssl enc -e -aes-256-gcm \
+openssl enc -e -aes-256-cbc \
   -salt \
-  -pbkdf2 \
   -iter 1000000 \
   -md sha512 \
   -base64 \
@@ -767,9 +766,8 @@ openssl enc -e -aes-256-gcm \
   -out somefile.enc
 
 # to decrypt
-openssl enc -d -aes-256-gcm \
+openssl enc -d -aes-256-cbc \
   -salt \
-  -pbkdf2 \
   -iter 1000000 \
   -md sha512 \
   -base64 \
@@ -799,16 +797,14 @@ You can also use [GPG](./pgp) program to perform symmetric encryption.
 
 For on the fly encryption and decryption with terminal input and output:
 ```bash
-openssl enc -e -aes-256-gcm \
+openssl enc -e -aes-256-cbc \
   -salt \
-  -pbkdf2 \
   -iter 1000000 \
   -md sha512 \
   -base64 <<< "Secret message."
 
-openssl enc -d -aes-256-gcm \
+openssl enc -d -aes-256-cbc \
   -salt \
-  -pbkdf2 \
   -iter 1000000 \
   -md sha512 \
   -base64 <<< "U2FsdGVkX18Y9d6MT+d8kbrmfsgd1j/vnNlZ5T7LQ6I="
