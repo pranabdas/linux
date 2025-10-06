@@ -759,6 +759,7 @@ Some good set of options:
 # to encrypt
 openssl enc -e -aes-256-cbc \
   -salt \
+  -pbkdf2 \
   -iter 1000000 \
   -md sha512 \
   -base64 \
@@ -768,6 +769,7 @@ openssl enc -e -aes-256-cbc \
 # to decrypt
 openssl enc -d -aes-256-cbc \
   -salt \
+  -pbkdf2 \
   -iter 1000000 \
   -md sha512 \
   -base64 \
@@ -799,12 +801,14 @@ For on the fly encryption and decryption with terminal input and output:
 ```bash
 openssl enc -e -aes-256-cbc \
   -salt \
+  -pbkdf2 \
   -iter 1000000 \
   -md sha512 \
   -base64 <<< "Secret message."
 
 openssl enc -d -aes-256-cbc \
   -salt \
+  -pbkdf2 \
   -iter 1000000 \
   -md sha512 \
   -base64 <<< "U2FsdGVkX18Y9d6MT+d8kbrmfsgd1j/vnNlZ5T7LQ6I="
