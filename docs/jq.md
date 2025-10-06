@@ -1,6 +1,6 @@
 ---
-title: "jq: CLI JSON processor"
-sidebar_label: jq
+title: "jq: CLI JSON Processor"
+sidebar_label: jq - JSON Processor
 ---
 
 ## Basic examples
