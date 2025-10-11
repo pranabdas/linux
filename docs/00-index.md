@@ -5,7 +5,7 @@ slug: /
 keywords: ["linux", "unix", "commandline", "vi", "vim", "git", "shell", "bash", "scripting", "docker", "developer tools", "security", "privacy", "latex", "homebrew"]
 ---
 
-You will appreciate Linux / UNIX if you care about simplicity, openness, and
+You will appreciate Linux/<wbr/>UNIX if you care about simplicity, openness, and
 complete power to the user. In this tutorial, we will focus on various command
 line tools. We will see that command line tools are simple and often more
 powerful than graphical tools. We will also learn to write scripts to automate
@@ -14,7 +14,7 @@ tasks.
 :::tip
 
 You can try my webapp [Cheatsheets](https://pranabdas.github.io/cheatsheets/)
-to get a quick summary of various Linux/ UNIX commands.
+to get a quick summary of various Linux/<wbr/>UNIX commands.
 
 :::
 
