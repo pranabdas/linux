@@ -58,11 +58,23 @@ convert input.jpg -resize 800x -quality 80 output.jpg
 convert input.jpg -resize 800x -quality 80 -filter Lanczos -sharpen 0x0.8 output.jpg
 ```
 
-Crop an image:
+Resize using alternative `magick` command:
 ```bash
-# crop (WxH+x+y)
+magick input.jpg -filter Lanczos -resize 800x -unsharp 0x0.8+0.8+0.02 -quality 80 output.jpg
+```
+
+Crop image:
+```bash
+# crop (WxH+x_offset+y_offset)
 magick in.jpg -crop 800x1200+100+200 +repage out.jpg
 magick in.jpg -crop 60%x40%+100+200 +repage out.jpg
+```
+
+We can use `magick` command to convert to `webp` alongside resize:
+```bash
+magick in.jpg -auto-orient -filter Lanczos -resize 800x \
+    -unsharp 0x0.8+0.8+0.02 -strip \
+    -define webp:method=6 -quality 80 out.webp
 ```
 
 ## Links
