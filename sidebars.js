@@ -25,6 +25,7 @@ module.exports = {
         "storage-management",
         "selinux",
         "jq",
+        "image-manipulation",
         "pgp",
         "gnuplot",
         "apache",

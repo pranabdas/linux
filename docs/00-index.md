@@ -36,6 +36,7 @@ to get a quick summary of various Linux/<wbr/>UNIX commands.
     - [Storage management](17-storage-management.md)
     - [SELinux](18-selinux.md)
     - [jq: CLI JSON processor](19-jq.md)
+    - [Image manipulation with WebP and ImageMagick](20-image-manipulation.md)
     - [PGP encryption](21-pgp.md)
     - [GNU Plot](22-gnuplot.md)
     - [Apache webserver](23-apache.md)
