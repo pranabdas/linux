@@ -47,6 +47,67 @@ apptainer exec my-container.sif env | grep MY_VARIABLE
 Also there are `APPTAINERENV_PREPEND_PATH` and `APPTAINERENV_APPEND_PATH` to
 modify `PATH` variable.
 
+Example Apptainer definition file:
+```bash title="espresso.def"
+Bootstrap: docker
+From: almalinux:9
+
+%labels
+    Maintainer Pranab Das
+    Version QE-7.4.1
+
+%environment
+    export OMP_NUM_THREADS=1
+    export PATH=/usr/lib64/openmpi/bin:$PATH
+    export LD_LIBRARY_PATH=/usr/lib64/openmpi/lib:$LD_LIBRARY_PATH
+
+%post
+    dnf install -y epel-release
+    dnf config-manager --set-enabled crb
+
+    dnf groupinstall -y "Development Tools"
+    dnf install -y wget \
+        gcc \
+        gcc-c++ \
+        gcc-gfortran \
+        openblas-devel \
+        lapack-devel \
+        fftw-devel \
+        openmpi-devel \
+        scalapack-openmpi-devel \
+        libomp-devel
+
+    wget https://github.com/QEF/q-e/archive/refs/tags/qe-7.4.1.tar.gz
+    tar -xf qe-7.4.1.tar.gz
+    rm -f qe-7.4.1.tar.gz
+    cd q-e-qe-7.4.1
+
+    export OMP_NUM_THREADS=1
+    export PATH=/usr/lib64/openmpi/bin:$PATH
+    export LD_LIBRARY_PATH=/usr/lib64/openmpi/lib:$LD_LIBRARY_PATH
+
+    ./configure CC=mpicc \
+        FC=mpifort \
+        F77=mpifort \
+        F90=mpifort \
+        MPIF90=mpif90 \
+        --enable-parallel \
+        --enable-openmp \
+        --with-scalapack=yes \
+        --prefix=/opt/qe-7.4.1
+
+    make all -j$(nproc)
+    make install
+
+    rm ..
+    rm -rf q-e-qe-7.4.1
+```
+
+Build container:
+```bash
+apptainer build espresso.sif espresso.def
+```
+
 Recover apptainer definition file from an image. Apptainer file is embedded into
 the SIF image.
 ```bash
