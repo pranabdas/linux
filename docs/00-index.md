@@ -44,7 +44,7 @@ to get a quick summary of various Linux/<wbr/>UNIX commands.
     - [CI/CD with Jenkins](25-jenkins.md)
     - [High Performance Computing](26-hpc.md)
     - [Environment Modules](27-module.mdx)
-    - [Singularity or Apptainer](28-singularity-apptainer.md)
+    - [Singularity and Apptainer](28-singularity-apptainer.md)
     - [Homebrew](29-brew.md)
     - [LaTeX](30-latex.md)
     - [Vagrant](31-vagrant.md)
