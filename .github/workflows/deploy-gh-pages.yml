@@ -25,6 +25,7 @@ jobs:
 
       - name: Build website
         run: |
+          echo "Term is: $TERM"
           npm install
           wget -qO- https://raw.githubusercontent.com/pranabdas/espresso/main/scripts/build_docusaurus.sh | bash
 
