@@ -122,3 +122,10 @@ apptainer cache clean --force
 ## Resources
 - https://docs.sylabs.io/guides/latest/user-guide/
 - https://apptainer.org/docs/user/main/index.html
+- [Singularity: Simple, secure containers for compute-driven workloads](https://doi.org/10.1145/3332186.3332192)
+- [Apptainer Without Setuid](https://doi.org/10.1051/epjconf/202429507005)
+- [Evaluation and Benchmarking of Singularity MPI containers on EU Research e-Infrastructure](https://doi.org/10.1109/CANOPIE-HPC49598.2019.00006)
+- [Singularity Containers Improve Reproducibility and Ease of Use in Computational Image Analysis Workflows](https://doi.org/10.3389/fbinf.2021.757291)
+- [Feasibility of Running Singularity Containers with Hybrid MPI on NASA High-End Computing Resources](https://doi.org/10.1109/CANOPIEHPC54579.2021.00007)
+- [Singularity: Scientific containers for mobility of compute](https://doi.org/10.1371/journal.pone.0177459)
+- [Enhancing reproducibility in scientific computing: Metrics and registry for Singularity containers](https://doi.org/10.1371/journal.pone.0188511)
