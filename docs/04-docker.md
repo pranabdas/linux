@@ -305,33 +305,6 @@ COPY --chown=noroot:noroot /home/build_dir /noroot/build_dir
 :::
 
 
-## Docker hub
-
-Login:
-```bash
-sudo docker login docker.io
-```
-
-Tag a local image:
-```bash
-sudo docker tag localimage:latest username/localimage:latest
-```
-
-Push a local image:
-```bash
-sudo docker push username/localimage:latest
-```
-
-
-## Transferring image offline
-
-```bash
-docker pull ubuntu
-docker save -o ubuntu_image.docker ubuntu
-docker load -i ubuntu_image.docker
-```
-
-
 ## Docker compose
 
 Docker compose can help create, run, and manage the lifecycle of the containers.
@@ -405,6 +378,45 @@ Then access the shell:
 ```bash
 docker exec -it <container-id> bash
 ```
+
+
+## Docker hub/container registry
+
+Login:
+```bash
+sudo docker login docker.io
+```
+
+Similarly we can login GitHub Container Registry with access token:
+```bash
+echo $CR_PAT | docker login ghcr.io -u pranabdas --password-stdin
+```
+
+Pull images from GHCR:
+```bash
+docker pull ghcr.io/<user-or-org-name>/<image>
+docker pull ghcr.io/<user-or-org-name>/<image>:<tag>
+```
+
+Tag a local image:
+```bash
+sudo docker tag localimage:latest username/localimage:latest
+```
+
+Push a local image:
+```bash
+sudo docker push username/localimage:latest
+```
+
+
+## Transferring image offline
+
+```bash
+docker pull ubuntu
+docker save -o ubuntu_image.docker ubuntu
+docker load -i ubuntu_image.docker
+```
+
 
 ## Use systemctl in docker
 
