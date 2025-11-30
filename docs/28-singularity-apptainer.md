@@ -119,9 +119,64 @@ Cleanup apptainer cache:
 apptainer cache clean --force
 ```
 
+## Managing SIF images with ORAS
+
+Install ORAS in macos:
+```bash
+brew install oras
+```
+
+Login to GitHub Container Registry with ORAS (requires GitHub personal access
+token with sufficient permission):
+```bash
+echo $CR_PAT | oras login ghcr.io -u pranabdas --password-stdin
+```
+
+Push a file to GHCR:
+```bash
+oras push ghcr.io/pranabdas/drive:1.0.0 \
+    --artifact-type application/text \
+    ./sample.txt
+```
+
+Fetch details about an object:
+```bash
+oras manifest fetch ghcr.io/pranabdas/drive:1.0.0
+```
+
+Print SHA-256-SUM of an object:
+```bash
+oras manifest fetch ghcr.io/pranabdas/drive:1.0.0 | jq '.layers[0].digest' | awk -F: '{print $2}'
+```
+
+Pull an object:
+```bash
+oras pull ghcr.io/pranabdas/drive:1.0.0
+```
+
+Pull and write object to a specific directory:
+```bash
+oras pull ghcr.io/pranabdas/drive:1.0.0 --output /opt
+```
+
+An ORAS image can be made associated with a repository by uploading to the
+repository namespace:
+```bash
+ghcr.io/pranabdas/<repository>/<image>:<tag>
+```
+
+We may need to specify per file media type `<file-name>:<media-type>` to set
+artifact type correctly:
+```bash
+oras push ghcr.io/pranabdas/ubuntu.sif \
+  --artifact-type "application/vnd.sylabs.sif.layer.v1.sif" \
+  "qe.sif:application/vnd.sylabs.sif.layer.v1.sif"
+```
+
 ## Resources
 - https://docs.sylabs.io/guides/latest/user-guide/
 - https://apptainer.org/docs/user/main/index.html
+- https://oras.land
 - [Singularity: Simple, secure containers for compute-driven workloads](https://doi.org/10.1145/3332186.3332192)
 - [Apptainer Without Setuid](https://doi.org/10.1051/epjconf/202429507005)
 - [Evaluation and Benchmarking of Singularity MPI containers on EU Research e-Infrastructure](https://doi.org/10.1109/CANOPIE-HPC49598.2019.00006)
