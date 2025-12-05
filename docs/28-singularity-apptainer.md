@@ -5,10 +5,28 @@ title: Singularity and Apptainer
 Apptainer is a fork of Singularity project, both projects are maintained
 separately. We can use `apptainer` and `singularity` commands interchangeably.
 
-Install Apptainer in RHEL based system:
+Install Apptainer in RHEL based systems:
 ```bash
 dnf install -y epel-release
 dnf install -y apptainer
+```
+
+Install in Debian based systems:
+```bash
+sudo apt update && sudo apt install -y \
+    wget \
+    curl \
+    fuse3 \
+    libfuse3-3 \
+    uidmap \
+    squashfs-tools
+
+# download latest version of apptainer
+VER=$(curl -s https://api.github.com/repos/apptainer/apptainer/releases/latest | grep tag_name | cut -d '"' -f 4 | sed 's/v//')
+wget https://github.com/apptainer/apptainer/releases/download/v${VER}/apptainer_${VER}_amd64.deb
+
+sudo apt install -y ./apptainer_${VER}_amd64.deb
+rm apptainer_${VER}_amd64.deb
 ```
 
 Pull a docker image (it will convert and write to SIF format):
@@ -114,6 +132,43 @@ the SIF image.
 apptainer exec <image_name.sif> cat /.singularity.d/Singularity
 ```
 
+## Sandbox mode
+
+We can test commands interactively in sandbox mode. Create a sandbox with
+`--sandbox` or `-s`:
+```bash
+apptainer build --sandbox test_sandbox/ docker://ubuntu:latest
+```
+
+This will create a standard directory named test_sandbox that contains full
+Linux OS tree (`/bin`, `/etc`, `/usr`).
+
+Now to install packages and save them to the sandbox folder, we need to enter
+into the container in writable mode (use `--writable` or `-w` flag). We will
+also need `--fakeroot` or `-f` flag to install software as root inside the
+container:
+```bash
+apptainer shell --writable --fakeroot test_sandbox/
+```
+
+Inside the apptainer shell, we can install packages and experiment
+interactively, for example:
+```bash
+dnf install python3
+```
+
+We can package the sandbox directory into a SIF image:
+```bash
+apptainer build -f espresso.sif test_sandbox/
+```
+
+After the container is build and saved as SIF image, we may delete our sandbox
+folder. We need to set appropriate permission in order to be able to delete:
+```bash
+chmod -R u+rwX test_sandbox
+rm -rf test_sandbox
+```
+
 Cleanup apptainer cache:
 ```bash
 apptainer cache clean --force
@@ -172,6 +227,41 @@ oras push ghcr.io/pranabdas/ubuntu.sif \
   --artifact-type "application/vnd.sylabs.sif.layer.v1.sif" \
   "qe.sif:application/vnd.sylabs.sif.layer.v1.sif"
 ```
+
+## Run apptainer in GitHub Codespaces
+1. Enable via docker-in-docker:
+```json
+"features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "enableNonRootDocker": "true"
+    }
+  },
+```
+
+2. If you do not need full docker-in-docker functionality, execute following
+commands to enable required permissions:
+```json
+{
+  "name": "My Codespace",
+  "runArgs": [
+      "--cap-add=SYS_ADMIN",
+      "--security-opt", "apparmor=unconfined",
+      "--device=/dev/fuse",
+      "--security-opt", "systempaths=unconfined"
+  ],
+}
+```
+
+3. Run `--privileged` mode (less secure than option 2):
+```json
+{
+  "name": "My Codespace",
+  "runArgs": [
+    "--privileged"
+  ],
+}
+```
+
 
 ## Resources
 - https://docs.sylabs.io/guides/latest/user-guide/
