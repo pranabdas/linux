@@ -174,6 +174,78 @@ Cleanup apptainer cache:
 apptainer cache clean --force
 ```
 
+## Managing ENV variables
+
+Apptainer stores ENV variables in severals files under `/.singularity.d/env`.
+```bash
+$ ls -l /.singularity.d/env
+total 10
+-rwxr-xr-x 1 root root 1337 Aug  1 01:32 01-base.sh
+-rwxr-xr-x 1 root root   85 Aug  1 01:32 10-docker2singularity.sh
+-rwxr-xr-x 1 root root 1707 Dec  6 06:18 90-environment.sh
+-rwxr-xr-x 1 root root    0 Dec  6 06:09 94-appsbase.sh
+-rwxr-xr-x 1 root root 3052 Aug  1 01:32 95-apps.sh
+-rwxr-xr-x 1 root root 1568 Aug  1 01:32 99-base.sh
+-rwxr-xr-x 1 root root  922 Aug  1 01:32 99-runtimevars.sh
+```
+
+Notice the numerical prefix, they are sourced in alphabetical order by the
+shell. The ENV variables set in the `%environment` definition, goes to
+`90-environment.sh`. This file is also symlinked from `/environment`:
+```bash
+$ apptainer exec base.sif ls -l /environment
+lrwxrwxrwx 1 root root 36 Dec  6 13:29 /environment -> .singularity.d/env/90-environment.sh
+```
+
+However, above files are regenerated/<wbr/>overwritten during the build, they
+are not carried over from the base image. We can save ENV variables to custom
+files under the above folder, such files are copied to subsequent child images,
+and automatically sourced by apptainer.
+
+Such a file could be `91-environment.sh` where we can write variables during the
+build (`%post` section):
+```bash
+%post
+    echo 'export PATH=/test/path:$PATH' >> $APPTAINER_ENVIRONMENT
+```
+
+or,
+```bash
+%post
+    cat >> $APPTAINER_ENVIRONMENT <<'EOF'
+export ONEAPI_ROOT=/opt/intel-2023.1
+export TBBROOT=$ONEAPI_ROOT/tbb/2021.11
+EOF
+```
+
+Notice the single quoted `'EOF'`, this prevents variable substitution in the
+heredoc block.
+
+We can inspect ENV variables with:
+```bash
+apptainer inspect --environment <image-name.sif>
+apptainer exec <image-name.sif> printenv PATH
+```
+
+During build phase, if required, we can source variables with:
+```bash
+if [ -f /.singularity.d/env/91-environment.sh ]; then
+    . /.singularity.d/env/91-environment.sh
+fi
+```
+
+or source all ENV files:
+```bash
+for script in /.singularity.d/env/*.sh; do
+    if [ -f "$script" ]; then
+        . "$script"
+    fi
+done
+```
+
+Optionally, we can save variables in custom files, e.g., `91-oneapi.sh`,
+`92-nvhpc.sh` etc.
+
 ## Managing SIF images with ORAS
 
 Install ORAS in macos:
