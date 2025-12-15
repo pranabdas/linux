@@ -33,6 +33,7 @@ module.exports = {
         "jenkins",
         "hpc",
         "module",
+        "singularity-apptainer",
         "brew",
         "latex",
         "vagrant",
