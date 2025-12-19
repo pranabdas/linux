@@ -196,6 +196,19 @@ slide_02.md slide_04.md slide_06.md slide_08.md slide_10.md
 $ for i in $( ls ); do mv ${i} slide_${i#item_*}; done
 ```
 
+Alternatively, we can use shell glob instead of `ls`, which runs in a sub-shell
+and is less efficient:
+```bash
+for file in *; do mv ${file} slide_${file#item_*}; done; ls
+
+for file in *.md; do mv ${file} slide_${file#item_*}; done; ls
+```
+
+Or, we can use `find` command to find the files:
+```bash
+find . -type f -name "*.txt" -exec mv {} {}.md \;
+```
+
 Replace spaces in the filenames with underscores:
 ```bash
 for file in *\ *; do mv "$file" "${file// /_}"; done
