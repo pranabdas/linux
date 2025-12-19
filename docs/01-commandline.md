@@ -533,6 +533,35 @@ Look for multiple filetype at once:
 find . -type f \( -name \*.jpg -o -name \*.png \)
 ```
 
+Execute command on results of find command:
+```bash
+find . -type f -name "*.jpg" -exec rm {} \;
+```
+
+:::note
+
+Note that we need to escape the `;` with a backslash above.
+
+:::
+
+If a command supports multiple arguments, we can use `find` batch mode:
+```bash
+find . -type f -name "*.jpg" -exec rm {} +
+```
+
+This could be efficient if the command supports multiple arguments. So, instead
+of executing the command for each file
+```bash
+rm file1.jpg
+rm file2.jpg
+...
+```
+
+it will execute the command for all files at once
+```bash
+rm file1.jpg file2.jpg ...
+```
+
 ## grep
 Find specific string/words in a file or set of files.
 ```bash
