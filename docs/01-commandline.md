@@ -357,6 +357,11 @@ Or stream and un-tar:
 cat my_directory.tar.gz.part-* | tar -xzf -
 ```
 
+Make tarballs in macOS excluding `.DS_Store` files and attributes:
+```bash
+tar -cz --no-xattrs --exclude ".DS_Store" -f file.tgz directory
+```
+
 ## zip
 
 If you have got a zip file to unzip. You need to install *unzip*.
