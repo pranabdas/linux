@@ -357,6 +357,11 @@ Or stream and un-tar:
 cat my_directory.tar.gz.part-* | tar -xzf -
 ```
 
+Make tarballs in macOS excluding `.DS_Store` files and attributes:
+```bash
+tar -cz --no-xattrs --exclude ".DS_Store" -f file.tgz directory
+```
+
 ## zip
 
 If you have got a zip file to unzip. You need to install *unzip*.
@@ -531,6 +536,35 @@ you did not mean, it could delete something that you did not want.
 Look for multiple filetype at once:
 ```bash
 find . -type f \( -name \*.jpg -o -name \*.png \)
+```
+
+Execute command on results of find command:
+```bash
+find . -type f -name "*.jpg" -exec rm {} \;
+```
+
+:::note
+
+Note that we need to escape the `;` with a backslash above.
+
+:::
+
+If a command supports multiple arguments, we can use `find` batch mode:
+```bash
+find . -type f -name "*.jpg" -exec rm {} +
+```
+
+This could be efficient if the command supports multiple arguments. So, instead
+of executing the command for each file
+```bash
+rm file1.jpg
+rm file2.jpg
+...
+```
+
+it will execute the command for all files at once
+```bash
+rm file1.jpg file2.jpg ...
 ```
 
 ## grep
