@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunklinux_tutorial=self.webpackChunklinux_tutorial||[]).push([["2548"],{9625(t){t.exports=JSON.parse('{"metadata":{"permalink":"/linux/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":0,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
