@@ -82,6 +82,7 @@ docker system df
 Remove build cache:
 ```bash
 docker builder prune
+docker builder prune -fa
 ```
 
 Delete container:
@@ -377,6 +378,27 @@ Then access the shell:
 
 ```bash
 docker exec -it <container-id> bash
+```
+
+Cleanup images (this will work even when containers are not running):
+```bash
+docker compose down --rmi all
+```
+
+Remove volumes together with images:
+```bash
+docker compose down --rmi all -v
+```
+
+Only remove locally build images (this leaves remotely pulled images, e.g.,
+`nginx`):
+```bash
+docker compose down --rmi local
+```
+
+Only remove volumes:
+```bash
+docker volume prune -fa
 ```
 
 
