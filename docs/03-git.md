@@ -53,14 +53,14 @@ file:
 
 ```
 [user]
-	name = Pranab Das
-	email = 31024886+pranabdas@users.noreply.github.com
+  name = Pranab Das
+  email = 31024886+pranabdas@users.noreply.github.com
 [core]
-	editor = code --wait
+  editor = code --wait
 [push]
-	default = current
+  default = current
 [github]
-	user = pranabdas
+  user = pranabdas
 ```
 
 ### Basics
@@ -249,8 +249,7 @@ git checkout <commit-hash>
 
 ### branch
 
-It will create a separate branch (main branch is called master). You can check
-branches by:
+List all branches:
 
 ```bash
 git branch
@@ -262,10 +261,17 @@ You can list remotes brach as well with:
 git branch -a
 ```
 
-Go back to master:
+Switch to another branch:
+```bash
+git switch <branch-name>
+```
+
+Go back to main:
 
 ```bash
-git checkout master
+git switch main
+# switch to previous branch
+git switch -
 ```
 
 You can keep the other by creating a new branch:
@@ -280,28 +286,42 @@ Switch to new branch by using
 git checkout <new-branch>
 ```
 
-You can create a new branch from current master as well
+You can create a new branch from current main as well
 
 ```bash
 git branch <branch-name>
+git checkout -b <branch-name>
 ```
 
-Bring over changes from a branch to the master. Once you merge, you bring over
-all the changes from another branch to the working directory (you do not bring
-the commit history from other branch). If there are files modified on both
-branch, there will be conflict merge, you may need to manually resolve those
-files. Once everything is alright, you can make commit to keep a permanent
-record.
+Bring over changes from a branch to the main. Once you merge, you bring over all
+the changes from another branch to the working directory (you do not bring the
+commit history from other branch). If there are files modified on both branch,
+there will be conflict merge, you may need to manually resolve those files. Once
+everything is alright, you can make commit to keep a permanent record.
 
 ```bash
-git checkout master
+git switch main
 git merge <branch-name>
+```
+
+Reset file/path during merge conflicts:
+```bash
+git restore --source=HEAD -- <file_path>
+
+# or reset to your branch
+git checkout --ours -- <file_path>
+
+# reset to other branch that was merged
+git checkout --theirs -- <file_path>
 ```
 
 Rename a branch:
 
 ```bash
 git branch -m <old-name> <new-name>
+# or
+git switch <old-branch>
+git branch -m <new-name>
 ```
 
 Delete a brach:
@@ -546,7 +566,7 @@ Push changes to the GitHub:
 
 ```bash
 git push <remote> <branch>
-git push origin master
+git push origin main
 ```
 
 Force Push:
@@ -564,7 +584,7 @@ git fetch <short-name or url>
 Then you can run a diff:
 
 ```bash
-git diff master origin/master
+git diff main origin/main
 git diff <local> <remote/branch>
 ```
 
@@ -580,7 +600,7 @@ What happens if the remote is force pushed, therefore the commit hash changed:
 
 ```bash
 # reset local to parent commit
-# carefull --hard will remove everything after specified commit
+# careful --hard will remove everything after specified commit
 git reset --hard HEAD~
 git pull origin main --no-rebase
 # if you have more than only parent commit hash mismatch
@@ -626,6 +646,19 @@ git submodule status
 git submodule update --recursive --init
 ```
 
+Update local git refs once the remote default branch has changed:
+```bash
+git remote set-head origin --auto
+```
+
+### Maintenance
+
+After working on a repo for an extended period of time, below command may help
+reduce the local repository size:
+```bash
+git gc --aggressive --prune=now
+```
+
 ### Override language stat
 
 How can we make GitHub ignore certain languages or recognize as different
@@ -659,3 +692,4 @@ git lfs migrate import --verbose --include="*.pdf" --include-ref=HEAD --exclude-
 - https://github.com/pluralsight/git-internals-pdf
 - https://www.atlassian.com/git
 - [Removing sensitive data from Git/GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)
+- [Cleaning up Git](https://github.com/orgs/community/discussions/155997)
