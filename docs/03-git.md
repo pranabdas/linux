@@ -304,6 +304,17 @@ git switch main
 git merge <branch-name>
 ```
 
+Squash and merge:
+```bash
+# this stages all the modifications but does not automatically create a commit
+git merge --squash feature-branch
+# verify changes
+git status
+git diff --staged
+# commit as usual
+git commit -m "new clean commit message"
+```
+
 Reset file/path during merge conflicts:
 ```bash
 git restore --source=HEAD -- <file_path>
