@@ -1136,23 +1136,10 @@ base64url format, where `+` is replaced by `-`, and `/` by `_`, because `+` and
 printf "<<???>>" | base64 | sed 's/=//' | sed 's/+/-/' | sed 's/\//_/'
 ```
 
-Sometimes we need to url-encode. We can use [jq](https://jqlang.github.io/jq/):
+Sometimes we need to url-encode. We can use [jq](19-jq.md):
 
 ```bash
 printf "TestString" | base64 | jq -sRr @uri
-```
-
-[jq](https://jqlang.github.io/jq/) can be installed using linux package mangers
-or homebrew:
-
-```bash
-brew install jq
-
-# debian/ubuntu
-apt install jq
-
-# fedora/rhel
-dnf install jq
 ```
 
 
