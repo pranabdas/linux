@@ -1010,14 +1010,6 @@ when you need to reconnect to an interactive shell, monitor a command, or run
 multiple commands in a persistent session.
 
 ## tmux
-`tmux` adds several advanced functionalities on top of what `nohup` can do. Such
-as, it lets you reconnect to an interactive shell, monitor running commands, and
-manage multiple windows and panes in a persistent session.
-
-For example, if you need to update a remote machine, running the update inside
-`tmux` lets you reconnect and inspect its progress instead of only checking a
-log file after the process finishes.
-
 Installing tmux:
 ```bash
 sudo apt install tmux
