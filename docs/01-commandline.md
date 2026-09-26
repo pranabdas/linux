@@ -1058,19 +1058,19 @@ tmux kill-session -t 0
 ## Terminal shortcuts
 Shortcuts | Description
 --------- | -----------
-<kbd>CTRL</kbd> + <kbd>A</kbd>  | Move to the beginning of a line
-<kbd>CTRL</kbd> + <kbd>E</kbd>  | Move to the end of a line
-<kbd>CTRL</kbd> + <kbd>K</kbd>  | Kill/delete/cut from the cursor to the end
-<kbd>CTRL</kbd> + <kbd>U</kbd>  | Delete from the cursor to the start of the line
-<kbd>CTRL</kbd> + <kbd>X</kbd> + <kbd>Backspace</kbd> | removes all the text from the cursor to the beginning
-<kbd>CTRL</kbd> + <kbd>W</kbd>  | Delete from cursor to the start of word
-<kbd>CTRL</kbd> + <kbd>Y</kbd>  | Undo last deletion
-<kbd>ALT</kbd> + <kbd>Left arrow</kbd> | Move left one word
-<kbd>ALT</kbd> + <kbd>Right arrow</kbd> | Move right one word
-<kbd>CTRL</kbd> + <kbd>L</kbd>  | Clear screen
-<kbd>CTRL</kbd> + <kbd>C</kbd>  | Terminate the foreground process
-<kbd>CTRL</kbd> + <kbd>Z</kbd>  | Suspend the foreground process
-<kbd>CTRL</kbd> + <kbd>D</kbd>  | Exit shell.
+<kbd>CTRL</kbd> + <kbd>a</kbd>  | Move to the beginning of a line
+<kbd>CTRL</kbd> + <kbd>e</kbd>  | Move to the end of a line
+<kbd>CTRL</kbd> + <kbd>k</kbd>  | Kill/delete/cut from the cursor to the end
+<kbd>CTRL</kbd> + <kbd>u</kbd>  | Delete from the cursor to the start of the line
+<kbd>CTRL</kbd> + <kbd>x</kbd> + <kbd>Backspace</kbd> | removes all the text from the cursor to the beginning
+<kbd>CTRL</kbd> + <kbd>w</kbd>  | Delete from cursor to the start of word
+<kbd>CTRL</kbd> + <kbd>y</kbd>  | Undo last deletion
+<kbd>ALT</kbd> + <kbd>&blacktriangleleft;</kbd> | Move left one word
+<kbd>ALT</kbd> + <kbd>&blacktriangleright;</kbd> | Move right one word
+<kbd>CTRL</kbd> + <kbd>l</kbd>  | Clear screen
+<kbd>CTRL</kbd> + <kbd>c</kbd>  | Terminate the foreground process
+<kbd>CTRL</kbd> + <kbd>z</kbd>  | Suspend the foreground process
+<kbd>CTRL</kbd> + <kbd>d</kbd>  | Exit shell.
 
 ## HereDoc
 ```bash
