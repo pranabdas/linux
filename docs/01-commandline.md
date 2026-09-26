@@ -989,13 +989,34 @@ Check load balance:
 top
 ```
 
+## nohup
+`nohup` is useful for running a one-off long-running command in the background.
+The command continues after you disconnect from the terminal or close the SSH
+session. By default, output is written to `nohup.out` in the current directory.
+
+Run a command in the background:
+```bash
+nohup ./long-running-command.sh > output.log 2>&1 &
+```
+
+The trailing `&` returns control to the shell. Redirecting both standard output
+and standard error to a log file makes the command's output easy to inspect:
+```bash
+tail -f output.log
+```
+
+Use `nohup` for a single task that only needs to keep running. Use [tmux](#tmux)
+when you need to reconnect to an interactive shell, monitor a command, or run
+multiple commands in a persistent session.
+
 ## tmux
-tmux has many use case scenarios, one them is running something on a remote
-machine without interruption. Say you are working on a remote machine over ssh,
-and you need to update your remote machine. The updating process can be
-catastrophic if it is interrupted, it can leave your system on a broken state.
-Therefore it is a good idea to run the process using tmux so that even if you
-are disconnected from the ssh session, the process can continue.
+`tmux` adds several advanced functionalities on top of what `nohup` can do. Such
+as, it lets you reconnect to an interactive shell, monitor running commands, and
+manage multiple windows and panes in a persistent session.
+
+For example, if you need to update a remote machine, running the update inside
+`tmux` lets you reconnect and inspect its progress instead of only checking a
+log file after the process finishes.
 
 Installing tmux:
 ```bash
