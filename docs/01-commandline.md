@@ -989,14 +989,27 @@ Check load balance:
 top
 ```
 
-## tmux
-tmux has many use case scenarios, one them is running something on a remote
-machine without interruption. Say you are working on a remote machine over ssh,
-and you need to update your remote machine. The updating process can be
-catastrophic if it is interrupted, it can leave your system on a broken state.
-Therefore it is a good idea to run the process using tmux so that even if you
-are disconnected from the ssh session, the process can continue.
+## nohup
+`nohup` is useful for running a one-off long-running command in the background.
+The command continues after you disconnect from the terminal or close the SSH
+session. By default, output is written to `nohup.out` in the current directory.
 
+Run a command in the background:
+```bash
+nohup ./long-running-command.sh > output.log 2>&1 &
+```
+
+The trailing `&` returns control to the shell. Redirecting both standard output
+and standard error to a log file makes the command's output easy to inspect:
+```bash
+tail -f output.log
+```
+
+Use `nohup` for a single task that only needs to keep running. Use [tmux](#tmux)
+when you need to reconnect to an interactive shell, monitor a command, or run
+multiple commands in a persistent session.
+
+## tmux
 Installing tmux:
 ```bash
 sudo apt install tmux
@@ -1037,19 +1050,19 @@ tmux kill-session -t 0
 ## Terminal shortcuts
 Shortcuts | Description
 --------- | -----------
-CTRL + A  | Move to the beginning of a line
-CTRL + E  | Move to the end of a line
-CTRL + K  | Kill/delete/cut from the cursor to the end
-CTRL + U  | Delete from the cursor to the start of the line
-Ctrl + X + Backspace | removes all the text from the cursor to the beginning
-CTRL + W  | Delete from cursor to the start of word
-CTRL + Y  | Undo last deletion
-ALT + Left arrow | Move left one word
-ALT + Right arrow | Move right one word
-CTRL + L  | Clear screen
-CTRL + C  | Terminate the foreground process
-CTRL + Z  | Suspend the foreground process
-CTRL + D  | Exit shell.
+<kbd>CTRL</kbd> + <kbd>a</kbd>  | Move to the beginning of a line
+<kbd>CTRL</kbd> + <kbd>e</kbd>  | Move to the end of a line
+<kbd>CTRL</kbd> + <kbd>k</kbd>  | Kill/delete/cut from the cursor to the end
+<kbd>CTRL</kbd> + <kbd>u</kbd>  | Delete from the cursor to the start of the line
+<kbd>CTRL</kbd> + <kbd>x</kbd> + <kbd>Backspace</kbd> | removes all the text from the cursor to the beginning
+<kbd>CTRL</kbd> + <kbd>w</kbd>  | Delete from cursor to the start of word
+<kbd>CTRL</kbd> + <kbd>y</kbd>  | Undo last deletion
+<kbd>ALT</kbd> + <kbd>&blacktriangleleft;</kbd> | Move left one word
+<kbd>ALT</kbd> + <kbd>&blacktriangleright;</kbd> | Move right one word
+<kbd>CTRL</kbd> + <kbd>l</kbd>  | Clear screen
+<kbd>CTRL</kbd> + <kbd>c</kbd>  | Terminate the foreground process
+<kbd>CTRL</kbd> + <kbd>z</kbd>  | Suspend the foreground process
+<kbd>CTRL</kbd> + <kbd>d</kbd>  | Exit shell.
 
 ## HereDoc
 ```bash
@@ -1115,23 +1128,10 @@ base64url format, where `+` is replaced by `-`, and `/` by `_`, because `+` and
 printf "<<???>>" | base64 | sed 's/=//' | sed 's/+/-/' | sed 's/\//_/'
 ```
 
-Sometimes we need to url-encode. We can use [jq](https://jqlang.github.io/jq/):
+Sometimes we need to url-encode. We can use [jq](19-jq.md):
 
 ```bash
 printf "TestString" | base64 | jq -sRr @uri
-```
-
-[jq](https://jqlang.github.io/jq/) can be installed using linux package mangers
-or homebrew:
-
-```bash
-brew install jq
-
-# debian/ubuntu
-apt install jq
-
-# fedora/rhel
-dnf install jq
 ```
 
 
