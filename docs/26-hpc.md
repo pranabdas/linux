@@ -89,4 +89,4 @@ source ~/.bashrc
 ```
 
 ## Resources
-- https://web.corral.tacc.utexas.edu/CompEdu/pdf/stc/EijkhoutIntroToHPC.pdf
+- https://www.cs.wustl.edu/~roger/566S.s21/EijkhoutIntroToHPC.pdf
