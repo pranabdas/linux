@@ -512,6 +512,143 @@ If working with remote branches, make sure they are pulled locally first. If you
 like to edit the commit message, use `--edit` option; if you like to bring the
 commit contents without creating commits, use `--no-commit` option.
 
+### patch
+
+A patch is a text file that records changes as diffs. It can be used to move
+changes between branches, repositories, or machines without a remote, or to
+share them by email or chat. There are two kinds of patch files:
+
+- **format-patch** files contain commit metadata (author, date, message) along
+  with the diff. Use them for committed work.
+- **diff** files contain only the raw diff. Use them for uncommitted work.
+
+#### Save changes to a patch file
+
+Save a single commit as a patch:
+
+```bash
+git format-patch -1 <commit-hash>
+# creates a file like 0001-added-feature-y.patch
+```
+
+Save the last `n` commits:
+
+```bash
+git format-patch -3
+```
+
+Save all commits on a feature branch that are not in `main`, into a
+`patches/` directory:
+
+```bash
+git format-patch main..feature -o patches/
+```
+
+Print the patch to stdout, and redirect it to a file of your choice:
+
+```bash
+git format-patch -1 HEAD --stdout > my-change.patch
+```
+
+Save uncommitted changes as a patch:
+
+```bash
+# unstaged changes only
+git diff > changes.patch
+
+# staged and unstaged changes to tracked files
+git diff HEAD > changes.patch
+```
+
+`git diff` ignores untracked files. To include a new file, mark it as
+intent-to-add first:
+
+```bash
+git add -N <new-file>
+git diff HEAD > changes.patch
+```
+
+#### Inspect a patch
+
+Before applying a patch, check which files it touches and whether it applies
+cleanly:
+
+```bash
+git apply --stat changes.patch
+git apply --check changes.patch
+```
+
+`--check` does a dry run and does not change anything.
+
+#### Apply a patch
+
+Patches created with `format-patch` should be applied with `git am`. It creates
+new commits and keeps the original author, date, and message:
+
+```bash
+git switch main
+git switch -c feature-port
+git am patches/*.patch
+```
+
+If a patch has conflicts, resolve the files, stage them, and continue:
+
+```bash
+git am --continue
+# or give up and restore the branch
+git am --abort
+```
+
+Patches created with `git diff` should be applied with `git apply`. It changes
+the working tree but does not create a commit:
+
+```bash
+git apply changes.patch
+
+# also stage the changes
+git apply --index changes.patch
+
+# fall back to a 3-way merge if the context does not match exactly
+git apply -3 changes.patch
+```
+
+Files that conflict can be written as `.rej` files instead of failing the whole
+patch:
+
+```bash
+git apply --reject changes.patch
+```
+
+#### Port a commit range to another branch or machine
+
+1. On the source machine, save the commits as patch files:
+
+   ```bash
+   git format-patch main..feature -o /tmp/patches
+   ```
+
+2. Copy the `/tmp/patches` directory to the target machine (for example with
+   `scp`, a USB drive, or email).
+
+3. On the target repository, create a branch and apply the patches:
+
+   ```bash
+   git switch main
+   git switch -c feature-port
+   git am /tmp/patches/*.patch
+   ```
+
+If the target branch has diverged, use `git am --3way` to let Git try a 3-way
+merge for each patch:
+
+```bash
+git am --3way /tmp/patches/*.patch
+```
+
+To undo a patch that was applied as commits, use `git revert <commit-hash>` for
+commits that are already pushed. For local commits that are not pushed yet, use
+`git reset` (see the reset section above).
+
 ### Working with remotes
 
 Here I use the example of GitHub. You can choose another provider, like Gitlab,
