@@ -351,8 +351,8 @@ git branch -D <branch-name>
 
 ### reset
 
-Following will reset all changes after the specified commit. This preserves the
-history locally.
+The following moves the current branch and index to the specified commit.
+Commits after it may no longer be reachable from the branch.
 
 ```bash
 git reset <commit hash>
@@ -556,8 +556,8 @@ Save uncommitted changes as a patch:
 # unstaged changes only
 git diff > changes.patch
 
-# staged and unstaged changes to tracked files
-git diff HEAD > changes.patch
+# staged and unstaged changes to tracked files, including binary files
+git diff --binary HEAD > changes.patch
 ```
 
 `git diff` ignores untracked files. To include a new file, mark it as
@@ -565,7 +565,7 @@ intent-to-add first:
 
 ```bash
 git add -N <new-file>
-git diff HEAD > changes.patch
+git diff --binary HEAD > changes.patch
 ```
 
 #### Inspect a patch
@@ -612,8 +612,9 @@ git apply --index changes.patch
 git apply -3 changes.patch
 ```
 
-Files that conflict can be written as `.rej` files instead of failing the whole
-patch:
+With `--reject`, Git applies the hunks it can and writes hunks it cannot apply
+to `.rej` files. This can leave the working tree partially changed, so inspect
+the rejects and verify the applied changes before continuing:
 
 ```bash
 git apply --reject changes.patch
@@ -647,7 +648,9 @@ git am --3way /tmp/patches/*.patch
 
 To undo a patch that was applied as commits, use `git revert <commit-hash>` for
 commits that are already pushed. For local commits that are not pushed yet, use
-`git reset` (see the reset section above).
+`git reset --soft` to keep changes staged or `git reset` to leave them
+unstaged. Avoid `git reset --hard` unless you intend to discard those changes
+(see the reset section above).
 
 ### Working with remotes
 
